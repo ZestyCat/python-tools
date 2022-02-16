@@ -8,21 +8,23 @@ import pandas as pd
 
 ''' BEGIN USER INPUT '''
 
-# Line plot controls
-Directory = 'C:/Users/AESO 1/Documents/Noise/csv/Flight/Omega10_2-2-20/'                    # Directory in which data file is stored
+# Plot controls
+plot_type = "filled" # Choose plot type. "filled", "line", or "all"
+Description = 'Cruise' # power description (filled)
+Range = [84, 96] # power setting (filled)
+Power_units = '% NC' # power setting units (filled)
 
-# Filled plot controls
-Dir1 = 'C:/Users/AESO 1/Documents/Noise/Omega10_2-2-20/data/'
-Dir2 = 'A-6A_J57-P-8A_94RPM.csv'
-File1 = 'C:/Users/AESO 1/Documents/Noise/Omega10_2-2-20/data/'
-File2 = 'A-6A_J57-P-8A_89RPM.csv'
-Description = 'Cruise'
-Range = '90 - 95% RPM'
+# File controls
+Dir1 = 'C:/Users/AESO 1/Documents/Noise/csv/Flight/' # Directory for data file (used in filled and line)
+File1 = 'F-18EF_F414-GE-400_84NC.csv' # data file (used in filled and line)
+Dir2 = 'C:/Users/AESO 1/Documents/Noise/csv/Flight/' # directory (used as second directory for filled)
+File2 = 'F-18EF_F414-GE-400_96NC.csv' #file (used as second data file for line)
+Dir_all = 'C:/Users/AESO 1/Documents/Noise/csv/Flight/'   # Plot all the data files in this directory (Plot all only)
 
 # Save controls
 Save = 1                      # Save figure? (1 for yes, 0 for no)
-save_dir = 'C:/Users/AESO 1/Documents/Noise/' #directory to save plot
-save_name = 'A-3_range-pd-test'
+save_dir = 'C:/Users/AESO 1/Documents/Noise/' # directory to save plot
+save_name = 'F-18_cruise_range' # name for image
 
 ''' END USER INPUT '''
 
@@ -67,9 +69,9 @@ def plot_filled(path, file, path_2, file_2):
                 
     fig, ax = plt.subplots() # Create aplot
     plt.plot(noise_data_1['Distance'], noise_data_1['SEL'], 'C0-', noise_data_1['Distance'], noise_data_1['ALM'], 'C1-', linewidth=0.7, markerfacecolor='none', markeredgewidth=0.7, ms=4)
-    plt.plot(noise_data_2['Distance'], noise_data_2['SEL'], 'C0-', noise_data_2['Distance'], noise_data_2['ALM'], 'C1-', linewidth=0.7, markerfacecolor='none', markeredgewidth=0.7, ms=4)
+    plt.plot(noise_data_2['Distance'], noise_data_2['SEL'], 'C0--', noise_data_2['Distance'], noise_data_2['ALM'], 'C1--', linewidth=0.7, markerfacecolor='none', markeredgewidth=0.7, ms=4)
     plot_title = [r"$\bf{" + ac_data_1['Aircraft'][0] + "}$" + '\n' + ac_data_1['Engine'][0]]  # Plot title
-    plot_title_2 = [Description + ' (' + Range + ')' + '\n' + ac_data_1['Speed'][0]]
+    plot_title_2 = [Description + ' (' + str(Range[0]) + ' - ' + str(Range[1]) + Power_units + ')' + '\n' + ac_data_1['Speed'][0]]
     ax.set_title(plot_title[0], pad=8, loc='left',fontsize=10)
     ax.set_title(plot_title_2[0], pad=8, loc='right',fontsize=10)
     plt.grid(axis='x', which='minor', color='0.85', linewidth=0.3, zorder=0)
@@ -86,7 +88,7 @@ def plot_filled(path, file, path_2, file_2):
     plt.ylim(20, 140)
     ax.set_facecolor('#f8f8ff')
     #h1,l1 = plt.legend_elements() #legend
-    leg = ax.legend(['SEL', 'LAMAX'], fontsize=8)
+    leg = ax.legend(['SEL (' + str(Range[0]) + Power_units + ')', 'LAMAX (' + str(Range[0]) + Power_units + ')', 'SEL (' + str(Range[1]) + Power_units + ')', 'LAMAX (' + str(Range[1]) + Power_units + ')'], fontsize=7, ncol=2)
     leg.set_title("Noise metric",prop={'size':8})
     leg.get_frame().set_edgecolor('black')
     ax.fill_between(noise_data_1['Distance'], noise_data_1['SEL'], noise_data_2['SEL'], alpha=0.5, zorder=3)
@@ -95,22 +97,27 @@ def plot_filled(path, file, path_2, file_2):
     if Save == 1:
             plt.savefig(save_dir+save_name+'.png', bbox_inches='tight', dpi=1000)
 
-
-# def plot_all():
-#     Name_list = os.listdir(Directory)
-#     for filename in Name_list:
-#         AC_NAME = [] #Get the name of the current aircraft to add it to the Destination variable
-#         with open(Directory+filename) as csv_file:
-#             csv_reader = csv.reader(csv_file, delimiter=",")
-#             for lines in csv_reader:
-#                 AC_NAME.append(lines[0])
-#                 break
+def plot_all():
+    Name_list = os.listdir(Dir_all)
+    for filename in Name_list:
+        AC_NAME = [] #Get the name of the current aircraft to add it to the Destination variable
+        with open(Dir_all+filename) as csv_file:
+            csv_reader = csv.reader(csv_file, delimiter=",")
+            for lines in csv_reader:
+                AC_NAME.append(lines[0])
+                break
         
-#         plot_line(Directory, filename) 
-#         print(filename)
-#         Destination = Directory+filename[:-4]+'.png'
-#         print(Destination)
-#         if Save == 1:
-#             plt.savefig(Destination, bbox_inches='tight', dpi=1000)
-                
-plot_filled('C:/Users/AESO 1/Documents/Noise/Omega10_2-2-20/data/', 'A3_J57-P-10_90RPM.csv', 'C:/Users/AESO 1/Documents/Noise/Omega10_2-2-20/data/', 'A3_J57-P-10_95RPM.csv')
+        plot_line(Dir_all, filename) 
+        print(filename)
+        Destination = Dir_all+filename[:-4]+'.png'
+        print(Destination)
+        if Save == 1:
+            plt.savefig(Destination, bbox_inches='tight', dpi=1000)
+       
+
+if plot_type == "filled":
+    plot_filled(Dir1, File1, Dir2, File2)
+elif plot_type == "line":
+    plot_line(Dir1, File1)
+elif plot_type == "all":
+    plot_all()
