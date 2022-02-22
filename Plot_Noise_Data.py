@@ -12,12 +12,12 @@ import numpy as np
 import pandas as pd
 
 '''User input section'''
-filename = 'C:/Users/AESO 1/Documents/Noise/Static Testing 9-21-21/9_21_20_AESO1_C.csv' #File name 
+filename = 'C:/Users/AESO 1/Documents/Noise/Static Testing 9-21-21/9_21_20_AESO2_A.csv' #File name 
 timeframe = ('11:43:01', '11:53:01') #string input time window start and end (HH:MM:SS)
 y_bounds = (60, 130) #Lower and upper bounds for y axis
-selections = (('11:44:18', '11:45:18'), ('11:48:48', '11:49:48'), ('11:50:18', '11:50:48'), ('11:51:33', '11:51:56')) # 2d array of selection windows in format [[start1, end1], [start2, end2],... [startn, endn]]
+selections = (('11:44:18', '11:45:18'), ('11:48:48', '11:49:48'), ('11:50:18', '11:50:48'), ('11:51:27', '11:51:56')) # 2d array of selection windows in format [[start1, end1], [start2, end2],... [startn, endn]]
 plot_title = 'F/A-18D Static Noise Measurement' #Title for plot
-save = False #Save figure? True of False
+save = True #Save figure? True of False
 label = False # add labels? True or False
 label_angle = 30 #Degrees of rotation to plot the labels
 
@@ -28,12 +28,8 @@ data = pd.read_csv(filename, skiprows = 1, usecols = [1, 2, 3], names = ['time',
 
 data['time'] = data['time'].round(decimals = 0).astype(str) # Round time column down to zero and make it a string
 
-for t in data['time']: # If it's a seven character timestamp, add a zero at the beginning
-    if len(t) == 7:
-        data['time'] = '0' + data['time']
-
 data['time'] = pd.to_datetime(data['time'], format = '%H%M%S', exact = False).dt.time.astype(str) # Convert to timestamp format and then to string
-
+print(data.time)
 frame = {} # Window to be plotted, bound by t_0 and t_f
 
 for i, t in enumerate(data['time']): # Find initial and final times and their corresponding indexes, put them in the frame dictionary
