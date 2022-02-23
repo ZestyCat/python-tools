@@ -29,7 +29,7 @@ data = pd.read_csv(filename, skiprows = 1, usecols = [1, 2, 3], names = ['time',
 data['time'] = data['time'].round(decimals = 0).astype(str) # Round time column down to zero and make it a string
 
 data['time'] = pd.to_datetime(data['time'], format = '%H%M%S', exact = False).dt.time.astype(str) # Convert to timestamp format and then to string
-print(data.time)
+
 frame = {} # Window to be plotted, bound by t_0 and t_f
 
 for i, t in enumerate(data['time']): # Find initial and final times and their corresponding indexes, put them in the frame dictionary
