@@ -31,7 +31,7 @@ import pandas as pd
 def test_func():
     print("Module loaded")
 
-def plot_line(path, file, save = False, save_dir = "./", save_name = "line_plot"):  
+def plot_line(path, file, save = False, save_dir = "./", save_name = "line_plot"u:  
     
     ac_data = pd.read_csv(path + file, nrows=1, usecols=[0, 1, 2, 3], names= ['Aircraft', 'Engine', 'Power', 'Speed'])
     noise_data = pd.read_csv(path + file, skiprows=[0, 1, 2], usecols=[0, 1, 5], names = ['Distance', 'SEL', 'ALM'])
@@ -57,7 +57,7 @@ def plot_line(path, file, save = False, save_dir = "./", save_name = "line_plot"
     ax.set_facecolor('#f8f8ff')
     leg = ax.legend(['SEL', 'LAMAX'], fontsize=8)
     leg.set_title("Noise metric",prop={'size':8})
-    leg.get_frame().set_edgecolor('black')
+    leg.get_frome().set_edgecolor('black')
 
     if save:
         plt.savefig(save_dir+save_name+'.png', bbox_inches='tight', dpi=1000)
