@@ -28,10 +28,24 @@ import pandas as pd
 
 ''' END USER INPUT '''
 
-def test_func():
-    print("Module loaded")
+def list_aircraft(dir = "./data/csv/Flight/"):
+    files = os.listdir(dir)
+    ac = set([f.split("_", 1)[0] for f in files])
+    return list(ac)
 
-def plot_line(path, file, save = False, save_dir = "./", save_name = "line_plot"u:  
+def format_plot():
+    plt.grid(axis='x', which='minor', color='0.85', linewidth=0.3)
+    plt.grid(axis='x', color='0.8', linewidth=0.5)
+    plt.grid(axis='y', which='minor', color='0.85', linewidth=0.3)
+    plt.grid(axis='y', color='0.8', linewidth=0.5)
+    plt.xticks(fontsize=8, ticks=[0, 5000, 10000, 15000, 20000, 25000], labels=['0', '5,000', '10,000', '15,000', '20,000', '25,000'])
+    plt.xlabel('Slant distance (ft.)', fontsize=8)
+    plt.ylabel('SEL & LAMAX (dB)')
+    plt.yticks(fontsize=8)
+    plt.xlim(0, 26000)
+    plt.ylim(20, 140)
+
+def plot_line(path, file, save = False, save_dir = "./", save_name = "line_plot"):  
     
     ac_data = pd.read_csv(path + file, nrows=1, usecols=[0, 1, 2, 3], names= ['Aircraft', 'Engine', 'Power', 'Speed'])
     noise_data = pd.read_csv(path + file, skiprows=[0, 1, 2], usecols=[0, 1, 5], names = ['Distance', 'SEL', 'ALM'])
@@ -42,22 +56,13 @@ def plot_line(path, file, save = False, save_dir = "./", save_name = "line_plot"
     plot_title_2 = [ac_data['Power'][0] + '\n' + ac_data['Speed'][0]]
     ax.set_title(plot_title[0], pad=8, loc='left',fontsize=10)
     ax.set_title(plot_title_2[0], pad=8, loc='right',fontsize=10)
-    plt.grid(axis='x', which='minor', color='0.85', linewidth=0.3)
-    plt.grid(axis='x', color='0.8', linewidth=0.5)
-    plt.grid(axis='y', which='minor', color='0.85', linewidth=0.3)
-    plt.grid(axis='y', color='0.8', linewidth=0.5)
-    plt.xticks(fontsize=8, ticks=[0, 5000, 10000, 15000, 20000, 25000], labels=['0', '5,000', '10,000', '15,000', '20,000', '25,000'])
     ax.xaxis.set_minor_locator(MultipleLocator(1000))
     ax.yaxis.set_minor_locator(MultipleLocator(10))
-    plt.xlabel('Slant distance (ft.)', fontsize=8)
-    plt.ylabel('SEL & LAMAX (dB)')
-    plt.yticks(fontsize=8)
-    plt.xlim(0, 26000)
-    plt.ylim(20, 140)
     ax.set_facecolor('#f8f8ff')
     leg = ax.legend(['SEL', 'LAMAX'], fontsize=8)
     leg.set_title("Noise metric",prop={'size':8})
-    leg.get_frome().set_edgecolor('black')
+    leg.get_frame().set_edgecolor('black')
+    format_plot()
 
     if save:
         plt.savefig(save_dir+save_name+'.png', bbox_inches='tight', dpi=1000)
