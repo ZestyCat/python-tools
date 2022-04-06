@@ -1,7 +1,11 @@
 import pandas as pd
 
-def interpolate(file, ac = "A-3", eng = "J57-P-10", pwr = 90, desc = "Cruise"):
-    """Interpolates between every lmax and sel value at a given power setting"""
+def test_func():
+    print("Module loaded")
+
+def interpolate(file = "./data/noisefile.csv", ac = "A-3", eng = "J57-P-10", 
+                pwr = 90, desc = "Cruise", units = "% RPM", spd = "160 kts."):
+    """Interpolates between every noise value at a given power setting"""
     df = pd.read_csv(file)
     df = df[df.ac == ac]
    
@@ -35,10 +39,14 @@ def interpolate(file, ac = "A-3", eng = "J57-P-10", pwr = 90, desc = "Cruise"):
 
         # Linear inerpolation from m and pwr
         y = pd.DataFrame( \
-            {"dist" : sorted(list(set(df["Dist ft."]))), 
+            {"ac"   : ac,
+             "eng"  : eng,
+             "pwr"  : pwr,
+             "desc" : desc,
+             "unit" : units,
+             "spd"  : spd,
+             "dist" : sorted(list(set(df["Dist ft."]))), 
              "lmax" : m["lmax"] * (pwr - d[0].ps_num) + d[0]["ALM A-G (dB)"], 
              "sel"  : m["sel"]  * (pwr - d[0].ps_num) + d[0]["SEL A-G (dB)"]})
         
         return(y)
-
-print(interpolate(file = "./data/noisefile.csv"))
