@@ -1,7 +1,6 @@
 from interpolate import *
 import matplotlib.pyplot as plt
 from matplotlib.ticker import (MultipleLocator)
-import re
 
 df_1 = interpolate("./data/noisefile.csv", ac = "F-35B", eng = "F135-PW-600", desc = "Cruise", units = "% EPR", pwr = 95)
 df_2 = interpolate("./data/noisefile.csv", ac = "F-35B", eng = "F135-PW-600", desc = "Cruise", units = "% EPR", pwr = 135)
@@ -23,8 +22,8 @@ def fmt_plot(ax):
     ax.yaxis.set_minor_locator(MultipleLocator(10))
     ax.set_facecolor('#f8f8ff')
 
-def fmt_title(ax, df, df_2 = None, spd = "160 kts.", ps_name = None):
-    # Construct power setting string, escape percent if it has one
+def fmt_title(ax, df, df_2 = None, ps_name = None, spd = "160 kts."):
+    # Construct power setting string based on arguments
     power = "{}\ ({}\ -\ {}\{})".format(ps_name, df.pwr[0], 
                                         df_2.pwr[0], df.unit[0])           \
             if ps_name is not None and df_2 is not None else               \
@@ -34,9 +33,6 @@ def fmt_title(ax, df, df_2 = None, spd = "160 kts.", ps_name = None):
             "{}\ ({}\{})".format(ps_name, df.pwr[0], df.unit[0])           \
             if ps_name is not None and df_2 is None else                   \
             "{}\ ({}\{})".format(df.desc[0], df.pwr[0], df.unit[0])        \
-
-    if ps_name is not None and df_2 is not None:
-        print("Condition satisfied")
     title_1 = r"$\bf{" + df.ac[0]     + "}$" + '\n' + df.eng[0]
     title_2 = r"$\bf{" + power + "}$" + '\n' + spd
     ax.set_title(title_1, pad=8, loc='left',fontsize=10)
