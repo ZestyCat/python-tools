@@ -1,11 +1,12 @@
 from interpolate import *
 import matplotlib.pyplot as plt
 from matplotlib.ticker import (MultipleLocator)
+import re
 
-df_1 = interpolate("./data/noisefile.csv", ac = "F-35B", eng = "F135-PW-600", desc = "Cruise", units = "\ EPR", pwr = 95)
-df_2 = interpolate("./data/noisefile.csv", ac = "F-35B", eng = "F135-PW-600", desc = "Cruise", units = "\ EPR", pwr = 135)
+df_1 = interpolate("./data/noisefile.csv", ac = "F-35B", eng = "F135-PW-600", desc = "Cruise", units = "% EPR", pwr = 95)
+df_2 = interpolate("./data/noisefile.csv", ac = "F-35B", eng = "F135-PW-600", desc = "Cruise", units = "% EPR", pwr = 135)
 
-def format_plot(ax):
+def fmt_plot(ax):
     plt.grid(axis='x', which='minor', color='0.85', linewidth=0.3)
     plt.grid(axis='x', color='0.8', linewidth=0.5)
     plt.grid(axis='y', which='minor', color='0.85', linewidth=0.3)
@@ -18,43 +19,57 @@ def format_plot(ax):
     plt.yticks(fontsize=8)
     plt.xlim(0, 26000)
     plt.ylim(20, 140)
-
     ax.xaxis.set_minor_locator(MultipleLocator(1000))
     ax.yaxis.set_minor_locator(MultipleLocator(10))
     ax.set_facecolor('#f8f8ff')
 
-def format_title(ax, ac, eng, desc, pwr, unit, spd = "160 kts."):
+def fmt_title(ax, df, df_2 = None, spd = "160 kts.", ps_name = None):
     # Construct power setting string, escape percent if it has one
-    power = "{}\ ({}\{})".format(desc, str(pwr), unit)   \
-             if "%" in unit else                         \
-            "{}\ ({}{})".format(desc, str(pwr), unit)
+    power = "{}\ ({}\ -\ {}\{})".format(ps_name, df.pwr[0], 
+                                        df_2.pwr[0], df.unit[0])           \
+            if ps_name is not None and df_2 is not None else               \
+            "{}\ ({}\ -\ {}\{})".format(df.desc[0], df.pwr[0], 
+                                        df_2.pwr[0], df.unit[0])           \
+            if ps_name is None and df_2 is not None else                   \
+            "{}\ ({}\{})".format(ps_name, df.pwr[0], df.unit[0])           \
+            if ps_name is not None and df_2 is None else                   \
+            "{}\ ({}\{})".format(df.desc[0], df.pwr[0], df.unit[0])        \
 
-    title_1 = r"$\bf{" + ac    + "}$" + '\n' + eng
+    if ps_name is not None and df_2 is not None:
+        print("Condition satisfied")
+    title_1 = r"$\bf{" + df.ac[0]     + "}$" + '\n' + df.eng[0]
     title_2 = r"$\bf{" + power + "}$" + '\n' + spd
     ax.set_title(title_1, pad=8, loc='left',fontsize=10)
     ax.set_title(title_2, pad=8, loc='right',fontsize=10)  
 
-def plot_line(df): # Takes df returned by interpolate(). power as string
-    fig, ax = plt.subplots()
-    plt.plot(df.dist, df.lmax, "o-", df.dist, df.sel, "x-", linewidth = 0.7,
-             markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
-    format_plot(ax, df)
-    format_title(ax, df.ac[0], df.eng[0], df.desc[0], df.pwr[0], df.unit[0])
-    return(fig)
+def fmt_leg(ax, df_1 = None, df_2 = None):
+    leg = ax.legend(["SEL ({}{})".format(df_1.pwr[0], df_1.unit[0]),        \
+                     "LAMAX ({}{})".format(df_2.pwr[0], df_2.unit[0])])     \
+                     if df_1 is not None and df_2 is not None else          \
+                     ax.legend(["SEL", "LMAX"], fontsize = 8)
+    leg.set_title("Noise metric", prop = {"size" : 8})
+    leg.get_frame().set_edgecolor("black")
 
-def plot_filled(df_1, df_2):
+def plot(df, df_2 = None, ps_name = None): # Takes df from interpolate().
     fig, ax = plt.subplots()
-    plt.plot(df_1.dist, df_1.sel, "C0-", df_1.dist, df_1.lmax, "C1-",
-             lw = 0.7, markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
-    plt.plot(df_2.dist, df_2.sel, "C0--", df_2.dist, df_2.lmax, "C1--",
-             lw = 0.7, markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
-    ax.fill_between(df_1.dist, df_1.sel,  df_2.sel,  alpha=0.5, zorder=3)
-    ax.fill_between(df_1.dist, df_1.lmax, df_2.lmax, alpha=0.5, zorder=3)    
-    format_plot(ax)
+    if df_2 is not None:
+        plt.plot(df_1.dist, df_1.sel, "C0-", df_1.dist, df_1.lmax, "C1-",
+            lw = 0.7, markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
+        plt.plot(df_2.dist, df_2.sel, "C0--", df_2.dist, df_2.lmax, "C1--",
+            lw = 0.7, markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
+        ax.fill_between(df_1.dist, df_1.sel,  df_2.sel,  alpha=0.5, zorder=3)
+        ax.fill_between(df_1.dist, df_1.lmax, df_2.lmax, alpha=0.5, zorder=3)    
+    else:
+        plt.plot(df.dist, df.lmax, "o-", df.dist, df.sel, "x-", linewidth = 0.7,
+             markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
+    fmt_plot(ax)
+    fmt_title(ax, df, df_2, ps_name = ps_name)
+    fmt_leg(ax, df, df_2)
     return(fig)
 
 def save_plot(name):
     plt.savefig(name, bbox_inches = 'tight', dpi = 500)
 
-b = plot_filled(df_1, df_2)
+b = plot(df_1)
+
 b.show()
