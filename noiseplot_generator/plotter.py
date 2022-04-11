@@ -64,8 +64,3 @@ def plot(df, df_2 = None, ps_name = None, save_name = None): #df from interpolat
     if save_name:
         plt.savefig(save_name, bbox_inches = 'tight', dpi = 500)
     return(fig)
-
-
-b = plot(df_1, df_2)
-
-b.show()
