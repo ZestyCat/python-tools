@@ -32,7 +32,7 @@ def fmt_title(ax, df, df_2 = None, ps_name = None, spd = "160 kts."):
             if ps_name is None and df_2 is not None else                   \
             "{}\ ({}\{})".format(ps_name, df.pwr[0], df.unit[0])           \
             if ps_name is not None and df_2 is None else                   \
-            "{}\ ({}\{})".format(df.desc[0], df.pwr[0], df.unit[0])        \
+            "{}\ ({}\{})".format(df.desc[0], df.pwr[0], df.unit[0])        
     title_1 = r"$\bf{" + df.ac[0]     + "}$" + '\n' + df.eng[0]
     title_2 = r"$\bf{" + power + "}$" + '\n' + spd
     ax.set_title(title_1, pad=8, loc='left',fontsize=10)
@@ -46,7 +46,7 @@ def fmt_leg(ax, df_1 = None, df_2 = None):
     leg.set_title("Noise metric", prop = {"size" : 8})
     leg.get_frame().set_edgecolor("black")
 
-def plot(df, df_2 = None, ps_name = None): # Takes df from interpolate().
+def plot(df, df_2 = None, ps_name = None, save_name = None): #df from interpolate()
     fig, ax = plt.subplots()
     if df_2 is not None:
         plt.plot(df_1.dist, df_1.sel, "C0-", df_1.dist, df_1.lmax, "C1-",
@@ -61,11 +61,11 @@ def plot(df, df_2 = None, ps_name = None): # Takes df from interpolate().
     fmt_plot(ax)
     fmt_title(ax, df, df_2, ps_name = ps_name)
     fmt_leg(ax, df, df_2)
+    if save_name:
+        plt.savefig(save_name, bbox_inches = 'tight', dpi = 500)
     return(fig)
 
-def save_plot(name):
-    plt.savefig(name, bbox_inches = 'tight', dpi = 500)
 
-b = plot(df_1)
+b = plot(df_1, df_2)
 
 b.show()
