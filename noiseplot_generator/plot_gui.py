@@ -4,6 +4,10 @@ from interpolate import *
 import tkinter as tk
 from tkinter import ttk
 from tkinter import filedialog as fd
+from matplotlib.backends.backend_tkagg import (
+        FigureCanvasTkAgg, NavigationToolbar2Tk)
+from matplotlib.backend_bases import key_press_handler
+from matplotlib.figure import Figure
 
 class InputFrame(ttk.Frame): # Make frame containing all input parameters
     def __init__(self, master):
@@ -23,6 +27,7 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.sv_frame = ttk.Frame() # Make frames
         self.ac_frame = ttk.Frame()
         self.pwr_frame = ttk.Frame()
+        self.fig_frame = ttk.Frame()
         
         self.sv_ent = tk.Entry(self.sv_frame) # Make widgets in frames
         self.sv_btn = tk.Button(self.sv_frame, command = self.set_sv_nm, \
@@ -36,7 +41,7 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.ac_lab = tk.Label(self.ac_frame, text = "Aircraft:")
         self.ac_drp = tk.OptionMenu(self.ac_frame, self.ac, *fn.list_aircraft(),
                                     command = self.set_units)
-        self.plt_btn = tk.Button(command = self.make_plot, text = "Plot", \
+        self.plt_btn = tk.Button(self.fig_frame, command = self.show_plot, text = "Plot", \
                                  width = 4, height = 0)
 
         self.sv_ent["textvariable"] = self.sv_nm # Link widgets to variables
@@ -58,7 +63,8 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.ac_drp.grid(row = 0, column = 1)
         self.ac_lab.grid(row = 0, column = 0)
         self.ac_frame.grid(row = 1, column = 0)
-        self.plt_btn.grid()
+        self.plt_btn.grid(row = 0, column = 0)
+        self.fig_frame.grid(row = 3, column = 0)
 
     def make_plot(self): # make a dataframe, call plotting function 
         self.df = interpolate(ac = self.ac.get(), pwr = float(self.pwr.get()),
@@ -69,55 +75,26 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
             if self.df_2 is None else \
             nl.plot(self.df, self.df_2, save_name = self.sv_nm.get())
         return(self.fig)
+    def show_plot(self):
+        fig = self.make_plot()
+        canvas = FigureCanvasTkAgg(fig, master = self.fig_frame)
+        canvas.draw()
+        canvas.get_tk_widget().grid(row = 1, column = 0)
     def set_sv_nm(self): # Open save dialog, set sv_nm/s_ent to selected name
         nm = fd.asksaveasfilename()
         self.sv_nm.set(nm)
     def set_units(self, selected): # Get units of selected aircraft
         self.units.set(fn.get_units(selected))
 
-class Text(tk.Entry): # make TextInput class inherit from tk.Entry
-    def __init__(self, master, value): 
-        super().__init__(master) # Access methods of super class (ttk.Frame)
-        self.var = tk.StringVar() # make a string variable
-        self.var.set(value) # set var to value
-        self["textvariable"] = self.var # link entry to variable
-        self.bind("<Key-Return>", self.print_contents)
-    def print_contents(self, event): # callback to test variable
-        print("Current content is:", self.var.get())
-        print(interpolate())
-
-class Save(ttk.Frame):
-    def __init__(self, master, placeholder):
-        super().__init__(master)
-        self.entry = tk.Entry()
-        self.entry.pack()
-        self.text = tk.StringVar()
-        self.entry["textvariable"] = self.text
-        self.text.set(placeholder)
-        self.btn = tk.Button(command = self.get_file, text = "Save as", width = 5, height = 1)
-        self.btn.pack()
-    def get_file(self):
-        file = fd.asksaveasfilename()
-        self.text.set(file)
-
-class Selection(ttk.Frame):
-    def __init__(self, master, placeholder):
-        super().__init__(master)
-        self.var = tk.StringVar()
-        self.var.set(placeholder)
-        self.drop = tk.OptionMenu(master, self.var, *fn.list_aircraft()).pack()
-        self.lab = tk.Label(master, text = "Select an aircraft").pack()
-class App(ttk.Frame):
+class PlotFrame(ttk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        self.save = Save(self, "Save file name")
-        self.power = Text(self, "Power setting").pack()
-        self.aircraft = Selection(self, "Aircraft")
-        self.plot_btn = tk.Button(self, text = "Make a plot", command = self.plot).pack() 
-        self.pack()
-    def plot(self):
-        ac = self.aircraft.var.get()
-        print(ac)
+        self.canvas = tk.FigureCanvasTkAgg(self.show_plot(), master = master)
+        canvas.draw()
+        canvas.get_tk_widget().pack()
+    def show_plot(self, plot):
+        pass
+
 root = tk.Tk()
 a = InputFrame(root)
 a.mainloop()
