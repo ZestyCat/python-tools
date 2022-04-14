@@ -17,6 +17,7 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.pwr = tk.StringVar()
         self.pwr_2 = tk.StringVar()
         self.units = tk.StringVar()
+        self.eng = tk.StringVar()
 
         self.sv_nm.set("./noise_plot.png") # Set variable defaults
         self.ac.set("Select AC")
@@ -40,7 +41,7 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.pwr_unit_2 = tk.Label(self.pwr_frame, text = "      ")
         self.ac_lab = tk.Label(self.ac_frame, text = "Aircraft:")
         self.ac_drp = tk.OptionMenu(self.ac_frame, self.ac, *fn.list_aircraft(),
-                                    command = self.set_units)
+                                    command = self.set_info)
         self.plt_btn = tk.Button(self.fig_frame, command = self.show_plot, text = "Plot", \
                                  width = 4, height = 0)
 
@@ -68,7 +69,7 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
 
     def make_plot(self): # make a dataframe, call plotting function 
         self.df = interpolate(ac = self.ac.get(), pwr = float(self.pwr.get()),
-                              units = self.units.get())
+                              units = self.units.get(), eng = self.eng.get())
         self.df_2 = None if self.pwr_2.get().isnumeric() == False else \
                 interpolate(pwr = float(self.pwr_2.get()))
         self.fig = nl.plot(self.df, save_name = self.sv_nm.get()) \
@@ -83,8 +84,9 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
     def set_sv_nm(self): # Open save dialog, set sv_nm/s_ent to selected name
         nm = fd.asksaveasfilename()
         self.sv_nm.set(nm)
-    def set_units(self, selected): # Get units of selected aircraft
-        self.units.set(fn.get_units(selected))
+    def set_info(self, selected): # Get units and engine of selected aircraft
+        self.units.set(fn.get_info(selected)["units"])
+        self.eng.set(fn.get_info(selected)["engine"])
 
 class PlotFrame(ttk.Frame):
     def __init__(self, master):
