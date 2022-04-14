@@ -71,7 +71,8 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.df = interpolate(ac = self.ac.get(), pwr = float(self.pwr.get()),
                               units = self.units.get(), eng = self.eng.get())
         self.df_2 = None if self.pwr_2.get().isnumeric() == False else \
-                interpolate(pwr = float(self.pwr_2.get()))
+                  interpolate(ac = self.ac.get(), pwr = float(self.pwr_2.get()),
+                              units = self.units.get(), eng = self.eng.get())
         self.fig = nl.plot(self.df, save_name = self.sv_nm.get()) \
             if self.df_2 is None else \
             nl.plot(self.df, self.df_2, save_name = self.sv_nm.get())

@@ -35,10 +35,13 @@ def fmt_title(ax, df, df_2 = None, ps_name = None, spd = "160 kts."):
     ax.set_title(title_2, pad=8, loc='right',fontsize=10)  
 
 def fmt_leg(ax, df_1 = None, df_2 = None):
-    leg = ax.legend(["SEL ({}{})".format(df_1.pwr[0], df_1.unit[0]),        \
-                     "LAMAX ({}{})".format(df_2.pwr[0], df_2.unit[0])])     \
-                     if df_1 is not None and df_2 is not None else          \
-                     ax.legend(["SEL", "LMAX"], fontsize = 8)
+    leg = ax.legend(["SEL ({}{})".format(df_1.pwr[0], df_1.unit[0]),       \
+                     "LAMAX ({}{})".format(df_1.pwr[0], df_1.unit[0]),     \
+                     "SEL ({}{})".format(df_2.pwr[0], df_2.unit[0]),       \
+                     "LAMAX ({}{})".format(df_2.pwr[0], df_2.unit[0])],    \
+                     fontsize = 7, ncol = 2)                               \
+                     if df_1 is not None and df_2 is not None else         \
+                     ax.legend(["LMAX", "SEL"], fontsize = 8)
     leg.set_title("Noise metric", prop = {"size" : 8})
     leg.get_frame().set_edgecolor("black")
 
@@ -49,8 +52,8 @@ def plot(df, df_2 = None, ps_name = None, save_name = None): #df from interpolat
             lw = 0.7, markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
         plt.plot(df_2.dist, df_2.sel, "C0--", df_2.dist, df_2.lmax, "C1--",
             lw = 0.7, markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
-        ax.fill_between(df.dist, df.sel,  df_2.sel,  alpha=0.5, zorder=3)
-        ax.fill_between(df.dist, df.lmax, df_2.lmax, alpha=0.5, zorder=3)    
+        ax.fill_between(df.dist, df.sel,  df_2.sel, color = "C0",  alpha=0.5, zorder=3)
+        ax.fill_between(df.dist, df.lmax, df_2.lmax, color= "C1", alpha=0.5, zorder=3)    
     else:
         plt.plot(df.dist, df.lmax, "o-", df.dist, df.sel, "x-", linewidth = 0.7,
              markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)

@@ -18,7 +18,13 @@ def interpolate(file = "./data/noisefile.csv", ac = "A-3", eng = "J57-P-10",
     # If power setting already has data, return that and do not interpolate
     if pwr in list(df.ps_num):
         y = pd.DataFrame( \
-            {"dist" : sorted(list(set(df["Dist ft."]))), 
+            {"ac"   : ac,
+             "eng"  : eng,
+             "pwr"  : pwr,
+             "desc" : desc,
+             "unit" : units,
+             "spd"  : spd,
+             "dist" : sorted(list(set(df["Dist ft."]))), 
              "lmax" : df[df.ps_num == pwr]["ALM A-G (dB)"], 
              "sel"  : df[df.ps_num == pwr]["SEL A-G (dB)"]})
         return(y.reset_index())
