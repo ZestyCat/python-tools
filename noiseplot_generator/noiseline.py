@@ -1,3 +1,4 @@
+import re
 import matplotlib.pyplot as plt
 from matplotlib.ticker import (MultipleLocator)
 
@@ -20,15 +21,17 @@ def fmt_plot(ax):
 
 def fmt_title(ax, df, df_2 = None, ps_name = None, spd = "160 kts."):
     # Construct power setting string based on arguments
-    power = "{}\ ({}\ -\ {}\{})".format(ps_name, df.pwr[0], 
+    power = "{} ({} - {}{})".format(ps_name, df.pwr[0], 
                                         df_2.pwr[0], df.unit[0])           \
             if ps_name is not None and df_2 is not None else               \
-            "{}\ ({}\ -\ {}\{})".format(df.desc[0], df.pwr[0], 
+            "{} ({} - {}{})".format(df.desc[0], df.pwr[0], 
                                         df_2.pwr[0], df.unit[0])           \
             if ps_name is None and df_2 is not None else                   \
-            "{}\ ({}\{})".format(ps_name, df.pwr[0], df.unit[0])           \
+            "{} ({}{})".format(ps_name, df.pwr[0], df.unit[0])           \
             if ps_name is not None and df_2 is None else                   \
-            "{}\ ({}\{})".format(df.desc[0], df.pwr[0], df.unit[0])        
+            "{} ({}{})".format(df.desc[0], df.pwr[0], df.unit[0])        
+    power = re.sub("%", "\\%", power) # Escape special characters
+    power = re.sub(" ", "\\ ", power)
     title_1 = r"$\bf{" + df.ac[0]     + "}$" + '\n' + df.eng[0]
     title_2 = r"$\bf{" + power + "}$" + '\n' + spd
     ax.set_title(title_1, pad=8, loc='left',fontsize=10)
@@ -47,14 +50,14 @@ def fmt_leg(ax, df_1 = None, df_2 = None):
 
 def plot(df, df_2 = None, ps_name = None, save_name = None): #df from interpolate()
     fig, ax = plt.subplots()
-    if df_2 is not None:
+    if df_2 is not None: # If two dataframes are detected, make a filled plot
         plt.plot(df.dist, df.sel, "C0-", df.dist, df.lmax, "C1-",
             lw = 0.7, markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
         plt.plot(df_2.dist, df_2.sel, "C0--", df_2.dist, df_2.lmax, "C1--",
             lw = 0.7, markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
         ax.fill_between(df.dist, df.sel,  df_2.sel, color = "C0",  alpha=0.5, zorder=3)
         ax.fill_between(df.dist, df.lmax, df_2.lmax, color= "C1", alpha=0.5, zorder=3)    
-    else:
+    else: # Else just make a line plot
         plt.plot(df.dist, df.lmax, "o-", df.dist, df.sel, "x-", linewidth = 0.7,
              markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
     fmt_plot(ax)

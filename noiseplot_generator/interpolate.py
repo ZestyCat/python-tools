@@ -12,8 +12,7 @@ def interpolate(file = "./data/noisefile.csv", ac = "A-3", eng = "J57-P-10",
     if (pwr < min(set(df.ps_num))) | (pwr > max(set(df.ps_num))):
         n = min(set(df.ps_num))
         x = max(set(df.ps_num))
-        raise Exception("Power setting out of range for {}.\
-                         Try something between {} and {}.".format(ac, n, x))
+        return("A power setting you entered is out of range for the {}.\nUse a value between {} and {}.".format(ac, n, x))
 
     # If power setting already has data, return that and do not interpolate
     if pwr in list(df.ps_num):
