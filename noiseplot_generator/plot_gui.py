@@ -7,7 +7,7 @@ from tkinter import ttk
 from tkinter import filedialog as fd
 from matplotlib.backends.backend_tkagg import (FigureCanvasTkAgg)
 
-class InputFrame(ttk.Frame): # Make frame containing all input parameters
+class App(ttk.Frame): # Make frame containing all input parameters
     def __init__(self, master):
         super().__init__(master) # Initialize parent class
         self.sv_nm = tk.StringVar() # Create backend variables
@@ -18,6 +18,12 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.units = tk.StringVar()
         self.eng   = tk.StringVar()
 
+        self.help_img = tk.PhotoImage(file = "./img/help.png") # Load images
+        self.play_img = tk.PhotoImage(file = "./img/go.png") 
+        self.file_img = tk.PhotoImage(file = "./img/file.png")
+        self.tabs_img = tk.PhotoImage(file = "./img/tabs.png")
+        self.drop_img = tk.PhotoImage(file = "./img/drop.png")
+
         self.sv_nm.set("./noise_plot.png") # Set variable defaults
         self.ac.set("Select AC")
         self.pwr.set("")
@@ -25,8 +31,9 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.desc.set("")
         self.units.set("Units")
 
-        self.input_frame = ttk.Frame() # Make frames
-        self.fig_frame   = ttk.Frame()
+        self.input_frame  = ttk.Frame() # Make frames
+        self.fig_frame    = ttk.Frame()
+        self.header_frame = ttk.Frame()
 
         self.pwr_lab    = tk.Label(self.input_frame, text = "Power setting 1:") # Make widgets
         self.pwr_ent    = tk.Entry(self.input_frame, width = 10)
@@ -37,16 +44,20 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.desc_lab   = tk.Label(self.input_frame, text = "Power description:")
         self.desc_ent   = tk.Entry(self.input_frame, width = 10)
         self.ac_lab     = tk.Label(self.input_frame, text = "Select aircraft:")
-        self.ac_drp     = ttk.OptionMenu(self.input_frame, self.ac, *["Select AC"],
+        self.ac_drp     = tk.OptionMenu(self.input_frame, self.ac, *["Select AC"],
                                          *fn.list_aircraft(), command = self.set_info)
         self.plt_btn    = tk.Button(self.input_frame, command = self.show_plot, 
-                                    text = "Preview plot", height = 0)
+                                    text = "Preview plot", image = self.play_img,
+                                    compound = "right", height = 0)
         self.csv_btn    = tk.Button(self.input_frame, command = self.save_data,
-                                    text = "Save CSV data")
+                                    text = "Write to CSV", image = self.tabs_img,
+                                    compound = "right", height = 0)
         self.sv_btn     = tk.Button(self.input_frame, command = self.save_plot,
-                                    text = "Save plot", height = 0)
+                                    text = "Save plot", image = self.file_img,
+                                    compound = "right", height = 0)
         self.help_btn   = tk.Button(self.input_frame, command = self.show_help,
-                                    text = "Show help", height = 0)
+                                    text = "Show help", image = self.help_img, 
+                                    compound = "right", height = 0)
 
         self.pwr_ent["textvariable"]    = self.pwr # Link widgets to variables
         self.pwr_ent_2["textvariable"]  = self.pwr_2
@@ -70,6 +81,8 @@ class InputFrame(ttk.Frame): # Make frame containing all input parameters
         self.help_btn.grid(row    = 5, column = 1, sticky = "WE")
         self.input_frame.grid(row = 0, column = 0) # Geometry of frames
         self.fig_frame.grid(row   = 1, column = 0)
+
+        self.ac_drp.config(indicatoron = 0, image = self.drop_img, compound = "right")
 
     def make_plot(self, save_name = None): # make a dataframe, call plotting function 
         self.df = interpolate(ac = self.ac.get(), pwr = float(self.pwr.get()),
@@ -143,11 +156,11 @@ Instructions:\n
        the "Save plot" button.\n
 7.    Save the raw data file in csv format
        to a specified location using the 
-       "Save CSV data" button.
+       "Write to CSV" button.
 
         '''
         self.show_message("Help", msg)
 
 root = tk.Tk()
-a = InputFrame(root)
+a = App(root)
 a.mainloop()

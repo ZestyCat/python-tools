@@ -6,16 +6,17 @@ Noise is plotted using two metrics:
     1. Sound Exposure level (SEL) 
     2. Maximum Sound Level (LAMAX)
 
-The program calculates noise from the NOISEMAP input data.
-Results from this program are identical to those produced by the DoD Omega10 model.
-Unfortunately, the Omega10 model is cumbersome to operate and not very user-friendly.
-This program provides a quick and easy user interface that anyone can use.
-The NOISEMAP input data consists of discrete noise measurements for each aircraft at various power settings.
-Each aircraft has a limited number of noise data points associated with it.
-Linear interpolation is used to generate noise data between noise measurements of different power settings.
+Predict and plot aircraft noise at any given power setting.
+Noise metrics are calculated at each slant distance by interpolating over disparate measured data points from the NOISEMAP input data.
+This accomplishes the same end goal as running the the NOISEMAP preprocessor, Omega10.
+For quality assurance, results from this program have proven to be identical to those from Omega10.
+Unfortunately, the Omega10 preprocessor is cumbersome to operate unfriendly for quick use.
+Moreover, plotting the data to AESO specifications requires some prior experience with Python.
+This program provides an easy-to-use and repeatable solution to the problem.
 
-These are the basic steps of the calculation performed:
-    1. Get user input for the desired power setting
-    2. Find the measured data points with the next lowest and next highest power setting to the user input
-    3. Calculate the slope between the data points
-    
+The basic concept of the calculation is described below:
+    1. The input data file contains noise data for a handful of aircraft, each aircraft having data for a few power settings. 
+       The noise data is reported in LMAX and SEL, at distances ranging from 200 to 25,000 feet.
+    2. Each aircraft only has a few power settings associated with it. Linear interpolation is used
+       to determine noise data for unspecified power settings. For example, if one aircraft only has noise data
+       for 50% RPM, 80% RPM, and 95% RPM, how are we supposed to determine the noise when the aircraft is running at 87% RPM?
