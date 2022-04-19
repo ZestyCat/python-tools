@@ -82,7 +82,7 @@ class App(ttk.Frame): # Make frame containing all input parameters
         self.input_frame.grid(row = 0, column = 0) # Geometry of frames
         self.fig_frame.grid(row   = 1, column = 0)
 
-        self.ac_drp.config(indicatoron = 0, image = self.drop_img, compound = "right")
+        self.ac_drp.config(indicatoron = False, image = self.drop_img, compound = "right")
 
     def make_plot(self, save_name = None): # make a dataframe, call plotting function 
         self.df = interpolate(ac = self.ac.get(), pwr = float(self.pwr.get()),
