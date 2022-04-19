@@ -1,0 +1,1 @@
+pyinstaller -w --onefile --add-data "./img/drop.png";"./img/" --add-data "./img/file.png";"./img/" --add-data "./img/go.png";"./img/" --add-data "./img/help.png";"./img/" --add-data "./img/tabs.png";"./img/" --add-data "./data/noisefile.csv";"./data/" plot_gui.py
