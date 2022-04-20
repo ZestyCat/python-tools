@@ -169,22 +169,14 @@ def main():
             msg = \
             '''
     Instructions:\n
-    1.    Select aircraft from the drop-down.\n
-    2.    Enter power setting values.
-              - To plot a single power setting,
-                leave "Power setting 2" blank.
-              - To plot a range between two power
-                settings, enter a value for
-                "Power setting 2".\n
-    4.    Enter the name of the power setting in
-           the "Power description" field.\n
-    5.    Show the plot in the window using
-           the "Preview plot" button.\n
-    6.    Save the plot to a specified file using
-           the "Save plot" button.\n
-    7.    Save the raw data file in csv format
-           to a specified location using the 
-           "Write to CSV" button.
+1.    Select aircraft from the drop-down.\n
+2.    Enter power setting values.\n
+2a.   To plot a single power setting, leave "Power setting 2" blank.\n
+2b.   To plot a range between two power settings, enter a value for "Power setting 2".\n
+4.    Enter the name of the power setting in the "Power description" field.\n
+5.    Show the plot in the window using the "Preview plot" button.\n
+6.    Save the plot to a specified file using the "Save plot" button.\n
+7.    Save the raw data file in csv format to a specified location using the "Write to CSV" button.
 
             '''
             self.show_message("Help", msg)
@@ -192,6 +184,7 @@ def main():
     root = tk.Tk()
     root.configure(bg = "darkgrey")
     root.title("AESO Noiseplot")
+    root.option_add('*Dialog.msg.font', 'Helvetica 12')
     a = App(root)
     a.input_frame.grid(sticky = "WE")
     a.mainloop()
