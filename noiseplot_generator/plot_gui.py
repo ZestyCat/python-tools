@@ -28,6 +28,7 @@ def main():
             self.tabs_img = tk.PhotoImage(file = "./img/tabs.png")
             self.drop_img = tk.PhotoImage(file = "./img/drop.png")
             self.del_img  = tk.PhotoImage(file = "./img/del.png")
+            self.logo     = tk.PhotoImage(file = "./img/aeso_padded.png")
 
             self.sv_nm.set("./noise_plot.png") # Set variable defaults
             self.ac.set("Select AC")
@@ -40,7 +41,7 @@ def main():
             self.input_frame  = tk.Frame(highlightbackground = "black", highlightthickness = 1) # Make frames
             self.fig_frame    = tk.Frame(highlightbackground = "black", highlightthickness = 1, bg = "darkgrey")
 
-            self.blank_cnvs = tk.Canvas(self.fig_frame, width = 640, height = 400) # Placeholder for plot
+            self.aeso_logo  = tk.Label(self.input_frame, image = self.logo)
             self.pwr_lab    = tk.Label(self.input_frame, text = "Power setting 1:") # Make widgets
             self.pwr_ent    = tk.Entry(self.input_frame, width = 10)
             self.pwr_unit   = tk.Label(self.input_frame, text = "Power units", width = 7, anchor = "w")
@@ -76,6 +77,7 @@ def main():
 
             self.ac_drp.grid(row      = 0, column = 1, sticky = "WE") # Manage geometry
             self.ac_lab.grid(row      = 0, column = 0, sticky = "E")
+            self.aeso_logo.grid(row   = 0, column = 4, rowspan = 4, sticky = "SW")
             self.pwr_lab.grid(row     = 1, column = 0, sticky = "E")
             self.pwr_ent.grid(row     = 1, column = 1, sticky = "WE")
             self.pwr_unit.grid(row    = 1, column = 2, sticky = "W")
@@ -89,7 +91,6 @@ def main():
             self.del_btn.grid(row     = 4, column = 2, rowspan = 2, sticky = "WE")
             self.csv_btn.grid(row     = 4, column = 3, rowspan = 2, sticky = "WE")
             self.help_btn.grid(row    = 4, column = 4, rowspan = 2, sticky = "WE")
-            self.blank_cnvs.grid(row  = 0, column = 0)
             self.input_frame.grid(row = 0, column = 0, sticky = "WE") # Geometry of frames
             self.fig_frame.grid(row   = 1, column = 0)
 
@@ -114,18 +115,20 @@ def main():
                 raise Exception("Could not make a plot out of those power settings. Perhaps they were out of range?") 
 
         def show_plot(self): # Preview the plot on canvas
-            self.blank_cnvs.destroy() # Get rid of placeholder
-            fig = self.make_plot(save_name = None)
-            self.canvas = FigureCanvasTkAgg(fig, master = self.fig_frame)
+            self.fig = self.make_plot(save_name = None)
+            self.canvas = FigureCanvasTkAgg(self.fig, master = self.fig_frame)
             self.canvas.draw()
             self.canvas.get_tk_widget().grid(row = 1, column = 0)
+            self.master.geometry("")
 
         def save_plot(self): # Save plot
                 self.fig = self.make_plot(save_name = fd.asksaveasfilename(defaultextension = ".png", 
                                                                 filetypes =[("image files", ".png")]))
      
         def remove_plot(self):
-            self.canvas.get_tk_widget().destroy()
+            self.fig_frame.destroy()
+            self.fig_frame = tk.Frame(highlightbackground = "black", highlightthickness = 1, bg = "darkgrey")
+            self.fig_frame.grid(row = 1, column = 0)
 
         def save_data(self): # make a dataframe, save as csv 
             self.df   = None if self.pwr.get().isnumeric() == False else \
