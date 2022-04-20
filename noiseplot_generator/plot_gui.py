@@ -1,4 +1,5 @@
 import functions as fn
+import pandas as pd
 import noiseline as nl
 from interpolate import *
 import tkinter as tk
@@ -26,6 +27,7 @@ def main():
             self.file_img = tk.PhotoImage(file = "./img/file.png")
             self.tabs_img = tk.PhotoImage(file = "./img/tabs.png")
             self.drop_img = tk.PhotoImage(file = "./img/drop.png")
+            self.del_img  = tk.PhotoImage(file = "./img/del.png")
 
             self.sv_nm.set("./noise_plot.png") # Set variable defaults
             self.ac.set("Select AC")
@@ -33,17 +35,18 @@ def main():
             self.pwr_2.set("")
             self.desc.set("")
             self.units.set("Units")
+            self.eng.set("")
+    
+            self.input_frame  = tk.Frame(highlightbackground = "black", highlightthickness = 1) # Make frames
+            self.fig_frame    = tk.Frame(highlightbackground = "black", highlightthickness = 1, bg = "darkgrey")
 
-            self.input_frame  = ttk.Frame() # Make frames
-            self.fig_frame    = ttk.Frame()
-            self.header_frame = ttk.Frame()
-
+            self.blank_cnvs = tk.Canvas(self.fig_frame, width = 640, height = 400) # Placeholder for plot
             self.pwr_lab    = tk.Label(self.input_frame, text = "Power setting 1:") # Make widgets
             self.pwr_ent    = tk.Entry(self.input_frame, width = 10)
-            self.pwr_unit   = tk.Label(self.input_frame, text = "Power units")
+            self.pwr_unit   = tk.Label(self.input_frame, text = "Power units", width = 7, anchor = "w")
             self.pwr_lab_2  = tk.Label(self.input_frame, text = "Power setting 2:")
             self.pwr_ent_2  = tk.Entry(self.input_frame, width = 10)
-            self.pwr_unit_2 = tk.Label(self.input_frame, text = "Power units")
+            self.pwr_unit_2 = tk.Label(self.input_frame, text = "Power units", width = 7, anchor = "w")
             self.desc_lab   = tk.Label(self.input_frame, text = "Power description:")
             self.desc_ent   = tk.Entry(self.input_frame, width = 10)
             self.ac_lab     = tk.Label(self.input_frame, text = "Select aircraft:")
@@ -51,6 +54,9 @@ def main():
                                              *fn.list_aircraft(), command = self.set_info)
             self.plt_btn    = tk.Button(self.input_frame, command = self.show_plot, 
                                         text = "Preview plot", image = self.play_img,
+                                        compound = "right", height = 0)
+            self.del_btn    = tk.Button(self.input_frame, command = self.remove_plot,
+                                        text = "Delete plot", image = self.del_img,
                                         compound = "right", height = 0)
             self.csv_btn    = tk.Button(self.input_frame, command = self.save_data,
                                         text = "Write to CSV", image = self.tabs_img,
@@ -78,11 +84,13 @@ def main():
             self.pwr_unit_2.grid(row  = 2, column = 2, sticky = "W")
             self.desc_lab.grid(row    = 3, column = 0, sticky = "E")
             self.desc_ent.grid(row    = 3, column = 1, sticky = "WE")
-            self.plt_btn.grid(row     = 4, column = 0, sticky = "WE")
-            self.sv_btn.grid(row      = 4, column = 1, sticky = "WE")
-            self.csv_btn.grid(row     = 5, column = 0, sticky = "WE")
-            self.help_btn.grid(row    = 5, column = 1, sticky = "WE")
-            self.input_frame.grid(row = 0, column = 0) # Geometry of frames
+            self.plt_btn.grid(row     = 4, column = 0, rowspan = 2, sticky = "WE")
+            self.sv_btn.grid(row      = 4, column = 1, rowspan = 2, sticky = "WE")
+            self.del_btn.grid(row     = 4, column = 2, rowspan = 2, sticky = "WE")
+            self.csv_btn.grid(row     = 4, column = 3, rowspan = 2, sticky = "WE")
+            self.help_btn.grid(row    = 4, column = 4, rowspan = 2, sticky = "WE")
+            self.blank_cnvs.grid(row  = 0, column = 0)
+            self.input_frame.grid(row = 0, column = 0, sticky = "WE") # Geometry of frames
             self.fig_frame.grid(row   = 1, column = 0)
 
             self.ac_drp.config(indicatoron = False, image = self.drop_img, compound = "right")
@@ -106,28 +114,42 @@ def main():
                 raise Exception("Could not make a plot out of those power settings. Perhaps they were out of range?") 
 
         def show_plot(self): # Preview the plot on canvas
+            self.blank_cnvs.destroy() # Get rid of placeholder
             fig = self.make_plot(save_name = None)
             self.canvas = FigureCanvasTkAgg(fig, master = self.fig_frame)
             self.canvas.draw()
             self.canvas.get_tk_widget().grid(row = 1, column = 0)
 
         def save_plot(self): # Save plot
-                self.fig = self.make_plot(save_name = fd.asksaveasfilename())
+                self.fig = self.make_plot(save_name = fd.asksaveasfilename(defaultextension = ".png", 
+                                                                filetypes =[("image files", ".png")]))
      
+        def remove_plot(self):
+            self.canvas.get_tk_widget().destroy()
+
         def save_data(self): # make a dataframe, save as csv 
-            self.df = interpolate(ac = self.ac.get(), pwr = float(self.pwr.get()),
-                                  units = self.units.get(), eng = self.eng.get(),
-                                  desc = self.desc.get())
+            self.df   = None if self.pwr.get().isnumeric() == False else \
+                        interpolate(ac = self.ac.get(), pwr = float(self.pwr.get()),
+                                    units = self.units.get(), eng = self.eng.get(),
+                                    desc = self.desc.get())
             self.df_2 = None if self.pwr_2.get().isnumeric() == False else \
-                      interpolate(ac = self.ac.get(), pwr = float(self.pwr_2.get()),
-                                  units = self.units.get(), eng = self.eng.get(),
-                                  desc = self.desc.get())
-            if type(self.df) != str and type(self.df_2) == str: # Try to save dataframes
-                self.df.to_csv(fd.asksaveasfilename())
-            elif type(self.df) != str and type(self.df_2) != str:
-                 file = fd.asksaveasfilename()
-                 self.df.to_csv(file, mode = 'w', index = False)
-                 self.df_2.to_csv(file, mode = 'a', index = False, header = False)
+                        interpolate(ac = self.ac.get(), pwr = float(self.pwr_2.get()),
+                                    units = self.units.get(), eng = self.eng.get(),
+                                    desc = self.desc.get())
+            if type(self.df) != str or type(self.df_2) != str: # If numeric entry for ps 1 or ps 2
+                self.file = fd.asksaveasfilename(defaultextension = ".csv", 
+                                            filetypes = [("comma separated value", ".csv")])
+                self.cols = pd.DataFrame(columns = ["ac", "eng", "pwr", "desc", "unit", "spd", 
+                                                    "dist", "lmax", "sel"])
+                self.cols.to_csv(self.file, index = False) # Write headers to csv file
+                try: # Append df 1 data
+                    self.df.to_csv(self.file, mode = 'a', index = False, header = False)
+                except:
+                    print("Invalid entry or blank power setting 1.")
+                try: # Append df 2 data
+                    self.df_2.to_csv(self.file, mode = 'a', index = False, header = False)
+                except:
+                    print("Invalid entry or blank power setting 2.")
             else: 
                 err = self.df if type(self.df) == str else self.df_2 # Show message if error
                 self.show_message("Out of range", err)
@@ -165,17 +187,20 @@ def main():
             self.show_message("Help", msg)
 
     root = tk.Tk()
+    root.configure(bg = "darkgrey")
+    root.title("AESO Noiseplot")
     a = App(root)
+    a.input_frame.grid(sticky = "WE")
     a.mainloop()
 
-if __name__ == '__main__':
+if __name__ == '__main__': # Try to work from the pyinstaller tempfile directory
     if hasattr(sys, '_MEIPASS'):
         saved_dir = os.getcwd()
         os.chdir(sys._MEIPASS)
         try:
             main()
         finally:
-            os.chdir(saved_dir)
+            os.chdir(saved_dir) # If it fails, just use the current directory
     else:
         main()
 
