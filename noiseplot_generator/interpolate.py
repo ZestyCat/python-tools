@@ -28,14 +28,14 @@ def interpolate(file = "./data/noisefile.csv", ac = "A-3", eng = "J57-P-10",
              "sel"  : df[df.ps_num == pwr]["SEL A-G (dB)"]})
         return(y.reset_index())
     else:
-        # Find the closest vals in ps_num less than and greater than pwr
+        # Find the closest vals in ps_num greater than and less than pwr
         b = sorted([p for p in set(df.ps_num) if p > pwr])[0], \
             sorted([p for p in set(df.ps_num) if p < pwr])[-1]
-        
+        print(b)
         # Dataframe tuple for ps_num == b[0] and ps_num == b[1]
         d = df[(df.ps_num == b[0])].reset_index(), \
             df[(df.ps_num == b[1])].reset_index()
-        
+
         # Find the slope between the two lmax sets
         m = {"lmax" : (d[1]["ALM A-G (dB)"] - d[0]["ALM A-G (dB)"]) / 
                       (d[1].ps_num - d[0].ps_num),                    
@@ -51,7 +51,7 @@ def interpolate(file = "./data/noisefile.csv", ac = "A-3", eng = "J57-P-10",
              "unit" : units,
              "spd"  : spd,
              "dist" : sorted(list(set(df["Dist ft."]))), 
-             "lmax" : m["lmax"] * (pwr - d[0].ps_num) + d[0]["ALM A-G (dB)"], 
-             "sel"  : m["sel"]  * (pwr - d[0].ps_num) + d[0]["SEL A-G (dB)"]})
+             "lmax" : -m["lmax"] * (d[0].ps_num - pwr) + d[0]["ALM A-G (dB)"], 
+             "sel"  : -m["sel"]  * (d[0].ps_num - pwr) + d[0]["SEL A-G (dB)"]})
         
         return(y)
