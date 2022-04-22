@@ -1,0 +1,1 @@
+omega10 input.o10_input log.o10_log output.o10_noise
