@@ -97,11 +97,14 @@ def main():
             self.ac_drp.config(indicatoron = False, image = self.drop_img, compound = "right")
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
-            self.df = interpolate(ac = self.ac.get(), pwr = float(self.pwr.get()),
-                                  units = self.units.get(), eng = self.eng.get())
-            self.df_2 = None if self.pwr_2.get().isnumeric() == False else \
-                      interpolate(ac = self.ac.get(), pwr = float(self.pwr_2.get()),
-                                  units = self.units.get(), eng = self.eng.get())
+            ##self.df = interpolate(ac = self.ac.get(), pwr = float(self.pwr.get()),
+            ##                      units = self.units.get(), eng = self.eng.get())
+            ##self.df_2 = None if self.pwr_2.get().isnumeric() == False else \
+            ##          interpolate(ac = self.ac.get(), pwr = float(self.pwr_2.get()),
+            ##                      units = self.units.get(), eng = self.eng.get())
+            #fn.run_o10()
+            self.df = fn.read_o10()
+            self.df_2 = None
             try: # Try to make a figure from dataframes
                 self.fig = nl.plot(self.df, ps_name = self.desc.get(), 
                                     save_name = save_name) \

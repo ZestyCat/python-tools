@@ -17,7 +17,7 @@ def get_info(aircraft, file = "./data/noisefile.csv"):
     engine = csv[csv.ac == aircraft].iloc[1].eng
     return({"units" : units, "engine" : engine})
 
-def run_Omega10(aircraft = "F-18E/F", power = 90, description = "Cruise", 
+def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise", 
                 units = "% NC", speed_kts = "160", temp = 59, rel_hum_pct = 70,
                 path = "./", input_file = 'input.o10_input', bat_file = "run_o10.bat", 
                 codes = "./data/ac_codes.csv", os = "Windows"):
@@ -94,4 +94,3 @@ def read_o10(file = "./output.o10_noise"):
         
         return(df)
 
-print(read_o10())
