@@ -1,31 +1,30 @@
 import pandas as pd
 import subprocess
+import os
+import sys
 
 # Miscellaneous functions to make the gui work
 
-def list_aircraft(file = "./data/noisefile.csv"):
-    csv = pd.read_csv(file)
-    ac  = csv[csv.retired == False].ac.unique()
-    return(ac)
+def get_aircraft(file = "data/acdata.csv", ignore = "data/bad_ac_list.csv"):
+    df = pd.read_csv(file)
+    df_2 = pd.read_csv(ignore, header = None)
+    ignore = "|".join(df_2[0].tolist()) # Make regex for all aircraft to ignore
+    return(df[df["aircraft"].str.contains(ignore) == False])
 
-def get_info(aircraft, file = "./data/noisefile.csv"):
-    csv = pd.read_csv(file)
-    power = csv[csv.ac == aircraft].iloc[1].power
-    percent = "%" in power
-    units = power.split(" ")[-1][:-1] if not percent else \
-            "% "+ power.split(" ")[-1][:-1]
-    engine = csv[csv.ac == aircraft].iloc[1].eng
-    return({"units" : units, "engine" : engine})
+def get_info(aircraft = "F-18E/F", df = get_aircraft()):
+    return(df[df["aircraft"] == aircraft].iloc[0])
 
 def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise", 
-                units = "% NC", speed_kts = "160", temp = 59, rel_hum_pct = 70,
-                path = "./", input_file = 'input.o10_input', bat_file = "run_o10.bat", 
-                codes = "./data/ac_codes.csv", os = "Windows"):
+                speed_kts = 160, temp = 59, rel_hum_pct = 70,
+                path = "./", input = 'input.o10_input', log = "log.o10_log", 
+                output = "output.o10_noise", ac_file = "./data/acdata.csv", 
+                os = "Windows"):
 
     # Find the corresponding code for aircraft in codes list file
-    codes = pd.read_csv(codes)
-    code  = codes[codes["aircraft"] == aircraft]["code"].item() # read csv, get code of aircraft
-
+    ac_data = pd.read_csv(ac_file)
+    code  = ac_data[ac_data["aircraft"] == aircraft]["code"].item() # read csv, get code/units of aircraft
+    units = ac_data[ac_data["aircraft"] == aircraft]["units"].item()
+    
     # Pad params with spaces so they fit the Omega10 input format
     pwr_pad = " " * (10 - len(format(power, '.2f'))) + format(power, '.2f')
     units_pad = units + " " * (10 - len(units))
@@ -36,22 +35,17 @@ def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise",
         .format(code, temp, rel_hum_pct, code, pwr_pad, units_pad, speed_kts)
    
     # Write o10_input file
-    with open(path + input_file, 'w') as file:
+    with open(path + input, 'w') as file:
         file.write(command)
         file.close()
-
-    # Write the batch file
-    with open(path + bat_file, 'w') as file:
-        file.write('omega10 {} log.o10_log output.o10_noise'.format(input_file))
-        file.close()
     
-    print("Wrote the files")
-    
-    # Run the batch file
+    # Run omega10
     if os == "Windows":
-        subprocess.call([bat_file])
+        subprocess.Popen(["omega10", input, log, output]).wait()
+        return(output)
     elif os == "Linux":
-        subprocess.Popen(["wine", bat_file])
+        subprocess.Popen(["wine", bat]).wait()
+        return(output)
     else:
         raise Exception("OS must be set to Windows or Linux")
 
@@ -74,14 +68,13 @@ def read_o10(file = "./output.o10_noise"):
                 elif i == 3:
                     eng.append(l[2])
                 elif i == 11:
+                    unit.append(line[42:52].strip())
+                    spd.append(line[57:61].strip())
                     pwr.append(l[2])
-                    unit.append(l[3] + " " + l[4])
-                    spd.append(l[5])
                 elif i > 14: # Get the data
                     dist.append(float(l[0]))
                     sel.append(float(l[1]))
                     lmax.append(float(l[6]))
-        print(ac, eng, pwr, unit, spd)
         df = pd.DataFrame( \
              { "ac"   : ac[0],
                "eng"  : eng[0],
