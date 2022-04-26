@@ -359,10 +359,6 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\asyncio\\log.py',
    'PYMODULE'),
-  ('subprocess',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\subprocess.py',
-   'PYMODULE'),
   ('signal',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\signal.py',
@@ -1099,13 +1095,17 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
    'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
+   'PYMODULE'),
   ('_py_abc',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_py_abc.py',
    'PYMODULE'),
-  ('tracemalloc',
+  ('subprocess',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\subprocess.py',
    'PYMODULE'),
   ('os',
    'C:\\Users\\AESO 1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\os.py',
@@ -3830,8 +3830,4 @@
   ('pandas.compat.pyarrow',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\pandas\\compat\\pyarrow.py',
-   'PYMODULE'),
-  ('functions',
-   'C:\\Users\\AESO '
-   '1\\Documents\\GitHub\\python-tools\\noiseplot_generator\\functions.py',
    'PYMODULE')])

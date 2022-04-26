@@ -4,14 +4,14 @@ import os
 import sys
 
 # Miscellaneous functions to make the gui work
-
-def get_aircraft(file = "data/acdata.csv", ignore = "data/bad_ac_list.csv"):
+    
+def get_aircraft(file = "./data/acdata.csv", ignore = "./data/bad_ac_list.csv"):
     df = pd.read_csv(file)
     df_2 = pd.read_csv(ignore, header = None)
     ignore = "|".join(df_2[0].tolist()) # Make regex for all aircraft to ignore
     return(df[df["aircraft"].str.contains(ignore) == False])
 
-def get_info(aircraft = "F-18E/F", df = get_aircraft()):
+def get_info(aircraft = "F-18E/F", df):
     return(df[df["aircraft"] == aircraft].iloc[0])
 
 def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise", 
