@@ -19,7 +19,7 @@ def fmt_plot(ax):
     ax.yaxis.set_minor_locator(MultipleLocator(10))
     ax.set_facecolor('#f8f8ff')
 
-def fmt_title(ax, df, df_2 = None, ps_name = None, spd = "160 kts."):
+def fmt_title(ax, df, df_2 = None, ps_name = None, spd = 160):
     # Construct power setting string based on arguments
     power = "{} ({} - {}{})".format(ps_name, df.pwr[0], 
                                         df_2.pwr[0], df.unit[0])           \
@@ -33,7 +33,7 @@ def fmt_title(ax, df, df_2 = None, ps_name = None, spd = "160 kts."):
     power = re.sub("%", "\\%", power) # Escape special characters
     power = re.sub(" ", "\\ ", power)
     title_1 = r"$\bf{" + df.ac[0]     + "}$" + '\n' + df.eng[0]
-    title_2 = r"$\bf{" + power + "}$" + '\n' + spd
+    title_2 = r"$\bf{" + power + "}$" + '\n' + str(spd) + " kts."
     ax.set_title(title_1, pad=8, loc='left',fontsize=10)
     ax.set_title(title_2, pad=8, loc='right',fontsize=10)  
 
@@ -48,7 +48,7 @@ def fmt_leg(ax, df_1 = None, df_2 = None):
     leg.set_title("Noise metric", prop = {"size" : 8})
     leg.get_frame().set_edgecolor("black")
 
-def plot(df, df_2 = None, ps_name = None, save_name = None): #df from interpolate()
+def plot(df, df_2 = None, ps_name = None, save_name = None, spd = 160): #df from interpolate()
     fig, ax = plt.subplots()
     if df_2 is not None: # If two dataframes are detected, make a filled plot
         plt.plot(df.dist, df.sel, "C0-", df.dist, df.lmax, "C1-",
@@ -61,7 +61,7 @@ def plot(df, df_2 = None, ps_name = None, save_name = None): #df from interpolat
         plt.plot(df.dist, df.lmax, "o-", df.dist, df.sel, "x-", linewidth = 0.7,
              markerfacecolor = 'none', markeredgewidth = 0.7, ms = 4)
     fmt_plot(ax)
-    fmt_title(ax, df, df_2, ps_name = ps_name)
+    fmt_title(ax, df, df_2, ps_name = ps_name, spd = spd)
     fmt_leg(ax, df, df_2)
     if save_name:
         plt.savefig(save_name, bbox_inches = 'tight', dpi = 500)

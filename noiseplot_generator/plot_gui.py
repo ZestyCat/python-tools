@@ -11,6 +11,14 @@ import subprocess
 
 def main():
 
+    # Check if a string is a float
+    def is_number(string):
+        try:
+            float(string)
+            return True
+        except ValueError:
+            return False
+
     # Get aircraft code, power units, engine for all aircraft except those in ignore file
     def get_aircraft(file = "./data/acdata.csv", ignore = "./data/bad_ac_list.csv"):
         df = pd.read_csv(file)
@@ -37,11 +45,13 @@ def main():
         # Pad params with spaces so they fit the Omega10 input format
         pwr_pad = " " * (10 - len(format(power, '.2f'))) + format(power, '.2f')
         units_pad = units + " " * (10 - len(units))
+        temp_pad = " " * (4 - len(str(temp))) + str(temp)
+        rh_pad = " " * (4 - len(str(rel_hum_pct))) + str(rel_hum_pct)
         speed_pad = " " * (3 - len(str(speed_kts))) + str(speed_kts)
         
         # Concatenate params into string
-        command = "\n{}  {}   {} W  1  0.0\nF{}00{} {} VARIABLE   {}\n" \
-            .format(code, temp, rel_hum_pct, code, pwr_pad, units_pad, speed_kts)
+        command = "\n{}{}{} W  1  0.0\nF{}00{} {} VARIABLE   {}\n" \
+            .format(code, temp_pad, rh_pad, code, pwr_pad, units_pad, speed_kts)
        
         # Write o10_input file
         with open(path + input, 'w') as file:
@@ -83,8 +93,8 @@ def main():
                         pwr.append(l[2])
                     elif i > 14: # Get the data
                         dist.append(float(l[0]))
-                        sel.append(float(l[1]))
-                        lmax.append(float(l[6]))
+                        sel.append(float(line[7:16].strip()))
+                        lmax.append(float(line[39:48].strip()))
             df = pd.DataFrame( \
                  { "ac"   : ac[0],
                    "eng"  : eng[0],
@@ -141,12 +151,10 @@ def main():
 
             # Make widgets
             self.aeso_logo  = tk.Label(self.input_frame, image = self.logo)
-            self.speed_lab  = tk.Label(self.input_frame, text = "Aircraft speed (kts.):")
-            self.speed_ent  = tk.Entry(self.input_frame, width = 10)
-            self.temp_lab   = tk.Label(self.input_frame, text = "Air temperature (F):")
-            self.temp_ent   = tk.Entry(self.input_frame, width = 10)
-            self.rh_pct_lab = tk.Label(self.input_frame, text = "Relative humidity (%):")
-            self.rh_pct_ent = tk.Entry(self.input_frame, width = 10)
+            self.ac_lab     = tk.Label(self.input_frame, text = "Select aircraft:")
+            self.ac_drp     = ttk.Combobox(self.input_frame, textvariable = self.ac)
+            self.ac_drp.bind('<<ComboboxSelected>>', self.set_info)
+            self.ac_drp.bind('<KeyRelease>', self.set_info)
             self.pwr_lab    = tk.Label(self.input_frame, text = "Power setting 1:") 
             self.pwr_ent    = tk.Entry(self.input_frame, width = 10)
             self.pwr_unit   = tk.Label(self.input_frame, text = "Power units", width = 7, anchor = "w")
@@ -155,12 +163,17 @@ def main():
             self.pwr_unit_2 = tk.Label(self.input_frame, text = "Power units", width = 7, anchor = "w")
             self.desc_lab   = tk.Label(self.input_frame, text = "Power description:")
             self.desc_ent   = tk.Entry(self.input_frame, width = 10)
-            self.ac_lab     = tk.Label(self.input_frame, text = "Select aircraft:")
-            self.ac_drp     = ttk.Combobox(self.input_frame, textvariable = self.ac)
-            self.ac_drp.bind('<<ComboboxSelected>>', self.set_info)
-            self.ac_drp.bind('<KeyRelease>', self.set_info)
+            self.temp_lab   = tk.Label(self.input_frame, text = "Air temperature (F):")
+            self.temp_ent   = tk.Entry(self.input_frame, width = 10)
+            self.rh_pct_lab = tk.Label(self.input_frame, text = "Relative humidity (%):")
+            self.rh_pct_ent = tk.Entry(self.input_frame, width = 10)
+            self.speed_lab  = tk.Label(self.input_frame, text = "Aircraft speed (kts.):")
+            self.speed_ent  = tk.Entry(self.input_frame, width = 10)
             self.plt_btn    = tk.Button(self.input_frame, command = self.show_plot, 
                                         text = "Preview plot", image = self.play_img,
+                                        compound = "right", height = 0)
+            self.sv_btn     = tk.Button(self.input_frame, command = self.save_plot,
+                                        text = "Save plot", image = self.file_img,
                                         compound = "right", height = 0)
             self.del_btn    = tk.Button(self.input_frame, command = self.remove_plot,
                                         text = "Delete plot", image = self.del_img,
@@ -168,9 +181,7 @@ def main():
             self.csv_btn    = tk.Button(self.input_frame, command = self.save_data,
                                         text = "Write to CSV", image = self.tabs_img,
                                         compound = "right", height = 0)
-            self.sv_btn     = tk.Button(self.input_frame, command = self.save_plot,
-                                        text = "Save plot", image = self.file_img,
-                                        compound = "right", height = 0)
+            
             self.help_btn   = tk.Button(self.input_frame, command = self.show_help,
                                         text = "Show help", image = self.help_img, 
                                         compound = "right", height = 0)
@@ -212,20 +223,22 @@ def main():
             self.fig_frame.grid(row   = 1, column = 0)
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
+            if self.temp.get() > 200:
+                self.warn_high_temp(self.temp.get())
             
             # Run omega10 and return the output filename
-            out   = run_o10(aircraft = self.ac.get(), power = int(self.pwr.get()),
+            out   = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
                        speed_kts = self.speed.get(), temp = self.temp.get(),
                        rel_hum_pct = self.rh_pct.get()) \
-                       if self.pwr.get().isnumeric() == True \
+                       if is_number(self.pwr.get()) \
                        else None
                        
             # Run omega10 and return the output filename
-            out_2 = run_o10(aircraft = self.ac.get(), power = int(self.pwr_2.get()),
+            out_2 = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
                        speed_kts = self.speed.get(), temp = self.temp.get(),
                        input = "input_2.o10_input", log = "log_2.o10_log",
                        output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get()) \
-                       if self.pwr_2.get().isnumeric() == True \
+                       if is_number(self.pwr_2.get()) \
                        else None
             
             # Show a popup if no entry 
@@ -243,7 +256,7 @@ def main():
                                 save_name = save_name) \
                 if self.df_2 is None else \
                 nl.plot(self.df, self.df_2, ps_name = self.desc.get(), 
-                                save_name = save_name)
+                                save_name = save_name, spd = self.speed.get())
             return(self.fig)
                 
         def show_plot(self): # Preview the plot on canvas
@@ -257,7 +270,7 @@ def main():
                 self.master.geometry("")
 
         def save_plot(self): # Save plot
-                if self.pwr.get().isnumeric() == False and self.pwr_2.get().isnumeric() == False:
+                if is_number(self.pwr.get()) == False and is_number(self.pwr_2.get()) == False:
                     self.m = "Please enter some power setting data."
                     self.show_message("Entry needed", self.m)
                     return(None)
@@ -271,20 +284,22 @@ def main():
             self.fig_frame.grid(row = 1, column = 0)
 
         def save_data(self): # make a dataframe, save as csv 
+            if self.temp.get() > 200:
+                self.warn_high_temp(self.temp.get())
             
             # Run omega10 and return the output filename
-            out = run_o10(aircraft = self.ac.get(), power = int(self.pwr.get()),
+            out = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
                        speed_kts = self.speed.get(), temp = self.temp.get(),
                        rel_hum_pct = self.rh_pct.get()) \
-                       if self.pwr.get().isnumeric() == True \
+                       if is_number(self.pwr.get()) \
                        else None
                        
             # Run omega10 and return the output filename  
-            out_2 = run_o10(aircraft = self.ac.get(), power = int(self.pwr_2.get()),
+            out_2 = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
                        speed_kts = self.speed.get(), temp = self.temp.get(),
                        input = "input_2.o10_input", log = "log_2.o10_log",
                        output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get()) \
-                       if self.pwr_2.get().isnumeric() == True \
+                       if is_number(self.pwr_2.get()) \
                        else None
             
             # Show a popup if no entry 
@@ -319,6 +334,11 @@ def main():
                 
         def show_message(self, header, message):
             tkinter.messagebox.showinfo(header, message)
+            
+        def warn_high_temp(self, temp):
+            msg = "You have entered an ambient temperature of {}. \nPlease be aware that Omega10 may exhibit strange behavior at very high ambient temperatures." \
+                    .format(temp)
+            self.show_message("Warning", msg)
 
         def show_help(self):
             msg = \
