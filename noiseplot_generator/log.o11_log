@@ -1,0 +1,40 @@
+          SUMMARY OF I/O FOR THE  F-18E/F             
+
+          PROGRAM:  OMEGA 11.5
+          AIRCRAFT CODE: M04502
+          PROFILE VERSION CODE: W
+          DATE:            
+          DELTA N (OR DELN)=  0.00 DB
+
+
+          ***************************** INPUT DATA *****************************
+           DATADECK       INTERP    POWER           POWER DESCRIPTION
+             NAME    OPC   FLAG    SETTING
+          M0450204V   04     V    96.00 % NC        MIL PWR             
+          M0450213V   13     V    65.00 % NC        IDLE                
+          M0450219V   19     V    80.00 % NC        80 % PWR            
+
+           DATADECK    ------------ NOISE SOURCE/SUBJECT ------------  DATE OF
+             NAME      PART 1                  PART 2                 NORM. RUN
+          M0450204V    F-18E/F                 F414-GE-400           26 MAR 1991
+          M0450213V    F-18E/F                 F414-GE-400           26 MAR 1991
+          M0450219V    F-18E/F                 F414-GE-400           26 MAR 1991
+
+
+          **************************** OUTPUT DATA *****************************
+          MEASURES COMPUTED:    PNLT(P)--YES    AL(A)--YES    ALT(T)--YES
+          PROFILE DATA FOR ALL ANGLES WRITTEN TO FILE *TAPE2*
+          PROFILE DATA COMPUTED WITH AND WITHOUT EXCESS SOUND ATTENUATION.
+          METEOROLOGY:  TEMP      =    59 F
+                        BAR PRESS = 29.92 IN HG
+                        REL HUMID =    70 %
+
+           PROFILE        POWER         NORMALIZED DATADECKS  POWER DESCRIPTION
+             ID          SETTING        FIRST      SECOND
+          RM0450200    90.00 % NC       M0450219V  M0450204V
+
+
+          ************************ GENERAL INFORMATION *************************
+          OPC --- OPERATION POWER CODE
+          INTERPOLATION FLAG = F FOR FIXED --- AFTERBURNER, WET OR WITH JETS
+                             = V FOR VARIABLE --- LINEAR INTERPOLATION
