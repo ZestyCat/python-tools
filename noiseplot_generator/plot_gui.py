@@ -1,5 +1,6 @@
 import pandas as pd
 import noiseline as nl
+import noisecontour as nc
 import tkinter as tk
 import tkinter.messagebox
 from tkinter import ttk
@@ -144,7 +145,7 @@ def main():
             return(output)
         else:
             raise Exception("OS must be set to Windows or Linux")
-            
+
     def read_o11(file = "./output.o11_noise"):
         with open(file) as file:
             lines = file.readlines()
@@ -152,11 +153,11 @@ def main():
             for i, line in enumerate(lines):
                 if i > 67: # ALMX dBA WITHOUT EXCESS SOUND ATTENUATION
                     data.append(line.split())
-                if i == 90: # Break at 25,000 ft
+                if i == 90:
                     break
-            df = pd.DataFrame(data[1:], columns = data[0]) # make a df
+            df = pd.DataFrame(data[1:], columns = data[0]).set_index("(ft)", drop = True)
             return(df)
-        
+            
     # Main application window
     class App(ttk.Frame): 
         def __init__(self, master):
@@ -173,6 +174,8 @@ def main():
             self.speed  = tk.IntVar()
             self.temp   = tk.IntVar()
             self.rh_pct = tk.IntVar()
+            self.bar_p  = tk.DoubleVar()
+            self.p_type = tk.StringVar()
             
             # Load images
             self.help_img = tk.PhotoImage(file = "./img/help.png")
@@ -194,45 +197,59 @@ def main():
             self.speed.set(160)
             self.temp.set(59)
             self.rh_pct.set(70)
+            self.bar_p.set(29.92)
+            self.p_type.set(1)
             
             # Make frames
             self.input_frame  = tk.Frame(highlightbackground = "black", highlightthickness = 1)
             self.fig_frame    = tk.Frame(highlightbackground = "black", highlightthickness = 1, bg = "darkgrey")
+            self.ac_frame     = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
+            self.amb_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
+            self.button_frame = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
+            self.img_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0, bg = "darkgrey")
+            self.p_type_frame = tk.Frame(self.button_frame, highlightbackground = "black", highlightthickness = 1)
 
             # Make widgets
-            self.aeso_logo  = tk.Label(self.input_frame, image = self.logo)
-            self.ac_lab     = tk.Label(self.input_frame, text = "Select aircraft:")
-            self.ac_drp     = ttk.Combobox(self.input_frame, textvariable = self.ac)
+            self.aeso_logo  = tk.Label(self.img_frame, image = self.logo)
+            self.ac_lab     = tk.Label(self.ac_frame, text = "Select aircraft:")
+            self.ac_drp     = ttk.Combobox(self.ac_frame, textvariable = self.ac)
             self.ac_drp.bind('<<ComboboxSelected>>', self.set_info)
             self.ac_drp.bind('<KeyRelease>', self.set_info)
-            self.pwr_lab    = tk.Label(self.input_frame, text = "Power setting 1:") 
-            self.pwr_ent    = tk.Entry(self.input_frame, width = 10)
-            self.pwr_unit   = tk.Label(self.input_frame, text = "Power units", width = 7, anchor = "w")
-            self.pwr_lab_2  = tk.Label(self.input_frame, text = "Power setting 2:")
-            self.pwr_ent_2  = tk.Entry(self.input_frame, width = 10)
-            self.pwr_unit_2 = tk.Label(self.input_frame, text = "Power units", width = 7, anchor = "w")
-            self.desc_lab   = tk.Label(self.input_frame, text = "Power description:")
-            self.desc_ent   = tk.Entry(self.input_frame, width = 10)
-            self.temp_lab   = tk.Label(self.input_frame, text = "Air temperature (F):")
-            self.temp_ent   = tk.Entry(self.input_frame, width = 10)
-            self.rh_pct_lab = tk.Label(self.input_frame, text = "Relative humidity (%):")
-            self.rh_pct_ent = tk.Entry(self.input_frame, width = 10)
-            self.speed_lab  = tk.Label(self.input_frame, text = "Aircraft speed (kts.):")
-            self.speed_ent  = tk.Entry(self.input_frame, width = 10)
-            self.plt_btn    = tk.Button(self.input_frame, command = self.show_plot, 
+            self.pwr_lab    = tk.Label(self.ac_frame, text = "Power setting 1:") 
+            self.pwr_ent    = tk.Entry(self.ac_frame, width = 13)
+            self.pwr_unit   = tk.Label(self.ac_frame, text = "Power units", width = 7, anchor = "w")
+            self.pwr_lab_2  = tk.Label(self.ac_frame, text = "Power setting 2:")
+            self.pwr_ent_2  = tk.Entry(self.ac_frame, width = 13)
+            self.pwr_unit_2 = tk.Label(self.ac_frame, text = "Power units", width = 7, anchor = "w")
+            self.desc_lab   = tk.Label(self.ac_frame, text = "Power description:")
+            self.desc_ent   = tk.Entry(self.ac_frame)
+            self.p_type_lab = tk.Label(self.p_type_frame, text = "Plot type:")
+            self.plt_type_1 = tk.Radiobutton(self.p_type_frame, variable = self.p_type, 
+                    value = 1, text = "Flyover")
+            self.plt_type_2 = tk.Radiobutton(self.p_type_frame, variable = self.p_type, 
+                    value = 2, text = "Static")
+            self.temp_lab   = tk.Label(self.amb_frame, text = "Air temperature (F):")
+            self.temp_ent   = tk.Entry(self.amb_frame, width = 10)
+            self.bar_p_lab  = tk.Label(self.amb_frame, text = "Barometric pressure (in Hg)")
+            self.bar_p_ent  = tk.Entry(self.amb_frame, width = 10)
+            self.rh_pct_lab = tk.Label(self.amb_frame, text = "Relative humidity (%):")
+            self.rh_pct_ent = tk.Entry(self.amb_frame, width = 10)
+            self.speed_lab  = tk.Label(self.amb_frame, text = "Aircraft speed (kts.):")
+            self.speed_ent  = tk.Entry(self.amb_frame, width = 10)
+            self.plt_btn    = tk.Button(self.button_frame, command = self.show_plot, 
                                         text = "Preview plot", image = self.play_img,
                                         compound = "right", height = 0)
-            self.sv_btn     = tk.Button(self.input_frame, command = self.save_plot,
+            self.sv_btn     = tk.Button(self.button_frame, command = self.save_plot,
                                         text = "Save plot", image = self.file_img,
                                         compound = "right", height = 0)
-            self.del_btn    = tk.Button(self.input_frame, command = self.remove_plot,
+            self.del_btn    = tk.Button(self.button_frame, command = self.remove_plot,
                                         text = "Delete plot", image = self.del_img,
                                         compound = "right", height = 0)
-            self.csv_btn    = tk.Button(self.input_frame, command = self.save_data,
+            self.csv_btn    = tk.Button(self.button_frame, command = self.save_data,
                                         text = "Write to CSV", image = self.tabs_img,
                                         compound = "right", height = 0)
             
-            self.help_btn   = tk.Button(self.input_frame, command = self.show_help,
+            self.help_btn   = tk.Button(self.button_frame, command = self.show_help,
                                         text = "Show help", image = self.help_img, 
                                         compound = "right", height = 0)
 
@@ -245,32 +262,43 @@ def main():
             self.pwr_unit["textvariable"]    = self.units
             self.pwr_unit_2["textvariable"]  = self.units
             self.desc_ent["textvariable"]    = self.desc
+            self.bar_p_ent["textvariable"]   = self.bar_p
             self.ac_drp["values"] = get_aircraft()["aircraft"].tolist()
 
-            self.ac_drp.grid(row      = 0, column = 1, sticky = "WE") # Manage geometry
+            self.ac_drp.grid(row      = 0, column = 1, sticky = "W") # Manage geometry
             self.ac_lab.grid(row      = 0, column = 0, sticky = "E")
-            self.aeso_logo.grid(row   = 0, column = 6, rowspan = 4, sticky = "SW")
-            self.temp_lab.grid(row    = 1, column = 3, sticky = "E")
-            self.temp_ent.grid(row    = 1, column = 4, sticky = "W")
+            self.aeso_logo.grid(row   = 0, column = 4, rowspan = 5, sticky = "SW")
+            self.temp_lab.grid(row    = 0, column = 2, sticky = "E")
+            self.temp_ent.grid(row    = 0, column = 3, sticky = "W")
+            self.bar_p_lab.grid(row   = 1, column = 2, sticky = "E")
+            self.bar_p_ent.grid(row   = 1, column = 3, sticky = "W")
             self.pwr_lab.grid(row     = 1, column = 0, sticky = "E")
-            self.pwr_ent.grid(row     = 1, column = 1, sticky = "WE")
-            self.pwr_unit.grid(row    = 1, column = 2, sticky = "W")
-            self.rh_pct_lab.grid(row  = 2, column = 3, sticky = "E")
-            self.rh_pct_ent.grid(row  = 2, column = 4, sticky = "W")
+            self.pwr_ent.grid(row     = 1, column = 1, sticky = "W")
+            self.pwr_unit.grid(row    = 1, column = 1, sticky = "E")
+            self.rh_pct_lab.grid(row  = 2, column = 2, sticky = "E")
+            self.rh_pct_ent.grid(row  = 2, column = 3, sticky = "W")
             self.pwr_lab_2.grid(row   = 2, column = 0, sticky = "E")
-            self.pwr_ent_2.grid(row   = 2, column = 1, sticky = "WE")
-            self.pwr_unit_2.grid(row  = 2, column = 2, sticky = "W")
-            self.speed_lab.grid(row   = 3, column = 3, sticky = "E")
-            self.speed_ent.grid(row   = 3, column = 4, sticky = "W")
+            self.pwr_ent_2.grid(row   = 2, column = 1, sticky = "W")
+            self.pwr_unit_2.grid(row  = 2, column = 1, sticky = "E")
+            self.speed_lab.grid(row   = 3, column = 2, sticky = "E")
+            self.speed_ent.grid(row   = 3, column = 3, sticky = "W")
             self.desc_lab.grid(row    = 3, column = 0, sticky = "E")
-            self.desc_ent.grid(row    = 3, column = 1, sticky = "WE")
-            self.plt_btn.grid(row     = 4, column = 0, rowspan = 2, sticky = "WE")
-            self.sv_btn.grid(row      = 4, column = 1, rowspan = 2, sticky = "WE")
-            self.del_btn.grid(row     = 4, column = 2, rowspan = 2, sticky = "WE")
-            self.csv_btn.grid(row     = 4, column = 3, rowspan = 2, sticky = "WE")
-            self.help_btn.grid(row    = 4, column = 4, rowspan = 2, sticky = "WE")
+            self.desc_ent.grid(row    = 3, column = 1, sticky = "W")
+            self.p_type_lab.grid(row  = 0, column = 0, sticky = "W")
+            self.plt_type_1.grid(row  = 1, column = 0, sticky = "W")
+            self.plt_type_2.grid(row  = 2, column = 0, sticky = "W")
+            self.plt_btn.grid(row     = 0, column = 1, sticky = "WE")
+            self.sv_btn.grid(row      = 1, column = 1, sticky = "WE")
+            self.del_btn.grid(row     = 0, column = 2, sticky = "WE")
+            self.csv_btn.grid(row     = 1, column = 2, sticky = "WE")
+            self.help_btn.grid(row    = 0, column = 3, sticky = "WE")
             self.input_frame.grid(row = 0, column = 0, sticky = "WE") # Geometry of frames
-            self.fig_frame.grid(row   = 1, column = 0)
+            self.fig_frame.grid(row   = 3, column = 0)
+            self.ac_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
+            self.amb_frame.grid(row   = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
+            self.p_type_frame.grid(row =0, column = 0, pady = (3, 3), padx = (3, 3), rowspan = 2, sticky = "WE")
+            self.button_frame.grid(row =2, column = 0, pady = (3, 10), padx = (10, 10), columnspan = 2, sticky = "NS")
+            self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
             if self.temp.get() > 200:

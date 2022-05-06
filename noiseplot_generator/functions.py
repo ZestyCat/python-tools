@@ -126,8 +126,6 @@ def run_o11(aircraft = "F-18E/F", power = 90, description = "Cruise",
     else:
         raise Exception("OS must be set to Windows or Linux")
        
-       
-       
 def read_o11(file = "./output.o11_noise"):
     with open(file) as file:
         lines = file.readlines()
@@ -137,7 +135,7 @@ def read_o11(file = "./output.o11_noise"):
                 data.append(line.split())
             if i == 90:
                 break
-        df = pd.DataFrame(data[1:], columns = data[0])
+        df = pd.DataFrame(data[1:], columns = data[0]).set_index("(ft)", drop = True)
         return(df)
 
-read_o11()
+#print(read_o11().iloc[0])
