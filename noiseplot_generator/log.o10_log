@@ -1,7 +1,7 @@
-SUMMARY OF I/O FOR AIRCRAFT: A-5C                
+SUMMARY OF I/O FOR AIRCRAFT: A-7E                
 
  PROGRAM:  OMEGA 10.9
- AIRCRAFT CODE: M00401
+ AIRCRAFT CODE: M00601
  PROFILE VERSION CODE: W
  DATE:            
  DELTA N (OR DELN)=  0.00 DB
@@ -10,21 +10,21 @@
  *********************************** INPUT DATA ***********************************
   DATASET               POWER     AIRSPEED POWER DESCRIPTION     DATE OF
     NAME     OPC       SETTING      KNOTS                        NORM. RUN
- FM00401011F  01    100.00 % RPM      250  AFTERBURNER POWER     27 DEC 1979
- FM00401031V  03    100.00 % RPM      249  TAKEOFF POWER         27 DEC 1979
- FM00401051V  05     83.00 % RPM      160  APPROACH POWER        27 DEC 1979
+ FM00601031V  03     96.00 % NC       300  TAKEOFF POWER         27 DEC 1979
+ FM00601041V  04     85.00 % NC       301  CRUISE POWER          27 DEC 1979
+ FM00601051P  05     82.00 % NC       160  APPROACH POWER        27 DEC 1979
 
 
  ********************************** OUTPUT DATA ***********************************
  IS PROFILE DATA WRITTEN ON FILE *UNIT 3*?--YES
  MAXIMUM PERMITTED PROFILE DATA EXTRAPOLATION IS:  5.00 DB
- ENGINE TYPE FOR ALL PROFILE DATA: J79-GE-8C      
+ ENGINE TYPE FOR ALL PROFILE DATA: TF41-A-2       
  METEOROLOGY:  TEMP      =    59 F
                REL HUMID =    70 %
 
   PROFILE            POWER     AIRSPEED POWER DESCRIPTION    NORMALIZED DATASETS
     ID    OPC       SETTING      KNOTS                       REFERENCE  SLOPE PTS
- FM0040100 05     80.00 % RPM      160  APPROACH POWER       M00401051V 051V 031V
+ FM0060100 04     90.00 % NC       160  CRUISE POWER         M00601041V 041V 031V
 
 
  ****************************** GENERAL INFORMATION *******************************

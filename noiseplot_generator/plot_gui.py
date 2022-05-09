@@ -358,7 +358,7 @@ def main():
                 df  = None if out is None else read_o11(out)
                 
                 self.fig = nc.plot_contour(df, aircraft = self.ac.get(), engine = self.eng.get(),
-                                power = self.pwr.get() self.units.get(), save_name = save_name)
+                                power = self.pwr.get() + self.units.get(), save_name = save_name)
                 
                 return(self.fig)
                 

@@ -1,7 +1,7 @@
-          SUMMARY OF I/O FOR THE  A-6A                
+          SUMMARY OF I/O FOR THE  A-7E                
 
           PROGRAM:  OMEGA 11.5
-          AIRCRAFT CODE: M00501
+          AIRCRAFT CODE: M00601
           PROFILE VERSION CODE: W
           DATE:            
           DELTA N (OR DELN)=  0.00 DB
@@ -10,15 +10,19 @@
           ***************************** INPUT DATA *****************************
            DATADECK       INTERP    POWER           POWER DESCRIPTION
              NAME    OPC   FLAG    SETTING
-          M0050104V   04     V    99.00 % RPM       MIL PWR             
-          M0050113V   13     V    60.00 % RPM       IDLE                
-          M0050120V   20     V    75.00 % RPM       75 % RPM ENG RUNUP  
+          M0060106V   06     V    94.00 % NC        INTERMED PWR (MIL)  
+          M0060113V   13     V    55.00 % NC        IDLE                
+          M0060118V   18     V    85.00 % NC        85 % RPM ENG RUNUP  
+          M0060121V   21     V    70.00 % NC        70 % RPM ENG RUNUP  
+          M0060131V   31     V    99.50 % NC        MAX PWR             
 
            DATADECK    ------------ NOISE SOURCE/SUBJECT ------------  DATE OF
              NAME      PART 1                  PART 2                 NORM. RUN
-          M0050104V    A-6A                    J52-P-8A              31 OCT 1975
-          M0050113V    A-6A                    J52-P-8A              31 OCT 1975
-          M0050120V    A-6A                    J52-P-8A              31 OCT 1975
+          M0060106V    A-7E                    TF41-A-2              04 NOV 1975
+          M0060113V    A-7E                    TF41-A-2              04 NOV 1975
+          M0060118V    A-7E                    TF41-A-2              04 NOV 1975
+          M0060121V    A-7E                    TF41-A-2              04 NOV 1975
+          M0060131V    A-7E                    TF41-A-2              07 APR 1976
 
 
           **************************** OUTPUT DATA *****************************
@@ -31,7 +35,7 @@
 
            PROFILE        POWER         NORMALIZED DATADECKS  POWER DESCRIPTION
              ID          SETTING        FIRST      SECOND
-          RM0050100    90.00 % RPM      M0050120V  M0050104V
+          RM0060100    90.00 % NC       M0060118V  M0060106V
 
 
           ************************ GENERAL INFORMATION *************************
