@@ -7,7 +7,7 @@ import pandas as pd
 import functions as fn
 
 def plot_contour(df, aircraft, engine, power, extent_ft = 5000, 
-                 levels = [65, 75, 85, 95], n_grids = 6, save = False):  
+                 levels = [65, 75, 85, 95], n_grids = 6, save_name = None):  
     
     radial_grids = [extent_ft*(i / (n_grids - 1)) for i in range (1, n_grids)]
     radial_grids.insert(0, 200)
@@ -73,5 +73,8 @@ def plot_contour(df, aircraft, engine, power, extent_ft = 5000,
     leg = ax.legend(h1, labels, title="LAMAX (dBA)", facecolor='#f8f8ff', fontsize=8, bbox_to_anchor=(1.2, 1.28))
     leg.set_title("LAMAX (dBA)",prop={'size':8})
     leg.get_frame().set_edgecolor('black')
+    
+    if save_name:
+        plt.savefig(save_name, bbox_inches = 'tight', dpi = 500)
     
     return(fig)

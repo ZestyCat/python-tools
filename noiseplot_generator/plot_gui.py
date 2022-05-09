@@ -130,7 +130,6 @@ def main():
         command = "\n{}{}{}{}   W    1 0.0\nR{}00{} {} VARIABLE\n" \
             .format(code, temp_pad, rh_pad, inches_hg_pad, code, pwr_pad, units_pad)
        
-        print(command)
         #Write o11_input file
         with open(path + input, 'w') as file:
             file.write(command)
@@ -205,7 +204,7 @@ def main():
             self.fig_frame    = tk.Frame(highlightbackground = "black", highlightthickness = 1, bg = "darkgrey")
             self.ac_frame     = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
             self.amb_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
-            self.button_frame = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
+            self.button_frame = tk.Frame(self.input_frame)
             self.img_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0, bg = "darkgrey")
             self.p_type_frame = tk.Frame(self.button_frame, highlightbackground = "black", highlightthickness = 1)
 
@@ -304,46 +303,64 @@ def main():
             self.fig_frame.grid(row   = 3, column = 0)
             self.ac_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
             self.amb_frame.grid(row   = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
-            self.p_type_frame.grid(row =0, column = 0, pady = (3, 3), padx = (3, 3), rowspan = 2, sticky = "WE")
-            self.button_frame.grid(row =2, column = 0, pady = (3, 10), padx = (10, 10), columnspan = 2, sticky = "NS")
+            self.p_type_frame.grid(row= 0, column = 0, pady = (3, 3), padx = (10, 10), rowspan = 2, sticky = "WE")
+            self.button_frame.grid(row= 2, column = 0, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
             self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
             if self.temp.get() > 200:
                 self.warn_high_temp(self.temp.get())
-            
-            # Run omega10 and return the output filename
-            out   = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                       speed_kts = self.speed.get(), temp = self.temp.get(),
-                       rel_hum_pct = self.rh_pct.get()) \
-                       if is_number(self.pwr.get()) \
-                       else None
-                       
-            # Run omega10 and return the output filename
-            out_2 = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
-                       speed_kts = self.speed.get(), temp = self.temp.get(),
-                       input = "input_2.o10_input", log = "log_2.o10_log",
-                       output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get()) \
-                       if is_number(self.pwr_2.get()) \
-                       else None
-            
-            # Show a popup if no entry 
-            if out is None and out_2 is None:
-                self.m = "Please enter some power setting data."
-                self.show_message("Entry needed", self.m)
-                return(None)
-            
-            # Make dataframes from o10 output
-            self.df   = None if out is None else read_o10(out)
-            self.df_2 = None if out_2 is None else read_o10(out_2)
-            
-            # Plot 
-            self.fig  = nl.plot(self.df, ps_name = self.desc.get(), 
-                                save_name = save_name) \
-                if self.df_2 is None else \
-                nl.plot(self.df, self.df_2, ps_name = self.desc.get(), 
-                                save_name = save_name, spd = self.speed.get())
-            return(self.fig)
+            if self.p_type.get() == "1":
+                # Run omega10 and return the output filename
+                out   = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                           speed_kts = self.speed.get(), temp = self.temp.get(),
+                           rel_hum_pct = self.rh_pct.get()) \
+                           if is_number(self.pwr.get()) \
+                           else None
+                           
+                # Run omega10 and return the output filename
+                out_2 = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
+                           speed_kts = self.speed.get(), temp = self.temp.get(),
+                           input = "input_2.o10_input", log = "log_2.o10_log",
+                           output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get()) \
+                           if is_number(self.pwr_2.get()) \
+                           else None
+                
+                # Show a popup if no entry 
+                if out is None and out_2 is None:
+                    self.m = "Please enter some power setting data."
+                    self.show_message("Entry needed", self.m)
+                    return(None)
+                
+                # Make dataframes from o10 output
+                self.df   = None if out is None else read_o10(out)
+                self.df_2 = None if out_2 is None else read_o10(out_2)
+                
+                # Plot 
+                self.fig  = nl.plot(self.df, ps_name = self.desc.get(), 
+                                    save_name = save_name) \
+                    if self.df_2 is None else \
+                    nl.plot(self.df, self.df_2, ps_name = self.desc.get(), 
+                                    save_name = save_name, spd = self.speed.get())
+                return(self.fig)
+                
+            elif self.p_type.get() == "2":
+                out = run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
+                            if is_number(self.pwr.get()) \
+                            else None
+                            
+                if out is None:
+                    self.m = "Please enter some power setting data."
+                    self.show_message("Entry needed", self.m)
+                    return(None)
+                    
+                df  = None if out is None else read_o11(out)
+                
+                self.fig = nc.plot_contour(df, aircraft = self.ac.get(), engine = self.eng.get(),
+                                power = self.pwr.get() self.units.get(), save_name = save_name)
+                
+                return(self.fig)
                 
         def show_plot(self): # Preview the plot on canvas
             self.fig = self.make_plot(save_name = None)
