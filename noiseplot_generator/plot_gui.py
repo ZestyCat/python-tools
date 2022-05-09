@@ -163,18 +163,21 @@ def main():
             super().__init__(master) # Initialize parent class
             
             # Initialize variables
-            self.sv_nm  = tk.StringVar() 
-            self.ac     = tk.StringVar()
-            self.pwr    = tk.StringVar()
-            self.pwr_2  = tk.StringVar()
-            self.desc   = tk.StringVar()
-            self.units  = tk.StringVar()
-            self.eng    = tk.StringVar()
-            self.speed  = tk.IntVar()
-            self.temp   = tk.IntVar()
-            self.rh_pct = tk.IntVar()
-            self.bar_p  = tk.DoubleVar()
-            self.p_type = tk.StringVar()
+            self.sv_nm     = tk.StringVar()
+            self.ac        = tk.StringVar()
+            self.pwr       = tk.StringVar()
+            self.pwr_2     = tk.StringVar()
+            self.desc      = tk.StringVar()
+            self.units     = tk.StringVar()
+            self.eng       = tk.StringVar()
+            self.speed     = tk.IntVar()
+            self.temp      = tk.IntVar()
+            self.rh_pct    = tk.IntVar()
+            self.bar_p     = tk.DoubleVar()
+            self.p_type    = tk.StringVar()
+            self.levels    = tk.StringVar()
+            self.n_grids   = tk.IntVar()
+            self.extent_ft = tk.IntVar()
             
             # Load images
             self.help_img = tk.PhotoImage(file = "./img/help.png")
@@ -198,6 +201,9 @@ def main():
             self.rh_pct.set(70)
             self.bar_p.set(29.92)
             self.p_type.set(1)
+            self.levels.set("65, 75, 85, 95")
+            self.n_grids.set(6)
+            self.extent_ft.set(5000)
             
             # Make frames
             self.input_frame  = tk.Frame(highlightbackground = "black", highlightthickness = 1)
@@ -207,6 +213,7 @@ def main():
             self.button_frame = tk.Frame(self.input_frame)
             self.img_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0, bg = "darkgrey")
             self.p_type_frame = tk.Frame(self.button_frame, highlightbackground = "black", highlightthickness = 1)
+            self.static_frame = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
 
             # Make widgets
             self.aeso_logo  = tk.Label(self.img_frame, image = self.logo)
@@ -239,6 +246,14 @@ def main():
             self.speed_lab  = tk.Label(self.amb_frame, text = "Aircraft speed:")
             self.speed_ent  = tk.Entry(self.amb_frame, width = 10)
             self.speed_unit = tk.Label(self.amb_frame, text = "knots")
+            self.extent_lab = tk.Label(self.static_frame, text = "Extent:")
+            self.extent_ent = tk.Entry(self.static_frame, width = 10)
+            self.extent_unit= tk.Label(self.static_frame, text = "feet")
+            self.levels_lab = tk.Label(self.static_frame, text = "Contour levels:")
+            self.levels_ent = tk.Entry(self.static_frame, width = 10)
+            self.levels_unit= tk.Label(self.static_frame, text = "dB")
+            self.grids_lab  = tk.Label(self.static_frame, text = "Number of grids:")
+            self.grids_ent  = tk.Entry(self.static_frame, width = 10)
             self.plt_btn    = tk.Button(self.button_frame, command = self.show_plot, 
                                         text = "Preview plot", image = self.play_img,
                                         compound = "right", height = 0)
@@ -267,6 +282,9 @@ def main():
             self.desc_ent["textvariable"]    = self.desc
             self.bar_p_ent["textvariable"]   = self.bar_p
             self.ac_drp["values"] = get_aircraft()["aircraft"].tolist()
+            self.extent_ent["textvariable"]  = self.extent_ft
+            self.levels_ent["textvariable"]  = self.levels
+            self.grids_ent["textvariable"]   = self.n_grids
 
             self.ac_drp.grid(row      = 0, column = 1, sticky = "W") # Manage geometry
             self.ac_lab.grid(row      = 0, column = 0, sticky = "E")
@@ -293,6 +311,14 @@ def main():
             self.desc_ent.grid(row    = 3, column = 1, sticky = "W")
             self.p_type_lab.grid(row  = 0, column = 0, sticky = "W")
             self.plt_type_1.grid(row  = 1, column = 0, sticky = "W")
+            self.extent_lab.grid() 
+            self.extent_ent.grid()
+            self.extent_unit.grid()
+            self.levels_lab.grid()
+            self.levels_ent.grid()
+            self.levels_unit.grid()
+            self.grids_lab.grid()
+            self.grids_ent.grid()
             self.plt_type_2.grid(row  = 2, column = 0, sticky = "W")
             self.plt_btn.grid(row     = 0, column = 1, sticky = "WE")
             self.sv_btn.grid(row      = 1, column = 1, sticky = "WE")
@@ -306,6 +332,7 @@ def main():
             self.p_type_frame.grid(row= 0, column = 0, pady = (3, 3), padx = (10, 10), rowspan = 2, sticky = "WE")
             self.button_frame.grid(row= 2, column = 0, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
             self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
+            self.static_frame.grid(row = 3)
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
             if self.temp.get() > 200:
@@ -358,7 +385,8 @@ def main():
                 df  = None if out is None else read_o11(out)
                 
                 self.fig = nc.plot_contour(df, aircraft = self.ac.get(), engine = self.eng.get(),
-                                power = self.pwr.get() + self.units.get(), save_name = save_name)
+                                power = self.pwr.get() + self.units.get(), n_grids = self.n_grids.get(),
+                                levels = [int(l) for l in self.levels.get().split(", ")], save_name = save_name)
                 
                 return(self.fig)
                 
