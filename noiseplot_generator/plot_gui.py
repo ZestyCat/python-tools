@@ -212,7 +212,7 @@ def main():
             self.amb_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
             self.button_frame = tk.Frame(self.input_frame)
             self.img_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0, bg = "darkgrey")
-            self.p_type_frame = tk.Frame(self.button_frame, highlightbackground = "black", highlightthickness = 1)
+            self.p_type_frame = tk.Frame(self.ac_frame)
             self.static_frame = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
 
             # Make widgets
@@ -231,29 +231,29 @@ def main():
             self.desc_ent   = tk.Entry(self.ac_frame)
             self.p_type_lab = tk.Label(self.p_type_frame, text = "Plot type:")
             self.plt_type_1 = tk.Radiobutton(self.p_type_frame, variable = self.p_type, 
-                    value = 1, text = "Flyover")
+                    value = 1, command = self.flip_state, text = "Flyover")
             self.plt_type_2 = tk.Radiobutton(self.p_type_frame, variable = self.p_type, 
-                    value = 2, text = "Static")
+                    value = 2, command = self.flip_state, text = "Static")
             self.temp_lab   = tk.Label(self.amb_frame, text = "Air temperature:")
-            self.temp_ent   = tk.Entry(self.amb_frame, width = 10)
+            self.temp_ent   = tk.Entry(self.amb_frame, width = 20)
             self.temp_unit  = tk.Label(self.amb_frame, text = "degrees F")
             self.bar_p_lab  = tk.Label(self.amb_frame, text = "Barometric pressure:")
-            self.bar_p_ent  = tk.Entry(self.amb_frame, width = 10)
+            self.bar_p_ent  = tk.Entry(self.amb_frame, width = 20)
             self.bar_p_unit = tk.Label(self.amb_frame, text = "inches Hg")
             self.rh_pct_lab = tk.Label(self.amb_frame, text = "Relative humidity:")
-            self.rh_pct_ent = tk.Entry(self.amb_frame, width = 10)
+            self.rh_pct_ent = tk.Entry(self.amb_frame, width = 20)
             self.rh_pct_unit= tk.Label(self.amb_frame, text = "%")
             self.speed_lab  = tk.Label(self.amb_frame, text = "Aircraft speed:")
-            self.speed_ent  = tk.Entry(self.amb_frame, width = 10)
+            self.speed_ent  = tk.Entry(self.amb_frame, width = 20)
             self.speed_unit = tk.Label(self.amb_frame, text = "knots")
-            self.extent_lab = tk.Label(self.static_frame, text = "Extent:")
-            self.extent_ent = tk.Entry(self.static_frame, width = 10)
-            self.extent_unit= tk.Label(self.static_frame, text = "feet")
-            self.levels_lab = tk.Label(self.static_frame, text = "Contour levels:")
-            self.levels_ent = tk.Entry(self.static_frame, width = 10)
-            self.levels_unit= tk.Label(self.static_frame, text = "dB")
-            self.grids_lab  = tk.Label(self.static_frame, text = "Number of grids:")
-            self.grids_ent  = tk.Entry(self.static_frame, width = 10)
+            self.extent_lab = tk.Label(self.amb_frame, text = "Extent:")
+            self.extent_ent = tk.Entry(self.amb_frame, width = 20)
+            self.extent_unit= tk.Label(self.amb_frame, text = "feet")
+            self.levels_lab = tk.Label(self.amb_frame, text = "Contour levels:")
+            self.levels_ent = tk.Entry(self.amb_frame, width = 20)
+            self.levels_unit= tk.Label(self.amb_frame, text = "dB")
+            self.grids_lab  = tk.Label(self.amb_frame, text = "Number of grids:")
+            self.grids_ent  = tk.Entry(self.amb_frame, width = 4)
             self.plt_btn    = tk.Button(self.button_frame, command = self.show_plot, 
                                         text = "Preview plot", image = self.play_img,
                                         compound = "right", height = 0)
@@ -289,37 +289,37 @@ def main():
             self.ac_drp.grid(row      = 0, column = 1, sticky = "W") # Manage geometry
             self.ac_lab.grid(row      = 0, column = 0, sticky = "E")
             self.aeso_logo.grid(row   = 0, column = 4, rowspan = 5, sticky = "SW")
-            self.temp_lab.grid(row    = 0, column = 2, sticky = "E")
-            self.temp_ent.grid(row    = 0, column = 3, sticky = "W")
-            self.temp_unit.grid(row   = 0, column = 4, sticky = "W")
-            self.bar_p_lab.grid(row   = 1, column = 2, sticky = "E")
-            self.bar_p_ent.grid(row   = 1, column = 3, sticky = "W")
-            self.bar_p_unit.grid(row  = 1, column = 4, sticky = "W")
+            self.temp_lab.grid(row    = 0, column = 0, sticky = "E")
+            self.temp_ent.grid(row    = 0, column = 1, sticky = "W")
+            self.temp_unit.grid(row   = 0, column = 2, sticky = "W")
+            self.bar_p_lab.grid(row   = 1, column = 0, sticky = "E")
+            self.bar_p_ent.grid(row   = 1, column = 1, sticky = "W")
+            self.bar_p_unit.grid(row  = 1, column = 2, sticky = "W")
             self.pwr_lab.grid(row     = 1, column = 0, sticky = "E")
             self.pwr_ent.grid(row     = 1, column = 1, sticky = "W")
             self.pwr_unit.grid(row    = 1, column = 1, sticky = "E")
-            self.rh_pct_lab.grid(row  = 2, column = 2, sticky = "E")
-            self.rh_pct_ent.grid(row  = 2, column = 3, sticky = "W")
-            self.rh_pct_unit.grid(row = 2, column = 4, sticky = "W")
+            self.rh_pct_lab.grid(row  = 2, column = 0, sticky = "E")
+            self.rh_pct_ent.grid(row  = 2, column = 1, sticky = "W")
+            self.rh_pct_unit.grid(row = 2, column = 2, sticky = "W")
             self.pwr_lab_2.grid(row   = 2, column = 0, sticky = "E")
             self.pwr_ent_2.grid(row   = 2, column = 1, sticky = "W")
             self.pwr_unit_2.grid(row  = 2, column = 1, sticky = "E")
-            self.speed_lab.grid(row   = 3, column = 2, sticky = "E")
-            self.speed_ent.grid(row   = 3, column = 3, sticky = "W")
-            self.speed_unit.grid(row  = 3, column = 4, sticky = "W")
+            self.speed_lab.grid(row   = 3, column = 0, sticky = "E")
+            self.speed_ent.grid(row   = 3, column = 1, sticky = "W")
+            self.speed_unit.grid(row  = 3, column = 2, sticky = "W")
             self.desc_lab.grid(row    = 3, column = 0, sticky = "E")
             self.desc_ent.grid(row    = 3, column = 1, sticky = "W")
-            self.p_type_lab.grid(row  = 0, column = 0, sticky = "W")
-            self.plt_type_1.grid(row  = 1, column = 0, sticky = "W")
-            self.extent_lab.grid() 
-            self.extent_ent.grid()
-            self.extent_unit.grid()
-            self.levels_lab.grid()
-            self.levels_ent.grid()
-            self.levels_unit.grid()
-            self.grids_lab.grid()
-            self.grids_ent.grid()
-            self.plt_type_2.grid(row  = 2, column = 0, sticky = "W")
+            self.p_type_lab.grid(row  = 0, column = 0, sticky = "E")
+            self.plt_type_1.grid(row  = 0, column = 1, sticky = "W")
+            self.plt_type_2.grid(row  = 0, column = 2, sticky = "W")
+            self.extent_lab.grid(row  = 4, column = 0, sticky = "E") 
+            self.extent_ent.grid(row  = 4, column = 1, sticky = "W")
+            self.extent_unit.grid(row = 4, column = 2, sticky = "W")
+            self.levels_lab.grid(row  = 5, column = 0, sticky = "E")
+            self.levels_ent.grid(row  = 5, column = 1, sticky = "W")
+            self.levels_unit.grid(row = 5, column = 2, sticky = "W")
+            self.grids_lab.grid(row   = 6, column = 0, sticky = "E")
+            self.grids_ent.grid(row   = 6, column = 1, sticky = "W")
             self.plt_btn.grid(row     = 0, column = 1, sticky = "WE")
             self.sv_btn.grid(row      = 1, column = 1, sticky = "WE")
             self.del_btn.grid(row     = 0, column = 2, sticky = "WE")
@@ -328,11 +328,38 @@ def main():
             self.input_frame.grid(row = 0, column = 0, sticky = "WE") # Geometry of frames
             self.fig_frame.grid(row   = 3, column = 0)
             self.ac_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
-            self.amb_frame.grid(row   = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
-            self.p_type_frame.grid(row= 0, column = 0, pady = (3, 3), padx = (10, 10), rowspan = 2, sticky = "WE")
+            self.amb_frame.grid(row   = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 2, sticky = "WE")
+            self.p_type_frame.grid(row= 4, column = 0, pady = (3, 3), padx = (10, 10), columnspan = 2, sticky = "WE")
             self.button_frame.grid(row= 2, column = 0, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
             self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
-            self.static_frame.grid(row = 3)
+            self.static_frame.grid(row = 3, padx = (10, 10), sticky = "WE")
+            
+            self.flip_state() 
+
+        def flip_state(self): # Disable non-flyover/static entries
+            self.test = self.p_type.get()
+            if self.test == "1":
+                print("Flyover")
+                self.temp_ent['state']   = 'normal'
+                self.bar_p_ent['state']  = 'disabled'
+                self.rh_pct_ent['state'] = 'normal'
+                self.speed_ent['state']  = 'normal'
+                self.extent_ent['state'] = 'disabled'
+                self.levels_ent['state'] = 'disabled'
+                self.grids_ent['state']  = 'disabled'
+                self.pwr_ent_2['state']  = 'normal'
+
+            if self.test == "2":
+                print("Static")
+                self.pwr_ent_2['state']  = 'disabled'
+                self.temp_ent['state']   = 'normal'
+                self.bar_p_ent['state']  = 'normal'
+                self.rh_pct_ent['state'] = 'normal'
+                self.speed_ent['state']  = 'disabled'
+                self.extent_ent['state'] = 'normal'
+                self.levels_ent['state'] = 'normal'
+                self.grids_ent['state']  = 'normal'
+
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
             if self.temp.get() > 200:
