@@ -210,7 +210,7 @@ def main():
             self.fig_frame    = tk.Frame(highlightbackground = "black", highlightthickness = 1, bg = "darkgrey")
             self.ac_frame     = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
             self.amb_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
-            self.button_frame = tk.Frame(self.input_frame)
+            self.button_frame = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0)
             self.img_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0, bg = "darkgrey")
             self.p_type_frame = tk.Frame(self.ac_frame)
             self.static_frame = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
@@ -255,20 +255,20 @@ def main():
             self.grids_lab  = tk.Label(self.amb_frame, text = "Number of grids:")
             self.grids_ent  = tk.Entry(self.amb_frame, width = 4)
             self.plt_btn    = tk.Button(self.button_frame, command = self.show_plot, 
-                                        text = "Preview plot", image = self.play_img,
+                                        text = "Preview plot ", image = self.play_img,
                                         compound = "right", height = 0)
             self.sv_btn     = tk.Button(self.button_frame, command = self.save_plot,
-                                        text = "Save plot", image = self.file_img,
+                                        text = "Save plot ", image = self.file_img,
                                         compound = "right", height = 0)
             self.del_btn    = tk.Button(self.button_frame, command = self.remove_plot,
-                                        text = "Delete plot", image = self.del_img,
+                                        text = "Delete plot ", image = self.del_img,
                                         compound = "right", height = 0)
             self.csv_btn    = tk.Button(self.button_frame, command = self.save_data,
-                                        text = "Write to CSV", image = self.tabs_img,
+                                        text = "Write to CSV ", image = self.tabs_img,
                                         compound = "right", height = 0)
             
             self.help_btn   = tk.Button(self.button_frame, command = self.show_help,
-                                        text = "Show help", image = self.help_img, 
+                                        text = "Show help ", image = self.help_img, 
                                         compound = "right", height = 0)
 
             # Link widgets to variables
@@ -320,17 +320,17 @@ def main():
             self.levels_unit.grid(row = 5, column = 2, sticky = "W")
             self.grids_lab.grid(row   = 6, column = 0, sticky = "E")
             self.grids_ent.grid(row   = 6, column = 1, sticky = "W")
-            self.plt_btn.grid(row     = 0, column = 1, sticky = "WE")
-            self.sv_btn.grid(row      = 1, column = 1, sticky = "WE")
-            self.del_btn.grid(row     = 0, column = 2, sticky = "WE")
-            self.csv_btn.grid(row     = 1, column = 2, sticky = "WE")
-            self.help_btn.grid(row    = 0, column = 3, sticky = "WE")
+            self.plt_btn.grid(row     = 0, column = 0, sticky = "WE")
+            self.sv_btn.grid(row      = 1, column = 0, sticky = "WE")
+            self.del_btn.grid(row     = 2, column = 0, sticky = "WE")
+            self.csv_btn.grid(row     = 3, column = 0, sticky = "WE")
+            self.help_btn.grid(row    = 4, column = 0, sticky = "WE")
             self.input_frame.grid(row = 0, column = 0, sticky = "WE") # Geometry of frames
             self.fig_frame.grid(row   = 3, column = 0)
-            self.ac_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
-            self.amb_frame.grid(row   = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 2, sticky = "WE")
+            self.ac_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "W")
+            self.amb_frame.grid(row   = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
             self.p_type_frame.grid(row= 4, column = 0, pady = (3, 3), padx = (10, 10), columnspan = 2, sticky = "WE")
-            self.button_frame.grid(row= 2, column = 0, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
+            self.button_frame.grid(row= 1, column = 1, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
             self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
             self.static_frame.grid(row = 3, padx = (10, 10), sticky = "WE")
             
