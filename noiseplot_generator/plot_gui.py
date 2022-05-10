@@ -413,7 +413,8 @@ def main():
                 
                 self.fig = nc.plot_contour(df, aircraft = self.ac.get(), engine = self.eng.get(),
                                 power = self.pwr.get() + self.units.get(), n_grids = self.n_grids.get(),
-                                levels = [int(l) for l in self.levels.get().split(", ")], save_name = save_name)
+                                levels = [int(l) for l in self.levels.get().split(", ")],
+                                extent_ft = self.extent_Ft, save_name = save_name)
                 
                 return(self.fig)
                 
