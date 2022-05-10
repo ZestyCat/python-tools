@@ -321,18 +321,17 @@ def main():
             self.grids_lab.grid(row   = 6, column = 0, sticky = "E")
             self.grids_ent.grid(row   = 6, column = 1, sticky = "W")
             self.plt_btn.grid(row     = 0, column = 0, sticky = "WE")
-            self.sv_btn.grid(row      = 1, column = 0, sticky = "WE")
-            self.del_btn.grid(row     = 2, column = 0, sticky = "WE")
-            self.csv_btn.grid(row     = 3, column = 0, sticky = "WE")
-            self.help_btn.grid(row    = 4, column = 0, sticky = "WE")
+            self.sv_btn.grid(row      = 0, column = 1, sticky = "WE")
+            self.del_btn.grid(row     = 0, column = 2, sticky = "WE")
+            self.csv_btn.grid(row     = 0, column = 3, sticky = "WE")
+            self.help_btn.grid(row    = 0, column = 4, sticky = "WE")
             self.input_frame.grid(row = 0, column = 0, sticky = "WE") # Geometry of frames
             self.fig_frame.grid(row   = 3, column = 0)
             self.ac_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "W")
             self.amb_frame.grid(row   = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
             self.p_type_frame.grid(row= 4, column = 0, pady = (3, 3), padx = (10, 10), columnspan = 2, sticky = "WE")
-            self.button_frame.grid(row= 1, column = 1, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
+            self.button_frame.grid(row= 4, column = 0, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
             self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
-            self.static_frame.grid(row = 3, padx = (10, 10), sticky = "WE")
             
             self.flip_state() 
 
