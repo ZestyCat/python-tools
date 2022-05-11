@@ -256,20 +256,20 @@ def main():
             self.grids_ent  = tk.Entry(self.amb_frame, width = 4)
             self.plt_btn    = tk.Button(self.button_frame, command = self.show_plot, 
                                         text = "Preview plot ", image = self.play_img,
-                                        compound = "right", height = 0)
+                                        compound = "right", width = 110)
             self.sv_btn     = tk.Button(self.button_frame, command = self.save_plot,
                                         text = "Save plot ", image = self.file_img,
-                                        compound = "right", height = 0)
+                                        compound = "right", width = 110)
             self.del_btn    = tk.Button(self.button_frame, command = self.remove_plot,
                                         text = "Delete plot ", image = self.del_img,
-                                        compound = "right", height = 0)
+                                        compound = "right", width = 110)
             self.csv_btn    = tk.Button(self.button_frame, command = self.save_data,
                                         text = "Write to CSV ", image = self.tabs_img,
-                                        compound = "right", height = 0)
+                                        compound = "right", width = 110)
             
             self.help_btn   = tk.Button(self.button_frame, command = self.show_help,
                                         text = "Show help ", image = self.help_img, 
-                                        compound = "right", height = 0)
+                                        compound = "right", width = 110)
 
             # Link widgets to variables
             self.speed_ent['textvariable']   = self.speed
