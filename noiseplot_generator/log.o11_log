@@ -1,44 +1,6 @@
-          SUMMARY OF I/O FOR THE  A-7E                
+    REQUESTED POWER SETTING DATA OUTSIDE RANGE OF AVAILABLE INPUT DATA.
 
-          PROGRAM:  OMEGA 11.5
-          AIRCRAFT CODE: M00601
-          PROFILE VERSION CODE: W
-          DATE:            
-          DELTA N (OR DELN)=  0.00 DB
+    SEE SUB. RANK --- IERR= 2    DATA FOR ACC= M00401 DELETED FROM THIS JOB.
 
-
-          ***************************** INPUT DATA *****************************
-           DATADECK       INTERP    POWER           POWER DESCRIPTION
-             NAME    OPC   FLAG    SETTING
-          M0060106V   06     V    94.00 % NC        INTERMED PWR (MIL)  
-          M0060113V   13     V    55.00 % NC        IDLE                
-          M0060118V   18     V    85.00 % NC        85 % RPM ENG RUNUP  
-          M0060121V   21     V    70.00 % NC        70 % RPM ENG RUNUP  
-          M0060131V   31     V    99.50 % NC        MAX PWR             
-
-           DATADECK    ------------ NOISE SOURCE/SUBJECT ------------  DATE OF
-             NAME      PART 1                  PART 2                 NORM. RUN
-          M0060106V    A-7E                    TF41-A-2              04 NOV 1975
-          M0060113V    A-7E                    TF41-A-2              04 NOV 1975
-          M0060118V    A-7E                    TF41-A-2              04 NOV 1975
-          M0060121V    A-7E                    TF41-A-2              04 NOV 1975
-          M0060131V    A-7E                    TF41-A-2              07 APR 1976
-
-
-          **************************** OUTPUT DATA *****************************
-          MEASURES COMPUTED:    PNLT(P)--YES    AL(A)--YES    ALT(T)--YES
-          PROFILE DATA FOR ALL ANGLES WRITTEN TO FILE *TAPE2*
-          PROFILE DATA COMPUTED WITH AND WITHOUT EXCESS SOUND ATTENUATION.
-          METEOROLOGY:  TEMP      =    59 F
-                        BAR PRESS = 29.92 IN HG
-                        REL HUMID =    70 %
-
-           PROFILE        POWER         NORMALIZED DATADECKS  POWER DESCRIPTION
-             ID          SETTING        FIRST      SECOND
-          RM0060100    90.00 % NC       M0060118V  M0060106V
-
-
-          ************************ GENERAL INFORMATION *************************
-          OPC --- OPERATION POWER CODE
-          INTERPOLATION FLAG = F FOR FIXED --- AFTERBURNER, WET OR WITH JETS
-                             = V FOR VARIABLE --- LINEAR INTERPOLATION
+    PSC(ICC)=   110.00000 AND MIN AND MAX INPUT POWER SETTINGS
+    ARE    65.00000 AND   100.00000 RESPECTIVELY.

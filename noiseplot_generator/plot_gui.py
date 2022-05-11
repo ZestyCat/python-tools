@@ -11,7 +11,6 @@ import sys
 import subprocess
 
 def main():
-
     # Check if a string is a float
     def is_number(string):
         try:
@@ -358,11 +357,19 @@ def main():
                 self.extent_ent['state'] = 'normal'
                 self.levels_ent['state'] = 'normal'
                 self.grids_ent['state']  = 'normal'
+                self.pwr_2.set("")
 
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
             if self.temp.get() > 200:
                 self.warn_high_temp(self.temp.get())
+                
+            # Show a popup if no entry 
+            if is_number(self.pwr.get()) == False & is_number(self.pwr_2.get()) == False:
+                self.m = "Please enter some power setting data."
+                self.show_message("Entry needed", self.m)
+                return(None)
+                
             if self.p_type.get() == "1":
                 # Run omega10 and return the output filename
                 out   = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
@@ -379,12 +386,6 @@ def main():
                            if is_number(self.pwr_2.get()) \
                            else None
                 
-                # Show a popup if no entry 
-                if out is None and out_2 is None:
-                    self.m = "Please enter some power setting data."
-                    self.show_message("Entry needed", self.m)
-                    return(None)
-                
                 # Make dataframes from o10 output
                 self.df   = None if out is None else read_o10(out)
                 self.df_2 = None if out_2 is None else read_o10(out_2)
@@ -398,24 +399,49 @@ def main():
                 return(self.fig)
                 
             elif self.p_type.get() == "2":
-                out = run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
-                            if is_number(self.pwr.get()) \
-                            else None
-                            
-                if out is None:
-                    self.m = "Please enter some power setting data."
-                    self.show_message("Entry needed", self.m)
-                    return(None)
+                try:
+                    out = run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                                inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
+                                if is_number(self.pwr.get()) \
+                                else None
+                        
+                    self.df  = read_o11(out)
                     
-                df  = None if out is None else read_o11(out)
-                
-                self.fig = nc.plot_contour(df, aircraft = self.ac.get(), engine = self.eng.get(),
-                                power = self.pwr.get() + self.units.get(), n_grids = self.n_grids.get(),
-                                levels = [int(l) for l in self.levels.get().split(", ")],
-                                extent_ft = self.extent_ft.get(), save_name = save_name)
-                
-                return(self.fig)
+                    self.fig = nc.plot_contour(self.df, aircraft = self.ac.get(), engine = self.eng.get(),
+                                    power = self.pwr.get() + self.units.get(), n_grids = self.n_grids.get(),
+                                    levels = [int(l) for l in self.levels.get().split(", ")],
+                                    extent_ft = self.extent_ft.get(), save_name = save_name)
+                    
+                    return(self.fig)
+                except:
+                    # Omega11 does not auto-correct out-of-range power settings like Omega10...
+                    # To deal with this, we run Omega10, and fetch the power setting from its output.
+                    # Then we run Omega11 with that power setting.
+                    # But that may not actually work since the static and flight power ranges are different... let's try something else tomorrow
+                    out_10 = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                           speed_kts = self.speed.get(), temp = self.temp.get(),
+                           rel_hum_pct = self.rh_pct.get()) \
+                           if is_number(self.pwr.get()) \
+                           else None
+                    
+                    self.df_10 = read_o10(out_10)
+                    
+                    self.pwr_10 = self.df_10.iloc[0]["pwr"]
+                    print(self.pwr_10)
+                    
+                    out_11 = run_o11(aircraft = self.ac.get(), power = round(float(self.pwr_10), 2),
+                                inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
+                                if is_number(self.pwr.get()) \
+                                else None
+                    
+                    self.df_11  = read_o11(out_11)
+                    
+                    self.fig = nc.plot_contour(self.df_11, aircraft = self.ac.get(), engine = self.eng.get(),
+                                    power = self.pwr_10 + self.units.get(), n_grids = self.n_grids.get(),
+                                    levels = [int(l) for l in self.levels.get().split(", ")],
+                                    extent_ft = self.extent_ft.get(), save_name = save_name)
+                    return(self.fig)
+                    
                 
         def show_plot(self): # Preview the plot on canvas
             self.fig = self.make_plot(save_name = None)
@@ -445,44 +471,66 @@ def main():
             if self.temp.get() > 200:
                 self.warn_high_temp(self.temp.get())
             
-            # Run omega10 and return the output filename
-            out = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                       speed_kts = self.speed.get(), temp = self.temp.get(),
-                       rel_hum_pct = self.rh_pct.get()) \
-                       if is_number(self.pwr.get()) \
-                       else None
-                       
-            # Run omega10 and return the output filename  
-            out_2 = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
-                       speed_kts = self.speed.get(), temp = self.temp.get(),
-                       input = "input_2.o10_input", log = "log_2.o10_log",
-                       output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get()) \
-                       if is_number(self.pwr_2.get()) \
-                       else None
-            
             # Show a popup if no entry 
-            if out is None and out_2 is None:
+            if is_number(self.pwr.get()) == False & is_number(self.pwr_2.get()) == False:
                 self.m = "Please enter some power setting data."
                 self.show_message("Entry needed", self.m)
                 return(None)
+            
+            if self.p_type.get() == "1":
+                # Run omega10 and return the output filename
+                out = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                           speed_kts = self.speed.get(), temp = self.temp.get(),
+                           rel_hum_pct = self.rh_pct.get()) \
+                           if is_number(self.pwr.get()) \
+                           else None
+                           
+                # Run omega10 and return the output filename  
+                out_2 = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
+                           speed_kts = self.speed.get(), temp = self.temp.get(),
+                           input = "input_2.o10_input", log = "log_2.o10_log",
+                           output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get()) \
+                           if is_number(self.pwr_2.get()) \
+                           else None
 
-            self.df = None if out is None else read_o10(out)
-            self.df_2 = None if out_2 is None else read_o10(out_2)
-            
-            self.file = fd.asksaveasfilename(defaultextension = ".csv", 
-                                            filetypes = [("comma separated value", ".csv")])
-            self.cols = pd.DataFrame(columns = ["ac", "eng", "pwr", "unit", "spd", 
-                                                    "dist", "lmax", "sel", "desc"])
-            self.cols.to_csv(self.file, index = False) # Write headers to csv file
-            
-            if self.df is not None:
-                self.df["desc"] = self.desc.get()
-                self.df.to_csv(self.file, mode = 'a', index = False, header = False)
-            
-            if self.df_2 is not None:
-                self.df_2["desc"] = self.desc.get()
-                self.df_2.to_csv(self.file, mode = 'a', index = False, header = False)
+                self.df = None if out is None else read_o10(out)
+                self.df_2 = None if out_2 is None else read_o10(out_2)
                 
+                self.file = fd.asksaveasfilename(defaultextension = ".csv", 
+                                                filetypes = [("comma separated value", ".csv")])
+                self.cols = pd.DataFrame(columns = ["ac", "eng", "pwr", "unit", "spd", 
+                                                        "dist", "lmax", "sel", "desc", "temp",
+                                                        "rh_pct"])
+                self.cols.to_csv(self.file, index = False) # Write headers to csv file
+                
+                if self.df is not None:
+                    self.df["desc"] = self.desc.get()
+                    self.df["temp_F"] = self.temp.get()
+                    self.df["rh_pct"] = self.rh_pct.get()
+                    self.df.to_csv(self.file, mode = 'a', index = False, header = False)
+                
+                if self.df_2 is not None:
+                    self.df_2["desc"] = self.desc.get()
+                    self.df_2["temp_F"] = self.temp.get()
+                    self.df_2["rh_pct"] = self.rh_pct.get()
+                    self.df_2.to_csv(self.file, mode = 'a', index = False, header = False)
+                    
+            elif self.p_type.get() == "2":
+                out = run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
+                            if is_number(self.pwr.get()) \
+                            else None
+                
+                self.df = read_o11(out)
+                
+                self.file = fd.asksaveasfilename(defaultextension = ".csv",
+                                                filetypes = [("comma separated value", ".csv")])
+                self.header = pd.DataFrame(columns = [self.ac.get(), self.eng.get(), str(self.pwr.get()) + self.units.get(),
+                                                        self.desc.get(), str(self.rh_pct.get()) + "% RH", str(self.temp.get()) + "Deg. F",
+                                                        str(self.bar_p.get()) + "Inches Hg"])
+                self.header.to_csv(self.file, mode = "w")
+                self.df.to_csv(self.file, mode = "a")
+                    
         def set_info(self, event): # Get units and engine of selected aircraft
             try:
                 self.units.set(get_info(get_aircraft(), self.ac.get())["units"])
