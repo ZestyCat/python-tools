@@ -418,6 +418,7 @@ def main():
                     # To deal with this, we run Omega10, and fetch the power setting from its output.
                     # Then we run Omega11 with that power setting.
                     # But that may not actually work since the static and flight power ranges are different... let's try something else tomorrow
+                    # I think I will make a separate data file for static power settings, and determine if pwr is > max or < min for that aircraft
                     out_10 = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
                            speed_kts = self.speed.get(), temp = self.temp.get(),
                            rel_hum_pct = self.rh_pct.get()) \
