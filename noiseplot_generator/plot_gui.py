@@ -361,6 +361,8 @@ def main():
 
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
+            self.check_static_range(self.ac.get(), self.pwr.get())
+
             if self.temp.get() > 200:
                 self.warn_high_temp(self.temp.get())
                 
@@ -525,11 +527,15 @@ def main():
                 self.df = read_o11(out)
                 
                 self.file = fd.asksaveasfilename(defaultextension = ".csv",
-                                                filetypes = [("comma separated value", ".csv")])
-                self.header = pd.DataFrame(columns = [self.ac.get(), self.eng.get(), str(self.pwr.get()) + self.units.get(),
-                                                        self.desc.get(), str(self.rh_pct.get()) + "% RH", str(self.temp.get()) + "Deg. F",
-                                                        str(self.bar_p.get()) + "Inches Hg"])
+                    filetypes = [("comma separated value", ".csv")])
+                
+                self.header = pd.DataFrame(columns = [self.ac.get(), self.eng.get(), 
+                    str(self.pwr.get()) + self.units.get(), self.desc.get(), 
+                    str(self.rh_pct.get()) + "% RH", str(self.temp.get()) + "Deg. F",
+                    str(self.bar_p.get()) + "Inches Hg"])
+                
                 self.header.to_csv(self.file, mode = "w")
+                
                 self.df.to_csv(self.file, mode = "a")
                     
         def set_info(self, event): # Get units and engine of selected aircraft
@@ -539,6 +545,21 @@ def main():
             except:
                 pass
                 
+        # Get minimum and maximum values for static. Check whether user input is out of range. If so, correct the entry
+        def check_static_range(self, ac, pwr, file = "./data/static_power_setting_list.csv"):
+            p = float(pwr)
+            df = pd.read_csv(file)
+            ps = list(map(float, df[df["Aircraft"] == ac]["Power"].tolist())) # get a list of ps for that ac
+            rng = min(ps), max(ps)
+            if p > rng[0] and p < rng[1]: # if pwr is in range
+                pass
+            elif p < rng[0]: # if pwr is lower than range
+                self.pwr.set(rng[0]) # set to lower bounds
+            elif p > rng[1]: # if it is above range
+                self.pwr.set(rng[1]) # set to upper bounds
+            else:
+                pass
+
         def show_message(self, header, message):
             tkinter.messagebox.showinfo(header, message)
             
