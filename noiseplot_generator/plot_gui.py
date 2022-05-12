@@ -361,8 +361,6 @@ def main():
 
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
-            self.check_static_range(self.ac.get(), self.pwr.get())
-
             if self.temp.get() > 200:
                 self.warn_high_temp(self.temp.get())
                 
@@ -401,7 +399,7 @@ def main():
                 return(self.fig)
                 
             elif self.p_type.get() == "2":
-                try:
+                self.check_static_range(self.ac.get(), self.pwr.get())
                     out = run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
                                 inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
                                 if is_number(self.pwr.get()) \
@@ -415,37 +413,7 @@ def main():
                                     extent_ft = self.extent_ft.get(), save_name = save_name)
                     
                     return(self.fig)
-                except:
-                    # Omega11 does not auto-correct out-of-range power settings like Omega10...
-                    # To deal with this, we run Omega10, and fetch the power setting from its output.
-                    # Then we run Omega11 with that power setting.
-                    # But that may not actually work since the static and flight power ranges are different... let's try something else tomorrow
-                    # I think I will make a separate data file for static power settings, and determine if pwr is > max or < min for that aircraft
-                    out_10 = run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                           speed_kts = self.speed.get(), temp = self.temp.get(),
-                           rel_hum_pct = self.rh_pct.get()) \
-                           if is_number(self.pwr.get()) \
-                           else None
-                    
-                    self.df_10 = read_o10(out_10)
-                    
-                    self.pwr_10 = self.df_10.iloc[0]["pwr"]
-                    print(self.pwr_10)
-                    
-                    out_11 = run_o11(aircraft = self.ac.get(), power = round(float(self.pwr_10), 2),
-                                inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
-                                if is_number(self.pwr.get()) \
-                                else None
-                    
-                    self.df_11  = read_o11(out_11)
-                    
-                    self.fig = nc.plot_contour(self.df_11, aircraft = self.ac.get(), engine = self.eng.get(),
-                                    power = self.pwr_10 + self.units.get(), n_grids = self.n_grids.get(),
-                                    levels = [int(l) for l in self.levels.get().split(", ")],
-                                    extent_ft = self.extent_ft.get(), save_name = save_name)
-                    return(self.fig)
-                    
-                
+               
         def show_plot(self): # Preview the plot on canvas
             self.fig = self.make_plot(save_name = None)
             if self.fig == None: # Do not show plot if there is no data to plot
