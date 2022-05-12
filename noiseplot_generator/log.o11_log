@@ -1,6 +1,40 @@
-    REQUESTED POWER SETTING DATA OUTSIDE RANGE OF AVAILABLE INPUT DATA.
+          SUMMARY OF I/O FOR THE  A-4C                
 
-    SEE SUB. RANK --- IERR= 2    DATA FOR ACC= M00401 DELETED FROM THIS JOB.
+          PROGRAM:  OMEGA 11.5
+          AIRCRAFT CODE: M00301
+          PROFILE VERSION CODE: W
+          DATE:            
+          DELTA N (OR DELN)=  0.00 DB
 
-    PSC(ICC)=   110.00000 AND MIN AND MAX INPUT POWER SETTINGS
-    ARE    65.00000 AND   100.00000 RESPECTIVELY.
+
+          ***************************** INPUT DATA *****************************
+           DATADECK       INTERP    POWER           POWER DESCRIPTION
+             NAME    OPC   FLAG    SETTING
+          M0030104V   04     V    99.00 % NC        MIL PWR             
+          M0030113V   13     V    57.00 % NC        IDLE                
+          M0030120V   20     V    75.00 % NC        75 % RPM ENG RUNUP  
+
+           DATADECK    ------------ NOISE SOURCE/SUBJECT ------------  DATE OF
+             NAME      PART 1                  PART 2                 NORM. RUN
+          M0030104V    A-4C                    J52-P-8B              26 MAY 1976
+          M0030113V    A-4C                    J52-P-8B              26 MAY 1976
+          M0030120V    A-4C                    J52-P-8B              26 MAY 1976
+
+
+          **************************** OUTPUT DATA *****************************
+          MEASURES COMPUTED:    PNLT(P)--YES    AL(A)--YES    ALT(T)--YES
+          PROFILE DATA FOR ALL ANGLES WRITTEN TO FILE *TAPE2*
+          PROFILE DATA COMPUTED WITH AND WITHOUT EXCESS SOUND ATTENUATION.
+          METEOROLOGY:  TEMP      =    59 F
+                        BAR PRESS = 29.92 IN HG
+                        REL HUMID =    70 %
+
+           PROFILE        POWER         NORMALIZED DATADECKS  POWER DESCRIPTION
+             ID          SETTING        FIRST      SECOND
+          RM0030100    57.00 % NC       M0030113V             IDLE                
+
+
+          ************************ GENERAL INFORMATION *************************
+          OPC --- OPERATION POWER CODE
+          INTERPOLATION FLAG = F FOR FIXED --- AFTERBURNER, WET OR WITH JETS
+                             = V FOR VARIABLE --- LINEAR INTERPOLATION
