@@ -400,19 +400,19 @@ def main():
                 
             elif self.p_type.get() == "2":
                 self.check_static_range(self.ac.get(), self.pwr.get())
-                    out = run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                                inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
-                                if is_number(self.pwr.get()) \
-                                else None
-                        
-                    self.df  = read_o11(out)
+                out = run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
+                            if is_number(self.pwr.get()) \
+                            else None
                     
-                    self.fig = nc.plot_contour(self.df, aircraft = self.ac.get(), engine = self.eng.get(),
-                                    power = self.pwr.get() + self.units.get(), n_grids = self.n_grids.get(),
-                                    levels = [int(l) for l in self.levels.get().split(", ")],
-                                    extent_ft = self.extent_ft.get(), save_name = save_name)
-                    
-                    return(self.fig)
+                self.df  = read_o11(out)
+                
+                self.fig = nc.plot_contour(self.df, aircraft = self.ac.get(), engine = self.eng.get(),
+                                power = self.pwr.get() + self.units.get(), n_grids = self.n_grids.get(),
+                                levels = [int(l) for l in self.levels.get().split(", ")],
+                                extent_ft = self.extent_ft.get(), save_name = save_name)
+                
+                return(self.fig)
                
         def show_plot(self): # Preview the plot on canvas
             self.fig = self.make_plot(save_name = None)
