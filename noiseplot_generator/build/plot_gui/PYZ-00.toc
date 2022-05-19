@@ -1091,10 +1091,6 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\imp.py',
    'PYMODULE'),
-  ('stringprep',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
-   'PYMODULE'),
   ('tracemalloc',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
@@ -1102,6 +1098,14 @@
   ('_py_abc',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_py_abc.py',
+   'PYMODULE'),
+  ('stringprep',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('functions',
+   'C:\\Users\\AESO '
+   '1\\Documents\\GitHub\\python-tools\\noiseplot_generator\\functions.py',
    'PYMODULE'),
   ('subprocess',
    'C:\\Users\\AESO '
@@ -2646,6 +2650,10 @@
   ('tkinter.constants',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tkinter\\constants.py',
+   'PYMODULE'),
+  ('noisecontour',
+   'C:\\Users\\AESO '
+   '1\\Documents\\GitHub\\python-tools\\noiseplot_generator\\noisecontour.py',
    'PYMODULE'),
   ('noiseline',
    'C:\\Users\\AESO '

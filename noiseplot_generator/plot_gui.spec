@@ -8,7 +8,7 @@ a = Analysis(
     ['plot_gui.py'],
     pathex=[],
     binaries=[],
-    datas=[('./img/drop.png', './img/'), ('./img/file.png', './img/'), ('./img/go.png', './img/'), ('./img/help.png', './img/'), ('./img/tabs.png', './img/'), ('./img/del.png', './img/'), ('./img/aeso_padded.png', './img/'), ('./data/acdata.csv', './data/'), ('./data/bad_ac_list.csv', './data/'), ('./Omega10.exe', './'), ('./data/Flight01.dat', './')],
+    datas=[('./img/drop.png', './img/'), ('./img/file.png', './img/'), ('./img/go.png', './img/'), ('./img/help.png', './img/'), ('./img/tabs.png', './img/'), ('./img/del.png', './img/'), ('./img/aeso_padded.png', './img/'), ('./data/acdata.csv', './data/'), ('./data/bad_ac_list.csv', './data/'), ('./Omega10.exe', './'), ('./data/Flight01.dat', './'), ('./Omega11.exe', './'), ('./Static01.dat', './')],
     hiddenimports=[],
     hookspath=[],
     hooksconfig={},

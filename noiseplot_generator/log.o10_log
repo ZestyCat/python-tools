@@ -1,7 +1,7 @@
-SUMMARY OF I/O FOR AIRCRAFT: A-4C                
+SUMMARY OF I/O FOR AIRCRAFT: CESSNA-500          
 
  PROGRAM:  OMEGA 10.9
- AIRCRAFT CODE: M00301
+ AIRCRAFT CODE: C05701
  PROFILE VERSION CODE: W
  DATE:            
  DELTA N (OR DELN)=  0.00 DB
@@ -10,21 +10,22 @@
  *********************************** INPUT DATA ***********************************
   DATASET               POWER     AIRSPEED POWER DESCRIPTION     DATE OF
     NAME     OPC       SETTING      KNOTS                        NORM. RUN
- FM00301031V  03    100.00 % NC       250  TAKEOFF POWER         27 DEC 1979
- FM00301041V  04     83.00 % NC       300  CRUISE POWER          27 DEC 1979
- FM00301051V  05     93.00 % NC       150  APPROACH POWER        27 DEC 1979
+ FC05701031V  03   1550.00 LBS        160  TAKEOFF               14 JAN 1988
+ FC05701041V  04    600.00 LBS        160  CRUISE                14 JAN 1988
+ FC05701051V  05    300.00 LBS        160  LANDING               14 JAN 1988
+ FC05701061V  06   1200.00 LBS        160  INTERMEDIATE          14 JAN 1988
 
 
  ********************************** OUTPUT DATA ***********************************
  IS PROFILE DATA WRITTEN ON FILE *UNIT 3*?--YES
  MAXIMUM PERMITTED PROFILE DATA EXTRAPOLATION IS:  5.00 DB
- ENGINE TYPE FOR ALL PROFILE DATA: J52-P-8B       
+ ENGINE TYPE FOR ALL PROFILE DATA: TF JT15D-4     
  METEOROLOGY:  TEMP      =    59 F
                REL HUMID =    70 %
 
   PROFILE            POWER     AIRSPEED POWER DESCRIPTION    NORMALIZED DATASETS
     ID    OPC       SETTING      KNOTS                       REFERENCE  SLOPE PTS
- FM0030100 04<    78.04 % NC       160  CRUISE POWER         M00301041V 041V 051V
+ FC0570100 03<  2249.91 LBS        160  TAKEOFF              C05701031V 061V 031V
 
 
  ****************************** GENERAL INFORMATION *******************************

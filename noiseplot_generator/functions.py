@@ -2,18 +2,34 @@ import pandas as pd
 import subprocess
 import os
 import sys
-
-# Miscellaneous functions to make the gui work
     
-def get_aircraft(file = "./data/acdata.csv", ignore = "./data/bad_ac_list.csv"):
+# Check if a string is a float
+def is_number(string):
+    try:
+        float(string)
+        return True
+    except ValueError:
+        return False
+
+# Get code, units, engine for all aircraft (ac) except those in ignore file, filter by type flight/static
+def get_aircraft(file = "./data/acdata.csv", ignore = "./data/bad_ac_list.csv", type = 1):
+    '''
+    type param linked to p_type tk IntVar. 1 = Flyover, 2 = Static
+    bad_ac_list.csv lists ac with missing data in Flight01.dat - These ac cause Omega10 to crash
+    '''
     df = pd.read_csv(file)
     df_2 = pd.read_csv(ignore, header = None)
     ignore = "|".join(df_2[0].tolist()) # Make regex for all aircraft to ignore
-    return(df[df["aircraft"].str.contains(ignore) == False])
+    if type == 1:
+        return(df[df["aircraft"].str.contains(ignore) == False][df["flight"] == True])
+    elif type == 2:
+        return(df[df["aircraft"].str.contains(ignore) == False][df["static"] == True])
 
-def get_info(df, aircraft = "F-18E/F"):
+# Return aircraft info for specified aircraft (engine, power units, code)
+def get_info(df, aircraft):
     return(df[df["aircraft"] == aircraft].iloc[0])
 
+# Write o10 input file, call subprocess to run o10
 def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise", 
                 speed_kts = 160, temp = 59, rel_hum_pct = 70,
                 path = "./", input = 'input.o10_input', log = "log.o10_log", 
@@ -28,11 +44,13 @@ def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise",
     # Pad params with spaces so they fit the Omega10 input format
     pwr_pad = " " * (10 - len(format(power, '.2f'))) + format(power, '.2f')
     units_pad = units + " " * (10 - len(units))
+    temp_pad = " " * (4 - len(str(temp))) + str(temp)
+    rh_pad = " " * (4 - len(str(rel_hum_pct))) + str(rel_hum_pct)
     speed_pad = " " * (3 - len(str(speed_kts))) + str(speed_kts)
     
     # Concatenate params into string
-    command = "\n{}  {}   {} W  1  0.0\nF{}00{} {} VARIABLE   {}\n" \
-        .format(code, temp, rel_hum_pct, code, pwr_pad, units_pad, speed_kts)
+    command = "\n{}{}{} W  1  0.0\nF{}00{} {} VARIABLE   {}\n" \
+        .format(code, temp_pad, rh_pad, code, pwr_pad, units_pad, speed_kts)
    
     # Write o10_input file
     with open(path + input, 'w') as file:
@@ -49,6 +67,7 @@ def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise",
     else:
         raise Exception("OS must be set to Windows or Linux")
 
+# Read o10 output file, return a dataframe
 def read_o10(file = "./output.o10_noise"):
     with open(file) as file:
         lines = file.readlines()
@@ -73,8 +92,8 @@ def read_o10(file = "./output.o10_noise"):
                     pwr.append(l[2])
                 elif i > 14: # Get the data
                     dist.append(float(l[0]))
-                    sel.append(float(l[1]))
-                    lmax.append(float(l[6]))
+                    sel.append(float(line[7:16].strip()))
+                    lmax.append(float(line[39:48].strip()))
         df = pd.DataFrame( \
              { "ac"   : ac[0],
                "eng"  : eng[0],
@@ -87,17 +106,15 @@ def read_o10(file = "./output.o10_noise"):
         
         return(df)
 
-# Write o11 input file, call subprocess to run o11
 def run_o11(aircraft = "F-18E/F", power = 90, description = "Cruise", 
                 inches_hg = 29.92, temp = 59, rel_hum_pct = 70,
                 path = "./", input = 'input.o11_input', log = "log.o11_log", 
                 output = "output.o11_noise", ac_file = "./data/acdata.csv", 
-                os = "Windows"):
+                os = "Windows", units = "% RPM"):
 
     # Find the corresponding code for aircraft in codes list file
     ac_data = pd.read_csv(ac_file)
-    code  = ac_data[ac_data["aircraft"] == aircraft]["code"].item() # read csv, get code/units of aircraft
-    units = ac_data[ac_data["aircraft"] == aircraft]["units"].item()
+    code  = ac_data[ac_data["aircraft"] == aircraft]["code"].item() # read csv, get code of aircraft
     
     # Pad params with spaces so they fit the Omega10 input format
     pwr_pad = " " * (10 - len(format(power, '.2f'))) + format(power, '.2f')
@@ -110,7 +127,6 @@ def run_o11(aircraft = "F-18E/F", power = 90, description = "Cruise",
     command = "\n{}{}{}{}   W    1 0.0\nR{}00{} {} VARIABLE\n" \
         .format(code, temp_pad, rh_pad, inches_hg_pad, code, pwr_pad, units_pad)
    
-    print(command)
     #Write o11_input file
     with open(path + input, 'w') as file:
         file.write(command)
@@ -125,7 +141,7 @@ def run_o11(aircraft = "F-18E/F", power = 90, description = "Cruise",
         return(output)
     else:
         raise Exception("OS must be set to Windows or Linux")
-       
+
 def read_o11(file = "./output.o11_noise"):
     with open(file) as file:
         lines = file.readlines()
@@ -137,5 +153,3 @@ def read_o11(file = "./output.o11_noise"):
                 break
         df = pd.DataFrame(data[1:], columns = data[0]).set_index("(ft)", drop = True)
         return(df)
-
-#print(read_o11().iloc[0])

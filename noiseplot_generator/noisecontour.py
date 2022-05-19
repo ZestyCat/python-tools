@@ -4,12 +4,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import csv
 import pandas as pd
-import functions as fn
 
-def plot_contour(df, aircraft, engine, power, extent_ft = 5000, 
+def plot_contour(df, aircraft, engine, description, power, extent_ft = 5000, 
                  levels = [65, 75, 85, 95], n_grids = 6, save_name = None):  
     
-    radial_grids = [extent_ft*(i / (n_grids - 1)) for i in range (1, n_grids)]
+    levels = sorted(list(set(levels))) # Remove duplicates, sort ascending
+    
+    n_grids = n_grids if n_grids < 50 else 50 # Max 100 grids to prevent crash
+    radial_grids = [extent_ft*(i / (n_grids - 1)) for i in range (1, n_grids)] if n_grids > 2 else [extent_ft]
     radial_grids.insert(0, 200)
     azm = np.linspace(0, 360, 37)
     rad = df.index.values.tolist()
@@ -40,20 +42,14 @@ def plot_contour(df, aircraft, engine, power, extent_ft = 5000,
     CS = ax.contour(th.tolist(), r.tolist(), sound_levels, levels=levels, 
                     colors=('blue', 'green', 'orange', 'red', 'purple', 'black'), 
                     linewidths=.8, zorder=3)
-
-    arrow_position = 2.5 if len(radial_grids) == 4 else \
-                     1.5 if len(radial_grids) == 5 else \
-                     1.5 if len(radial_grids) == 6 else \
-                     4.0 if len(radial_grids) == 3 else \
-                     1.5 if len(radial_grids) == 7 else 1.5
         
-    arr2 = plt.arrow(0, (radial_grids[1]+radial_grids[2])/arrow_position, 0, radial_grids[-1]*0.06, 
+    arr2 = plt.arrow(0, radial_grids[-1]/1.5, 0, radial_grids[-1]*0.06, 
                      alpha = 1, width = 0.0, edgecolor = 'black', facecolor='black', 
                      overhang=.50, lw = 0, shape='full', zorder = 2, length_includes_head=False, 
                      head_width=0.13, head_length=radial_grids[-1]*0.06)
 
     
-    plot_title = r"$\bf{" + aircraft + "}$" + '\n' + engine + '\n' + power 
+    plot_title = r"$\bf{" + aircraft + "}$" + '\n' + engine + '\n' + description + '\n' + power 
     ax.set_title(plot_title, x=-.11, pad=8, loc='left',fontsize=10)
     plt.rgrids((radial_grids), (grid_labels), angle=75, fontsize=5, color='#5E5B5B',zorder=1000)    
 
@@ -76,5 +72,7 @@ def plot_contour(df, aircraft, engine, power, extent_ft = 5000,
     
     if save_name:
         plt.savefig(save_name, bbox_inches = 'tight', dpi = 500)
+    
+    plt.tight_layout()
     
     return(fig)

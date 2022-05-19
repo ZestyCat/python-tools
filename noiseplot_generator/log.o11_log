@@ -1,7 +1,7 @@
-          SUMMARY OF I/O FOR THE  A-4C                
+          SUMMARY OF I/O FOR THE  YC-15 FLAPS 24      
 
           PROGRAM:  OMEGA 11.5
-          AIRCRAFT CODE: M00301
+          AIRCRAFT CODE: M08202
           PROFILE VERSION CODE: W
           DATE:            
           DELTA N (OR DELN)=  0.00 DB
@@ -10,15 +10,15 @@
           ***************************** INPUT DATA *****************************
            DATADECK       INTERP    POWER           POWER DESCRIPTION
              NAME    OPC   FLAG    SETTING
-          M0030104V   04     V    99.00 % NC        MIL PWR             
-          M0030113V   13     V    57.00 % NC        IDLE                
-          M0030120V   20     V    75.00 % NC        75 % RPM ENG RUNUP  
+          M0820245V   45     V     1.95 EPR         REVERSE STOP        
+          M0820247V   47     V     1.04 EPR         IDLE/FLAPS 24 DEG   
+          M0820248V   48     V     2.24 EPR         TAKEOFF/FLAPS 24 DEG
 
            DATADECK    ------------ NOISE SOURCE/SUBJECT ------------  DATE OF
              NAME      PART 1                  PART 2                 NORM. RUN
-          M0030104V    A-4C                    J52-P-8B              26 MAY 1976
-          M0030113V    A-4C                    J52-P-8B              26 MAY 1976
-          M0030120V    A-4C                    J52-P-8B              26 MAY 1976
+          M0820245V    YC-15 FLAPS 24          JT8D-17, -209         07 MAR 1983
+          M0820247V    YC-15 FLAPS 24          JT8D-17, -209         07 MAR 1983
+          M0820248V    YC-15 FLAPS 24          JT8D-17, -209         07 MAR 1983
 
 
           **************************** OUTPUT DATA *****************************
@@ -31,7 +31,7 @@
 
            PROFILE        POWER         NORMALIZED DATADECKS  POWER DESCRIPTION
              ID          SETTING        FIRST      SECOND
-          RM0030100    57.00 % NC       M0030113V             IDLE                
+          RM0820200     2.20 EPR        M0820245V  M0820248V
 
 
           ************************ GENERAL INFORMATION *************************

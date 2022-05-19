@@ -1,7 +1,7 @@
-SUMMARY OF I/O FOR AIRCRAFT: A-6A                
+SUMMARY OF I/O FOR AIRCRAFT: B-2A                
 
  PROGRAM:  OMEGA 10.9
- AIRCRAFT CODE: M00501
+ AIRCRAFT CODE: M01301
  PROFILE VERSION CODE: W
  DATE:            
  DELTA N (OR DELN)=  0.00 DB
@@ -10,20 +10,22 @@
  *********************************** INPUT DATA ***********************************
   DATASET               POWER     AIRSPEED POWER DESCRIPTION     DATE OF
     NAME     OPC       SETTING      KNOTS                        NORM. RUN
- FM00501031V  03    100.00 % RPM      250  TAKEOFF POWER         27 DEC 1979
- FM00501051V  05     95.00 % RPM      160  APPROACH POWER        27 DEC 1979
+ FM01301031V  03     88.00 PLA        230  TAKEOFF POWER         14 NOV 1994
+ FM01301061V  06     70.00 PLA        220  INTERMEDIATE POWER    14 NOV 1994
+ FM01301051V  05     41.00 PLA        210  APPROACH POWER        14 NOV 1994
+ FM01301191V  19     21.00 PLA        200  FLT IDLE-200 KNOTS    14 NOV 1994
 
 
  ********************************** OUTPUT DATA ***********************************
  IS PROFILE DATA WRITTEN ON FILE *UNIT 3*?--YES
  MAXIMUM PERMITTED PROFILE DATA EXTRAPOLATION IS:  5.00 DB
- ENGINE TYPE FOR ALL PROFILE DATA: J52-P-8A       
- METEOROLOGY:  TEMP      =    60 F
-               REL HUMID =    71 %
+ ENGINE TYPE FOR ALL PROFILE DATA: F118-GE-100    
+ METEOROLOGY:  TEMP      =    59 F
+               REL HUMID =    70 %
 
   PROFILE            POWER     AIRSPEED POWER DESCRIPTION    NORMALIZED DATASETS
     ID    OPC       SETTING      KNOTS                       REFERENCE  SLOPE PTS
- FM0050100 05     90.00 % RPM      161  APPROACH POWER       M00501051V 051V 031V
+ FM0130100 03     95.00 PLA        160  TAKEOFF POWER        M01301031V 061V 031V
 
 
  ****************************** GENERAL INFORMATION *******************************
