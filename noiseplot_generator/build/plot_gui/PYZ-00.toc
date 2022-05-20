@@ -1095,292 +1095,25 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
    'PYMODULE'),
-  ('_py_abc',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_py_abc.py',
-   'PYMODULE'),
   ('stringprep',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
    'PYMODULE'),
-  ('functions',
+  ('_py_abc',
    'C:\\Users\\AESO '
-   '1\\Documents\\GitHub\\python-tools\\noiseplot_generator\\functions.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\_py_abc.py',
    'PYMODULE'),
-  ('subprocess',
+  ('noisecontour',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\subprocess.py',
+   '1\\Documents\\GitHub\\python-tools\\noiseplot_generator\\noisecontour.py',
    'PYMODULE'),
-  ('os',
-   'C:\\Users\\AESO 1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\os.py',
-   'PYMODULE'),
-  ('matplotlib.backends.backend_tkagg',
+  ('numpy',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\backend_tkagg.py',
-   'PYMODULE'),
-  ('matplotlib.backends.backend_agg',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py',
-   'PYMODULE'),
-  ('matplotlib.transforms',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\transforms.py',
-   'PYMODULE'),
-  ('numpy.linalg',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\linalg\\__init__.py',
-   'PYMODULE'),
-  ('numpy._pytesttester',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\_pytesttester.py',
-   'PYMODULE'),
-  ('numpy.testing',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\__init__.py',
-   'PYMODULE'),
-  ('numpy.testing._private.nosetester',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\nosetester.py',
-   'PYMODULE'),
-  ('numpy.testing._private.noseclasses',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\noseclasses.py',
-   'PYMODULE'),
-  ('numpy.core',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\__init__.py',
-   'PYMODULE'),
-  ('numpy.core._dtype',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_dtype.py',
-   'PYMODULE'),
-  ('numpy.core._internal',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_internal.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\__init__.py',
    'PYMODULE'),
   ('numpy.core._dtype_ctypes',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_dtype_ctypes.py',
-   'PYMODULE'),
-  ('numpy.core._add_newdocs_scalars',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_add_newdocs_scalars.py',
-   'PYMODULE'),
-  ('numpy.core._add_newdocs',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_add_newdocs.py',
-   'PYMODULE'),
-  ('numpy.core.einsumfunc',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\einsumfunc.py',
-   'PYMODULE'),
-  ('numpy.core._machar',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_machar.py',
-   'PYMODULE'),
-  ('numpy.core._ufunc_config',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_ufunc_config.py',
-   'PYMODULE'),
-  ('numpy.core.function_base',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\function_base.py',
-   'PYMODULE'),
-  ('numpy.core.memmap',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\memmap.py',
-   'PYMODULE'),
-  ('numpy.compat',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\compat\\__init__.py',
-   'PYMODULE'),
-  ('numpy.compat.py3k',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\compat\\py3k.py',
-   'PYMODULE'),
-  ('numpy.compat._inspect',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\compat\\_inspect.py',
-   'PYMODULE'),
-  ('numpy.core.records',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\records.py',
-   'PYMODULE'),
-  ('numpy.core.arrayprint',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\arrayprint.py',
-   'PYMODULE'),
-  ('numpy.core.defchararray',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\defchararray.py',
-   'PYMODULE'),
-  ('numpy.core._asarray',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_asarray.py',
-   'PYMODULE'),
-  ('numpy.core.shape_base',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\shape_base.py',
-   'PYMODULE'),
-  ('numpy.core.fromnumeric',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\fromnumeric.py',
-   'PYMODULE'),
-  ('numpy.core._methods',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_methods.py',
-   'PYMODULE'),
-  ('numpy.lib.stride_tricks',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\stride_tricks.py',
-   'PYMODULE'),
-  ('numpy.lib',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\__init__.py',
-   'PYMODULE'),
-  ('numpy.lib._version',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\_version.py',
-   'PYMODULE'),
-  ('numpy.lib.arraypad',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\arraypad.py',
-   'PYMODULE'),
-  ('numpy.lib.arrayterator',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\arrayterator.py',
-   'PYMODULE'),
-  ('numpy.lib.npyio',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\npyio.py',
-   'PYMODULE'),
-  ('numpy.ma.mrecords',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ma\\mrecords.py',
-   'PYMODULE'),
-  ('numpy.ma',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ma\\__init__.py',
-   'PYMODULE'),
-  ('numpy.ma.extras',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ma\\extras.py',
-   'PYMODULE'),
-  ('numpy.ma.core',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ma\\core.py',
-   'PYMODULE'),
-  ('numpy.lib._iotools',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\_iotools.py',
-   'PYMODULE'),
-  ('numpy.lib._datasource',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\_datasource.py',
-   'PYMODULE'),
-  ('numpy.lib.format',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\format.py',
-   'PYMODULE'),
-  ('numpy.lib.arraysetops',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\arraysetops.py',
-   'PYMODULE'),
-  ('numpy.lib.utils',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\utils.py',
-   'PYMODULE'),
-  ('numpy.lib.polynomial',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\polynomial.py',
-   'PYMODULE'),
-  ('numpy.lib.histograms',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\histograms.py',
-   'PYMODULE'),
-  ('numpy.lib.ufunclike',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\ufunclike.py',
-   'PYMODULE'),
-  ('numpy.lib.twodim_base',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\twodim_base.py',
-   'PYMODULE'),
-  ('numpy.lib.shape_base',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\shape_base.py',
-   'PYMODULE'),
-  ('numpy.matrixlib.defmatrix',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\matrixlib\\defmatrix.py',
-   'PYMODULE'),
-  ('numpy.matrixlib',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\matrixlib\\__init__.py',
-   'PYMODULE'),
-  ('numpy.lib.nanfunctions',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\nanfunctions.py',
-   'PYMODULE'),
-  ('numpy.lib.function_base',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\function_base.py',
-   'PYMODULE'),
-  ('numpy.lib.index_tricks',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\index_tricks.py',
-   'PYMODULE'),
-  ('numpy.lib.type_check',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\type_check.py',
-   'PYMODULE'),
-  ('numpy.lib.scimath',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\scimath.py',
-   'PYMODULE'),
-  ('numpy.lib.mixins',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\mixins.py',
-   'PYMODULE'),
-  ('numpy._globals',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\_globals.py',
-   'PYMODULE'),
-  ('numpy.core.getlimits',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\getlimits.py',
-   'PYMODULE'),
-  ('numpy.core._exceptions',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_exceptions.py',
-   'PYMODULE'),
-  ('numpy.core.numeric',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\numeric.py',
-   'PYMODULE'),
-  ('numpy.core.numerictypes',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\numerictypes.py',
-   'PYMODULE'),
-  ('numpy.core._type_aliases',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_type_aliases.py',
-   'PYMODULE'),
-  ('numpy.core._string_helpers',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_string_helpers.py',
-   'PYMODULE'),
-  ('numpy.core.umath',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\umath.py',
-   'PYMODULE'),
-  ('numpy.core.multiarray',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\multiarray.py',
-   'PYMODULE'),
-  ('numpy.core.overrides',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\overrides.py',
    'PYMODULE'),
   ('numpy.version',
    'C:\\Users\\AESO '
@@ -1406,21 +1139,17 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\json\\scanner.py',
    'PYMODULE'),
-  ('numpy.testing._private.decorators',
+  ('numpy._pytesttester',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\decorators.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\_pytesttester.py',
    'PYMODULE'),
-  ('numpy.testing._private.parameterized',
+  ('numpy.distutils.cpuinfo',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\parameterized.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\cpuinfo.py',
    'PYMODULE'),
-  ('numpy.testing._private.extbuild',
+  ('numpy.distutils',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\extbuild.py',
-   'PYMODULE'),
-  ('numpy.distutils.ccompiler',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\ccompiler.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\__init__.py',
    'PYMODULE'),
   ('numpy.distutils.fcompiler',
    'C:\\Users\\AESO '
@@ -1570,10 +1299,6 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\mingw32ccompiler.py',
    'PYMODULE'),
-  ('numpy.distutils.lib2def',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\lib2def.py',
-   'PYMODULE'),
   ('distutils.msvccompiler',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\distutils\\msvccompiler.py',
@@ -1585,6 +1310,10 @@
   ('distutils.cygwinccompiler',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\distutils\\cygwinccompiler.py',
+   'PYMODULE'),
+  ('distutils.version',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\distutils\\version.py',
    'PYMODULE'),
   ('distutils.command.config',
    'C:\\Users\\AESO '
@@ -1642,21 +1371,13 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\fcompiler\\environment.py',
    'PYMODULE'),
-  ('numpy.distutils._shell_utils',
+  ('numpy.distutils.exec_command',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\_shell_utils.py',
-   'PYMODULE'),
-  ('pipes',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pipes.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\exec_command.py',
    'PYMODULE'),
   ('numpy.distutils.misc_util',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\misc_util.py',
-   'PYMODULE'),
-  ('numpy.distutils.npy_pkg_config',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\npy_pkg_config.py',
    'PYMODULE'),
   ('curses',
    'C:\\Users\\AESO '
@@ -1666,17 +1387,61 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\curses\\has_key.py',
    'PYMODULE'),
-  ('numpy.distutils.exec_command',
+  ('numpy.distutils.__config__',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\exec_command.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\__config__.py',
+   'PYMODULE'),
+  ('numpy.distutils.npy_pkg_config',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\npy_pkg_config.py',
+   'PYMODULE'),
+  ('numpy.distutils.unixccompiler',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\unixccompiler.py',
+   'PYMODULE'),
+  ('numpy.distutils.ccompiler',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\ccompiler.py',
+   'PYMODULE'),
+  ('numpy.distutils._shell_utils',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\_shell_utils.py',
+   'PYMODULE'),
+  ('pipes',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\pipes.py',
+   'PYMODULE'),
+  ('numpy.distutils.lib2def',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\lib2def.py',
    'PYMODULE'),
   ('numpy.distutils.log',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\log.py',
    'PYMODULE'),
-  ('distutils.version',
+  ('numpy.testing',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\distutils\\version.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\__init__.py',
+   'PYMODULE'),
+  ('numpy.testing._private.nosetester',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\nosetester.py',
+   'PYMODULE'),
+  ('numpy.testing._private.noseclasses',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\noseclasses.py',
+   'PYMODULE'),
+  ('numpy.testing._private.decorators',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\decorators.py',
+   'PYMODULE'),
+  ('numpy.testing._private.parameterized',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\parameterized.py',
+   'PYMODULE'),
+  ('numpy.testing._private.extbuild',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\extbuild.py',
    'PYMODULE'),
   ('numpy.testing._private',
    'C:\\Users\\AESO '
@@ -1685,6 +1450,310 @@
   ('numpy.testing._private.utils',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\testing\\_private\\utils.py',
+   'PYMODULE'),
+  ('numpy.core.fromnumeric',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\fromnumeric.py',
+   'PYMODULE'),
+  ('numpy.core._methods',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_methods.py',
+   'PYMODULE'),
+  ('numpy.lib.stride_tricks',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\stride_tricks.py',
+   'PYMODULE'),
+  ('numpy.core.numeric',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\numeric.py',
+   'PYMODULE'),
+  ('numpy.core._asarray',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_asarray.py',
+   'PYMODULE'),
+  ('numpy.core.arrayprint',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\arrayprint.py',
+   'PYMODULE'),
+  ('numpy.core._ufunc_config',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_ufunc_config.py',
+   'PYMODULE'),
+  ('numpy.core.shape_base',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\shape_base.py',
+   'PYMODULE'),
+  ('numpy.core._exceptions',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_exceptions.py',
+   'PYMODULE'),
+  ('numpy.core.umath',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\umath.py',
+   'PYMODULE'),
+  ('numpy.core.overrides',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\overrides.py',
+   'PYMODULE'),
+  ('numpy.compat._inspect',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\compat\\_inspect.py',
+   'PYMODULE'),
+  ('numpy.core.multiarray',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\multiarray.py',
+   'PYMODULE'),
+  ('numpy.core.numerictypes',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\numerictypes.py',
+   'PYMODULE'),
+  ('numpy.core._dtype',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_dtype.py',
+   'PYMODULE'),
+  ('numpy.core._type_aliases',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_type_aliases.py',
+   'PYMODULE'),
+  ('numpy.core._string_helpers',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_string_helpers.py',
+   'PYMODULE'),
+  ('numpy.matrixlib',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\matrixlib\\__init__.py',
+   'PYMODULE'),
+  ('numpy.matrixlib.defmatrix',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\matrixlib\\defmatrix.py',
+   'PYMODULE'),
+  ('numpy.ma',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ma\\__init__.py',
+   'PYMODULE'),
+  ('numpy.ma.extras',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ma\\extras.py',
+   'PYMODULE'),
+  ('numpy.lib.index_tricks',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\index_tricks.py',
+   'PYMODULE'),
+  ('numpy.lib.function_base',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\function_base.py',
+   'PYMODULE'),
+  ('numpy.lib.histograms',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\histograms.py',
+   'PYMODULE'),
+  ('numpy.lib.twodim_base',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\twodim_base.py',
+   'PYMODULE'),
+  ('numpy.core.function_base',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\function_base.py',
+   'PYMODULE'),
+  ('numpy.ma.core',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ma\\core.py',
+   'PYMODULE'),
+  ('numpy.ctypeslib',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ctypeslib.py',
+   'PYMODULE'),
+  ('numpy.core._internal',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_internal.py',
+   'PYMODULE'),
+  ('numpy.random',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\random\\__init__.py',
+   'PYMODULE'),
+  ('numpy.random._pickle',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\random\\_pickle.py',
+   'PYMODULE'),
+  ('numpy.polynomial',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\__init__.py',
+   'PYMODULE'),
+  ('numpy.polynomial._polybase',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\_polybase.py',
+   'PYMODULE'),
+  ('numpy.polynomial.laguerre',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\laguerre.py',
+   'PYMODULE'),
+  ('numpy.polynomial.hermite_e',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\hermite_e.py',
+   'PYMODULE'),
+  ('numpy.polynomial.hermite',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\hermite.py',
+   'PYMODULE'),
+  ('numpy.polynomial.legendre',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\legendre.py',
+   'PYMODULE'),
+  ('numpy.polynomial.chebyshev',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\chebyshev.py',
+   'PYMODULE'),
+  ('numpy.polynomial.polynomial',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\polynomial.py',
+   'PYMODULE'),
+  ('numpy.polynomial.polyutils',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\polyutils.py',
+   'PYMODULE'),
+  ('numpy.fft',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\fft\\__init__.py',
+   'PYMODULE'),
+  ('numpy.fft.helper',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\fft\\helper.py',
+   'PYMODULE'),
+  ('numpy.fft._pocketfft',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\fft\\_pocketfft.py',
+   'PYMODULE'),
+  ('numpy.linalg',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\linalg\\__init__.py',
+   'PYMODULE'),
+  ('numpy.linalg.linalg',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\linalg\\linalg.py',
+   'PYMODULE'),
+  ('numpy.lib',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\__init__.py',
+   'PYMODULE'),
+  ('numpy.lib._version',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\_version.py',
+   'PYMODULE'),
+  ('numpy.lib.arraypad',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\arraypad.py',
+   'PYMODULE'),
+  ('numpy.lib.arrayterator',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\arrayterator.py',
+   'PYMODULE'),
+  ('numpy.lib.npyio',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\npyio.py',
+   'PYMODULE'),
+  ('numpy.ma.mrecords',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ma\\mrecords.py',
+   'PYMODULE'),
+  ('numpy.core.records',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\records.py',
+   'PYMODULE'),
+  ('numpy.lib._iotools',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\_iotools.py',
+   'PYMODULE'),
+  ('numpy.lib._datasource',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\_datasource.py',
+   'PYMODULE'),
+  ('numpy.lib.format',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\format.py',
+   'PYMODULE'),
+  ('numpy.lib.arraysetops',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\arraysetops.py',
+   'PYMODULE'),
+  ('numpy.lib.utils',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\utils.py',
+   'PYMODULE'),
+  ('numpy.lib.polynomial',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\polynomial.py',
+   'PYMODULE'),
+  ('numpy.lib.ufunclike',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\ufunclike.py',
+   'PYMODULE'),
+  ('numpy.lib.shape_base',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\shape_base.py',
+   'PYMODULE'),
+  ('numpy.lib.nanfunctions',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\nanfunctions.py',
+   'PYMODULE'),
+  ('numpy.lib.type_check',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\type_check.py',
+   'PYMODULE'),
+  ('numpy.core.getlimits',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\getlimits.py',
+   'PYMODULE'),
+  ('numpy.core._machar',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_machar.py',
+   'PYMODULE'),
+  ('numpy.lib.scimath',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\scimath.py',
+   'PYMODULE'),
+  ('numpy.lib.mixins',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\lib\\mixins.py',
+   'PYMODULE'),
+  ('numpy.compat',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\compat\\__init__.py',
+   'PYMODULE'),
+  ('numpy.compat.py3k',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\compat\\py3k.py',
+   'PYMODULE'),
+  ('numpy.core',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\__init__.py',
+   'PYMODULE'),
+  ('numpy.core._add_newdocs_scalars',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_add_newdocs_scalars.py',
+   'PYMODULE'),
+  ('numpy.core._add_newdocs',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\_add_newdocs.py',
+   'PYMODULE'),
+  ('numpy.core.einsumfunc',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\einsumfunc.py',
+   'PYMODULE'),
+  ('numpy.core.memmap',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\memmap.py',
+   'PYMODULE'),
+  ('numpy.core.defchararray',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\core\\defchararray.py',
+   'PYMODULE'),
+  ('numpy._distributor_init',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\_distributor_init.py',
+   'PYMODULE'),
+  ('numpy.__config__',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\__config__.py',
    'PYMODULE'),
   ('numpy.array_api',
    'C:\\Users\\AESO '
@@ -1786,25 +1855,17 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\array_api\\_constants.py',
    'PYMODULE'),
-  ('numpy.distutils.cpuinfo',
+  ('numpy._globals',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\cpuinfo.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\_globals.py',
    'PYMODULE'),
-  ('numpy.distutils',
+  ('matplotlib.pyplot',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\__init__.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\pyplot.py',
    'PYMODULE'),
-  ('numpy.distutils.__config__',
+  ('matplotlib.patheffects',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\__config__.py',
-   'PYMODULE'),
-  ('numpy.distutils.unixccompiler',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\distutils\\unixccompiler.py',
-   'PYMODULE'),
-  ('numpy.linalg.linalg',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\linalg\\linalg.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\patheffects.py',
    'PYMODULE'),
   ('matplotlib.path',
    'C:\\Users\\AESO '
@@ -1818,506 +1879,25 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\bezier.py',
    'PYMODULE'),
-  ('matplotlib.mathtext',
+  ('matplotlib.transforms',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\mathtext.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\transforms.py',
    'PYMODULE'),
-  ('matplotlib.figure',
+  ('matplotlib.backends',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\figure.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\__init__.py',
    'PYMODULE'),
-  ('matplotlib.tight_layout',
+  ('matplotlib.backends._backend_tk',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tight_layout.py',
-   'PYMODULE'),
-  ('matplotlib._constrained_layout',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_constrained_layout.py',
-   'PYMODULE'),
-  ('matplotlib._layoutgrid',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_layoutgrid.py',
-   'PYMODULE'),
-  ('kiwisolver',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\kiwisolver\\__init__.py',
-   'PYMODULE'),
-  ('matplotlib.pyplot',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\pyplot.py',
-   'PYMODULE'),
-  ('matplotlib.patheffects',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\patheffects.py',
-   'PYMODULE'),
-  ('matplotlib.ticker',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\ticker.py',
-   'PYMODULE'),
-  ('matplotlib.widgets',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\widgets.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\_backend_tk.py',
    'PYMODULE'),
   ('matplotlib.backend_tools',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backend_tools.py',
    'PYMODULE'),
-  ('matplotlib.lines',
+  ('PIL.ImageTk',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\lines.py',
-   'PYMODULE'),
-  ('matplotlib._enums',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_enums.py',
-   'PYMODULE'),
-  ('matplotlib.markers',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\markers.py',
-   'PYMODULE'),
-  ('matplotlib.cm',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\cm.py',
-   'PYMODULE'),
-  ('matplotlib._cm_listed',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_cm_listed.py',
-   'PYMODULE'),
-  ('matplotlib._cm',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_cm.py',
-   'PYMODULE'),
-  ('matplotlib.scale',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\scale.py',
-   'PYMODULE'),
-  ('matplotlib.mlab',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\mlab.py',
-   'PYMODULE'),
-  ('matplotlib.style',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\style\\__init__.py',
-   'PYMODULE'),
-  ('matplotlib.style.core',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\style\\core.py',
-   'PYMODULE'),
-  ('matplotlib.rcsetup',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\rcsetup.py',
-   'PYMODULE'),
-  ('matplotlib.fontconfig_pattern',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\fontconfig_pattern.py',
-   'PYMODULE'),
-  ('cycler',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\cycler.py',
-   'PYMODULE'),
-  ('matplotlib._pylab_helpers',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_pylab_helpers.py',
-   'PYMODULE'),
-  ('matplotlib.backends.backend_webagg',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\backend_webagg.py',
-   'PYMODULE'),
-  ('matplotlib.backends.backend_webagg_core',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\backend_webagg_core.py',
-   'PYMODULE'),
-  ('matplotlib.text',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\text.py',
-   'PYMODULE'),
-  ('matplotlib.offsetbox',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\offsetbox.py',
-   'PYMODULE'),
-  ('matplotlib.textpath',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\textpath.py',
-   'PYMODULE'),
-  ('matplotlib.texmanager',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\texmanager.py',
-   'PYMODULE'),
-  ('matplotlib.dviread',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\dviread.py',
-   'PYMODULE'),
-  ('matplotlib._text_helpers',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_text_helpers.py',
-   'PYMODULE'),
-  ('matplotlib.patches',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\patches.py',
-   'PYMODULE'),
-  ('matplotlib.legend',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\legend.py',
-   'PYMODULE'),
-  ('matplotlib.legend_handler',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\legend_handler.py',
-   'PYMODULE'),
-  ('matplotlib.container',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\container.py',
-   'PYMODULE'),
-  ('matplotlib.collections',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\collections.py',
-   'PYMODULE'),
-  ('matplotlib.gridspec',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\gridspec.py',
-   'PYMODULE'),
-  ('matplotlib.axes',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\__init__.py',
-   'PYMODULE'),
-  ('matplotlib.axes._axes',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\_axes.py',
-   'PYMODULE'),
-  ('matplotlib.axes._secondary_axes',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\_secondary_axes.py',
-   'PYMODULE'),
-  ('matplotlib.axis',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axis.py',
-   'PYMODULE'),
-  ('dateutil.tz',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\__init__.py',
-   'PYMODULE'),
-  ('dateutil.tz.tz',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\tz.py',
-   'PYMODULE'),
-  ('dateutil.zoneinfo',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\zoneinfo\\__init__.py',
-   'PYMODULE'),
-  ('dateutil.rrule',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\rrule.py',
-   'PYMODULE'),
-  ('dateutil.easter',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\easter.py',
-   'PYMODULE'),
-  ('dateutil._common',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\_common.py',
-   'PYMODULE'),
-  ('dateutil.parser._parser',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\parser\\_parser.py',
-   'PYMODULE'),
-  ('dateutil.parser',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\parser\\__init__.py',
-   'PYMODULE'),
-  ('dateutil.parser.isoparser',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\parser\\isoparser.py',
-   'PYMODULE'),
-  ('dateutil.relativedelta',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\relativedelta.py',
-   'PYMODULE'),
-  ('dateutil.tz.win',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\win.py',
-   'PYMODULE'),
-  ('ctypes.wintypes',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\ctypes\\wintypes.py',
-   'PYMODULE'),
-  ('dateutil.tz._factories',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\_factories.py',
-   'PYMODULE'),
-  ('dateutil.tz._common',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\_common.py',
-   'PYMODULE'),
-  ('six',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\six.py',
-   'PYMODULE'),
-  ('dateutil',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\__init__.py',
-   'PYMODULE'),
-  ('dateutil._version',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\_version.py',
-   'PYMODULE'),
-  ('matplotlib.axes._base',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\_base.py',
-   'PYMODULE'),
-  ('matplotlib.spines',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\spines.py',
-   'PYMODULE'),
-  ('matplotlib.units',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\units.py',
-   'PYMODULE'),
-  ('matplotlib.tri',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\__init__.py',
-   'PYMODULE'),
-  ('matplotlib.tri.triplot',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\triplot.py',
-   'PYMODULE'),
-  ('matplotlib.tri.tripcolor',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\tripcolor.py',
-   'PYMODULE'),
-  ('matplotlib.tri.trirefine',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\trirefine.py',
-   'PYMODULE'),
-  ('matplotlib.tri.triinterpolate',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\triinterpolate.py',
-   'PYMODULE'),
-  ('matplotlib.tri.trifinder',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\trifinder.py',
-   'PYMODULE'),
-  ('matplotlib.tri.tritools',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\tritools.py',
-   'PYMODULE'),
-  ('matplotlib.tri.tricontour',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\tricontour.py',
-   'PYMODULE'),
-  ('matplotlib.tri.triangulation',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\triangulation.py',
-   'PYMODULE'),
-  ('matplotlib.table',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\table.py',
-   'PYMODULE'),
-  ('matplotlib.streamplot',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\streamplot.py',
-   'PYMODULE'),
-  ('matplotlib.stackplot',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\stackplot.py',
-   'PYMODULE'),
-  ('matplotlib.quiver',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\quiver.py',
-   'PYMODULE'),
-  ('matplotlib.dates',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\dates.py',
-   'PYMODULE'),
-  ('matplotlib.contour',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\contour.py',
-   'PYMODULE'),
-  ('matplotlib.category',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\category.py',
-   'PYMODULE'),
-  ('matplotlib.axes._subplots',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\_subplots.py',
-   'PYMODULE'),
-  ('matplotlib.image',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\image.py',
-   'PYMODULE'),
-  ('PIL.PngImagePlugin',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\PngImagePlugin.py',
-   'PYMODULE'),
-  ('PIL._binary',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\_binary.py',
-   'PYMODULE'),
-  ('PIL.ImageSequence',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageSequence.py',
-   'PYMODULE'),
-  ('PIL.ImagePalette',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImagePalette.py',
-   'PYMODULE'),
-  ('PIL.PaletteFile',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\PaletteFile.py',
-   'PYMODULE'),
-  ('PIL.ImageColor',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageColor.py',
-   'PYMODULE'),
-  ('colorsys',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\colorsys.py',
-   'PYMODULE'),
-  ('PIL.GimpPaletteFile',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\GimpPaletteFile.py',
-   'PYMODULE'),
-  ('PIL.GimpGradientFile',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\GimpGradientFile.py',
-   'PYMODULE'),
-  ('PIL.ImageFile',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageFile.py',
-   'PYMODULE'),
-  ('PIL._util',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\_util.py',
-   'PYMODULE'),
-  ('PIL.ImageChops',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageChops.py',
-   'PYMODULE'),
-  ('matplotlib.colorbar',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\colorbar.py',
-   'PYMODULE'),
-  ('matplotlib.artist',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\artist.py',
-   'PYMODULE'),
-  ('matplotlib.projections',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\projections\\__init__.py',
-   'PYMODULE'),
-  ('mpl_toolkits.mplot3d',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\__init__.py',
-   'PYMODULE'),
-  ('mpl_toolkits', '-', 'PYMODULE'),
-  ('mpl_toolkits.mplot3d.axes3d',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\axes3d.py',
-   'PYMODULE'),
-  ('mpl_toolkits.mplot3d.axis3d',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\axis3d.py',
-   'PYMODULE'),
-  ('mpl_toolkits.mplot3d.art3d',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\art3d.py',
-   'PYMODULE'),
-  ('mpl_toolkits.mplot3d.proj3d',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\proj3d.py',
-   'PYMODULE'),
-  ('matplotlib.projections.polar',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\projections\\polar.py',
-   'PYMODULE'),
-  ('matplotlib.projections.geo',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\projections\\geo.py',
-   'PYMODULE'),
-  ('matplotlib.docstring',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\docstring.py',
-   'PYMODULE'),
-  ('matplotlib._blocking_input',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_blocking_input.py',
-   'PYMODULE'),
-  ('matplotlib._mathtext_data',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_mathtext_data.py',
-   'PYMODULE'),
-  ('matplotlib._mathtext',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_mathtext.py',
-   'PYMODULE'),
-  ('matplotlib.afm',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\afm.py',
-   'PYMODULE'),
-  ('matplotlib.font_manager',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\font_manager.py',
-   'PYMODULE'),
-  ('matplotlib.backend_bases',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backend_bases.py',
-   'PYMODULE'),
-  ('matplotlib.backend_managers',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backend_managers.py',
-   'PYMODULE'),
-  ('matplotlib.tight_bbox',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tight_bbox.py',
-   'PYMODULE'),
-  ('matplotlib.colors',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\colors.py',
-   'PYMODULE'),
-  ('matplotlib._color_data',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_color_data.py',
-   'PYMODULE'),
-  ('matplotlib.cbook',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\cbook\\__init__.py',
-   'PYMODULE'),
-  ('matplotlib._api.deprecation',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_api\\deprecation.py',
-   'PYMODULE'),
-  ('matplotlib._api',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_api\\__init__.py',
-   'PYMODULE'),
-  ('matplotlib',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\__init__.py',
-   'PYMODULE'),
-  ('matplotlib.pylab',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\pylab.py',
-   'PYMODULE'),
-  ('numpy.random',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\random\\__init__.py',
-   'PYMODULE'),
-  ('numpy.random._pickle',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\random\\_pickle.py',
-   'PYMODULE'),
-  ('numpy.fft',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\fft\\__init__.py',
-   'PYMODULE'),
-  ('numpy.fft.helper',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\fft\\helper.py',
-   'PYMODULE'),
-  ('numpy.fft._pocketfft',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\fft\\_pocketfft.py',
-   'PYMODULE'),
-  ('matplotlib._version',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_version.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageTk.py',
    'PYMODULE'),
   ('PIL.Image',
    'C:\\Users\\AESO '
@@ -2326,6 +1906,10 @@
   ('PIL.XpmImagePlugin',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\XpmImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImageFile',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageFile.py',
    'PYMODULE'),
   ('PIL.XbmImagePlugin',
    'C:\\Users\\AESO '
@@ -2355,10 +1939,6 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\SpiderImagePlugin.py',
    'PYMODULE'),
-  ('PIL.ImageTk',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageTk.py',
-   'PYMODULE'),
   ('PIL.SgiImagePlugin',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\SgiImagePlugin.py',
@@ -2378,6 +1958,10 @@
   ('PIL.PdfParser',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\PdfParser.py',
+   'PYMODULE'),
+  ('PIL.ImageSequence',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageSequence.py',
    'PYMODULE'),
   ('PIL.PcxImagePlugin',
    'C:\\Users\\AESO '
@@ -2511,6 +2095,14 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageQt.py',
    'PYMODULE'),
+  ('PIL.ImageColor',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageColor.py',
+   'PYMODULE'),
+  ('colorsys',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\colorsys.py',
+   'PYMODULE'),
   ('PIL.ImageFilter',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageFilter.py',
@@ -2518,6 +2110,30 @@
   ('PIL.PyAccess',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\PyAccess.py',
+   'PYMODULE'),
+  ('PIL.ImagePalette',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImagePalette.py',
+   'PYMODULE'),
+  ('PIL.PaletteFile',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\PaletteFile.py',
+   'PYMODULE'),
+  ('PIL.GimpPaletteFile',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\GimpPaletteFile.py',
+   'PYMODULE'),
+  ('PIL.GimpGradientFile',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\GimpGradientFile.py',
+   'PYMODULE'),
+  ('PIL.PngImagePlugin',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\PngImagePlugin.py',
+   'PYMODULE'),
+  ('PIL.ImageChops',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\ImageChops.py',
    'PYMODULE'),
   ('PIL.PpmImagePlugin',
    'C:\\Users\\AESO '
@@ -2539,6 +2155,14 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\BmpImagePlugin.py',
    'PYMODULE'),
+  ('PIL._util',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\_util.py',
+   'PYMODULE'),
+  ('PIL._binary',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\_binary.py',
+   'PYMODULE'),
   ('PIL.TiffTags',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\TiffTags.py',
@@ -2555,62 +2179,6 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\PIL\\_version.py',
    'PYMODULE'),
-  ('numpy',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\__init__.py',
-   'PYMODULE'),
-  ('numpy.ctypeslib',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\ctypeslib.py',
-   'PYMODULE'),
-  ('numpy.polynomial',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\__init__.py',
-   'PYMODULE'),
-  ('numpy.polynomial._polybase',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\_polybase.py',
-   'PYMODULE'),
-  ('numpy.polynomial.laguerre',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\laguerre.py',
-   'PYMODULE'),
-  ('numpy.polynomial.hermite_e',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\hermite_e.py',
-   'PYMODULE'),
-  ('numpy.polynomial.hermite',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\hermite.py',
-   'PYMODULE'),
-  ('numpy.polynomial.legendre',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\legendre.py',
-   'PYMODULE'),
-  ('numpy.polynomial.chebyshev',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\chebyshev.py',
-   'PYMODULE'),
-  ('numpy.polynomial.polynomial',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\polynomial.py',
-   'PYMODULE'),
-  ('numpy.polynomial.polyutils',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\polynomial\\polyutils.py',
-   'PYMODULE'),
-  ('numpy._distributor_init',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\_distributor_init.py',
-   'PYMODULE'),
-  ('numpy.__config__',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\numpy\\__config__.py',
-   'PYMODULE'),
-  ('matplotlib.backends._backend_tk',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\_backend_tk.py',
-   'PYMODULE'),
   ('tkinter.simpledialog',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tkinter\\simpledialog.py',
@@ -2619,9 +2187,449 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tkinter\\font.py',
    'PYMODULE'),
-  ('matplotlib.backends',
+  ('matplotlib.backends.backend_webagg',
    'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\__init__.py',
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\backend_webagg.py',
+   'PYMODULE'),
+  ('matplotlib.backends.backend_webagg_core',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\backend_webagg_core.py',
+   'PYMODULE'),
+  ('matplotlib.backends.backend_agg',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\backend_agg.py',
+   'PYMODULE'),
+  ('matplotlib.mathtext',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\mathtext.py',
+   'PYMODULE'),
+  ('matplotlib._mathtext_data',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_mathtext_data.py',
+   'PYMODULE'),
+  ('matplotlib._mathtext',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_mathtext.py',
+   'PYMODULE'),
+  ('matplotlib.afm',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\afm.py',
+   'PYMODULE'),
+  ('matplotlib.font_manager',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\font_manager.py',
+   'PYMODULE'),
+  ('matplotlib.fontconfig_pattern',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\fontconfig_pattern.py',
+   'PYMODULE'),
+  ('matplotlib.ticker',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\ticker.py',
+   'PYMODULE'),
+  ('matplotlib.widgets',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\widgets.py',
+   'PYMODULE'),
+  ('matplotlib.patches',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\patches.py',
+   'PYMODULE'),
+  ('matplotlib._enums',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_enums.py',
+   'PYMODULE'),
+  ('matplotlib.text',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\text.py',
+   'PYMODULE'),
+  ('matplotlib.offsetbox',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\offsetbox.py',
+   'PYMODULE'),
+  ('matplotlib.textpath',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\textpath.py',
+   'PYMODULE'),
+  ('matplotlib.texmanager',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\texmanager.py',
+   'PYMODULE'),
+  ('matplotlib.dviread',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\dviread.py',
+   'PYMODULE'),
+  ('matplotlib._text_helpers',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_text_helpers.py',
+   'PYMODULE'),
+  ('matplotlib.lines',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\lines.py',
+   'PYMODULE'),
+  ('matplotlib.markers',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\markers.py',
+   'PYMODULE'),
+  ('matplotlib.colors',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\colors.py',
+   'PYMODULE'),
+  ('matplotlib._color_data',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_color_data.py',
+   'PYMODULE'),
+  ('matplotlib.cm',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\cm.py',
+   'PYMODULE'),
+  ('matplotlib._cm_listed',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_cm_listed.py',
+   'PYMODULE'),
+  ('matplotlib._cm',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_cm.py',
+   'PYMODULE'),
+  ('matplotlib.scale',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\scale.py',
+   'PYMODULE'),
+  ('matplotlib.mlab',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\mlab.py',
+   'PYMODULE'),
+  ('matplotlib.projections',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\projections\\__init__.py',
+   'PYMODULE'),
+  ('mpl_toolkits.mplot3d',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\__init__.py',
+   'PYMODULE'),
+  ('mpl_toolkits', '-', 'PYMODULE'),
+  ('mpl_toolkits.mplot3d.axes3d',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\axes3d.py',
+   'PYMODULE'),
+  ('matplotlib.tri.triangulation',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\triangulation.py',
+   'PYMODULE'),
+  ('matplotlib.tri',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.tri.triplot',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\triplot.py',
+   'PYMODULE'),
+  ('matplotlib.tri.tripcolor',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\tripcolor.py',
+   'PYMODULE'),
+  ('matplotlib.tri.trirefine',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\trirefine.py',
+   'PYMODULE'),
+  ('matplotlib.tri.triinterpolate',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\triinterpolate.py',
+   'PYMODULE'),
+  ('matplotlib.tri.tritools',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\tritools.py',
+   'PYMODULE'),
+  ('matplotlib.tri.tricontour',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\tricontour.py',
+   'PYMODULE'),
+  ('matplotlib.contour',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\contour.py',
+   'PYMODULE'),
+  ('matplotlib.tri.trifinder',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tri\\trifinder.py',
+   'PYMODULE'),
+  ('matplotlib.axes._base',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\_base.py',
+   'PYMODULE'),
+  ('matplotlib.table',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\table.py',
+   'PYMODULE'),
+  ('matplotlib.spines',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\spines.py',
+   'PYMODULE'),
+  ('matplotlib.axis',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axis.py',
+   'PYMODULE'),
+  ('dateutil.tz',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.tz.tz',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\tz.py',
+   'PYMODULE'),
+  ('dateutil.zoneinfo',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\zoneinfo\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.rrule',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\rrule.py',
+   'PYMODULE'),
+  ('dateutil.easter',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\easter.py',
+   'PYMODULE'),
+  ('dateutil._common',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\_common.py',
+   'PYMODULE'),
+  ('dateutil.parser._parser',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\parser\\_parser.py',
+   'PYMODULE'),
+  ('dateutil.parser',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\parser\\__init__.py',
+   'PYMODULE'),
+  ('dateutil.parser.isoparser',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\parser\\isoparser.py',
+   'PYMODULE'),
+  ('dateutil.relativedelta',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\relativedelta.py',
+   'PYMODULE'),
+  ('dateutil.tz.win',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\win.py',
+   'PYMODULE'),
+  ('ctypes.wintypes',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\ctypes\\wintypes.py',
+   'PYMODULE'),
+  ('dateutil.tz._factories',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\_factories.py',
+   'PYMODULE'),
+  ('dateutil.tz._common',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\tz\\_common.py',
+   'PYMODULE'),
+  ('six',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\six.py',
+   'PYMODULE'),
+  ('dateutil',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\__init__.py',
+   'PYMODULE'),
+  ('dateutil._version',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\dateutil\\_version.py',
+   'PYMODULE'),
+  ('matplotlib.units',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\units.py',
+   'PYMODULE'),
+  ('matplotlib.container',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\container.py',
+   'PYMODULE'),
+  ('matplotlib.collections',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\collections.py',
+   'PYMODULE'),
+  ('mpl_toolkits.mplot3d.axis3d',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\axis3d.py',
+   'PYMODULE'),
+  ('mpl_toolkits.mplot3d.art3d',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\art3d.py',
+   'PYMODULE'),
+  ('mpl_toolkits.mplot3d.proj3d',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\mpl_toolkits\\mplot3d\\proj3d.py',
+   'PYMODULE'),
+  ('matplotlib.projections.polar',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\projections\\polar.py',
+   'PYMODULE'),
+  ('matplotlib.projections.geo',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\projections\\geo.py',
+   'PYMODULE'),
+  ('matplotlib.axes',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.axes._axes',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\_axes.py',
+   'PYMODULE'),
+  ('matplotlib.axes._secondary_axes',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\_secondary_axes.py',
+   'PYMODULE'),
+  ('matplotlib.streamplot',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\streamplot.py',
+   'PYMODULE'),
+  ('matplotlib.stackplot',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\stackplot.py',
+   'PYMODULE'),
+  ('matplotlib.quiver',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\quiver.py',
+   'PYMODULE'),
+  ('matplotlib.legend',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\legend.py',
+   'PYMODULE'),
+  ('matplotlib.legend_handler',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\legend_handler.py',
+   'PYMODULE'),
+  ('matplotlib.dates',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\dates.py',
+   'PYMODULE'),
+  ('matplotlib.category',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\category.py',
+   'PYMODULE'),
+  ('matplotlib.axes._subplots',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\axes\\_subplots.py',
+   'PYMODULE'),
+  ('matplotlib.artist',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\artist.py',
+   'PYMODULE'),
+  ('matplotlib.gridspec',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\gridspec.py',
+   'PYMODULE'),
+  ('matplotlib.tight_layout',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tight_layout.py',
+   'PYMODULE'),
+  ('matplotlib.figure',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\figure.py',
+   'PYMODULE'),
+  ('matplotlib._constrained_layout',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_constrained_layout.py',
+   'PYMODULE'),
+  ('matplotlib._layoutgrid',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_layoutgrid.py',
+   'PYMODULE'),
+  ('kiwisolver',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\kiwisolver\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib._blocking_input',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_blocking_input.py',
+   'PYMODULE'),
+  ('matplotlib.backend_bases',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backend_bases.py',
+   'PYMODULE'),
+  ('matplotlib.backend_managers',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backend_managers.py',
+   'PYMODULE'),
+  ('matplotlib.tight_bbox',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\tight_bbox.py',
+   'PYMODULE'),
+  ('matplotlib.docstring',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\docstring.py',
+   'PYMODULE'),
+  ('matplotlib.cbook',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\cbook\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib._api.deprecation',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_api\\deprecation.py',
+   'PYMODULE'),
+  ('matplotlib._pylab_helpers',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_pylab_helpers.py',
+   'PYMODULE'),
+  ('matplotlib.style',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\style\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.style.core',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\style\\core.py',
+   'PYMODULE'),
+  ('matplotlib.rcsetup',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\rcsetup.py',
+   'PYMODULE'),
+  ('matplotlib._api',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_api\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.image',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\image.py',
+   'PYMODULE'),
+  ('matplotlib.colorbar',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\colorbar.py',
+   'PYMODULE'),
+  ('matplotlib',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\__init__.py',
+   'PYMODULE'),
+  ('matplotlib.pylab',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\pylab.py',
+   'PYMODULE'),
+  ('matplotlib._version',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\_version.py',
+   'PYMODULE'),
+  ('cycler',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\cycler.py',
+   'PYMODULE'),
+  ('noiseline',
+   'C:\\Users\\AESO '
+   '1\\Documents\\GitHub\\python-tools\\noiseplot_generator\\noiseline.py',
+   'PYMODULE'),
+  ('functions',
+   'C:\\Users\\AESO '
+   '1\\Documents\\GitHub\\python-tools\\noiseplot_generator\\functions.py',
+   'PYMODULE'),
+  ('subprocess',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\subprocess.py',
+   'PYMODULE'),
+  ('os',
+   'C:\\Users\\AESO 1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\os.py',
+   'PYMODULE'),
+  ('matplotlib.backends.backend_tkagg',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\site-packages\\matplotlib\\backends\\backend_tkagg.py',
    'PYMODULE'),
   ('tkinter.filedialog',
    'C:\\Users\\AESO '
@@ -2650,14 +2658,6 @@
   ('tkinter.constants',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tkinter\\constants.py',
-   'PYMODULE'),
-  ('noisecontour',
-   'C:\\Users\\AESO '
-   '1\\Documents\\GitHub\\python-tools\\noiseplot_generator\\noisecontour.py',
-   'PYMODULE'),
-  ('noiseline',
-   'C:\\Users\\AESO '
-   '1\\Documents\\GitHub\\python-tools\\noiseplot_generator\\noiseline.py',
    'PYMODULE'),
   ('pandas',
    'C:\\Users\\AESO '

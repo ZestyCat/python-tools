@@ -1,6 +1,4 @@
 import pandas as pd
-import noiseline as nl
-import noisecontour as nc
 import tkinter as tk
 import tkinter.messagebox
 from tkinter import ttk
@@ -12,6 +10,8 @@ import subprocess
 
 def main():
     import functions as fn # After chdir to _MEIPASS
+    import noiseline as nl
+    import noisecontour as nc
     
     # Main application window
     class App(ttk.Frame): 
@@ -179,7 +179,7 @@ def main():
             self.input_frame.grid(row = 0, column = 0, sticky = "WE") 
             self.fig_frame.grid(row   = 3, column = 0)
             self.ac_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "W")
-            self.param_frame.grid(row   = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
+            self.param_frame.grid(row = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
             self.p_type_frame.grid(row= 4, column = 0, pady = (3, 3), padx = (10, 10), columnspan = 2, sticky = "WE")
             self.button_frame.grid(row= 4, column = 0, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
             self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
@@ -246,35 +246,14 @@ def main():
                     nl.plot(self.df, self.df_2, ps_name = self.desc.get(), 
                                     save_name = save_name, spd = self.speed.get())
                 return(self.fig)
-                
+            
             elif self.p_type.get() == "2": # Static plot
-                self.check_static_range(self.ac.get(), self.pwr.get()) # Is pwr within range? If not, correct it
-                
-                def run_spec_unit(unit): # Run with specified units. Sometimes o11 does not run unless unit param is blank.
-                    out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2), # Run o11
-                                inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), units = unit) \
-                                if fn.is_number(self.pwr.get()) \
-                                else None
-                        
-                    self.df  = fn.read_o11(out) # Read o11 output file
-                    
-                    try:
-                        fig = nc.plot_contour(self.df, aircraft = self.ac.get(), engine = self.eng.get(),
-                                        description = self.desc.get(), power = self.pwr.get() + self.units.get(), 
-                                        n_grids = self.n_grids.get(), levels = [float(l.strip()) for l in self.levels.get().split(",")],
-                                        extent_ft = self.extent_ft.get(), save_name = save_name)
-                        
-                        return(fig)
-                    except:
-                        msg = "Please enter comma-separated contour dB values"
-                        self.show_message("Entry error", msg)
-                        return(None)
-                        
+                self.check_static_range(self.ac.get(), self.pwr.get()) # Is pwr within range? If not, correct it  
                 try: # Try running with specified units
-                    self.fig = run_spec_unit(self.units.get())
+                    self.fig = self.run_spec_unit(self.units.get())
                     return(self.fig)
                 except: # Else try running with blank unit param
-                    self.fig = run_spec_unit("")
+                    self.fig = self.run_spec_unit("")
                     print("trying to run with units blank...")
                     return(self.fig)
                
@@ -377,6 +356,25 @@ def main():
             except:
                 pass
                 
+        def run_spec_unit(self, unit, save_name = None): # Run o11 with specified units. Sometimes o11 runs but does produces an error if unit is blank
+                    out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2), # Run o11
+                                inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), units = unit) \
+                                if fn.is_number(self.pwr.get()) \
+                                else None
+                        
+                    self.df  = fn.read_o11(out) # Read o11 output file
+                    try:
+                        fig = nc.plot_contour(self.df, aircraft = self.ac.get(), engine = self.eng.get(),
+                                        description = self.desc.get(), power = self.pwr.get() + self.units.get(), 
+                                        n_grids = self.n_grids.get(), levels = [float(l.strip()) for l in self.levels.get().split(",")],
+                                        extent_ft = self.extent_ft.get(), save_name = save_name)
+                        
+                        return(fig)
+                    except:
+                        msg = "Please enter comma-separated contour dB values"
+                        self.show_message("Entry error", msg)
+                        return(None)
+                        
         # Get minimum and maximum values for static. Check whether user input is out of range. If so, correct the entry
         def check_static_range(self, ac, pwr, file = "./data/static_power_setting_list.csv"):
             p = float(pwr)
