@@ -1,40 +1,5 @@
-          SUMMARY OF I/O FOR THE  A-3                 
-
-          PROGRAM:  OMEGA 11.5
-          AIRCRAFT CODE: M00201
-          PROFILE VERSION CODE: W
-          DATE:            
-          DELTA N (OR DELN)=  0.00 DB
-
-
-          ***************************** INPUT DATA *****************************
-           DATADECK       INTERP    POWER           POWER DESCRIPTION
-             NAME    OPC   FLAG    SETTING
-          M0020104V   04     V    97.00 % RPM       MIL PWR             
-          M0020113V   13     V    53.00 % RPM       IDLE                
-          M0020121V   21     V    70.00 % RPM       70 % RPM ENG RUNUP  
-
-           DATADECK    ------------ NOISE SOURCE/SUBJECT ------------  DATE OF
-             NAME      PART 1                  PART 2                 NORM. RUN
-          M0020104V    A-3                     J57-P-10              02 JUN 1976
-          M0020113V    A-3                     J57-P-10              02 JUN 1976
-          M0020121V    A-3                     J57-P-10              02 JUN 1976
-
-
-          **************************** OUTPUT DATA *****************************
-          MEASURES COMPUTED:    PNLT(P)--YES    AL(A)--YES    ALT(T)--YES
-          PROFILE DATA FOR ALL ANGLES WRITTEN TO FILE *TAPE2*
-          PROFILE DATA COMPUTED WITH AND WITHOUT EXCESS SOUND ATTENUATION.
-          METEOROLOGY:  TEMP      =    59 F
-                        BAR PRESS = 29.92 IN HG
-                        REL HUMID =    70 %
-
-           PROFILE        POWER         NORMALIZED DATADECKS  POWER DESCRIPTION
-             ID          SETTING        FIRST      SECOND
-          RM0020100    97.00 % RPM      M0020104V             MIL PWR             
-
-
-          ************************ GENERAL INFORMATION *************************
-          OPC --- OPERATION POWER CODE
-          INTERPOLATION FLAG = F FOR FIXED --- AFTERBURNER, WET OR WITH JETS
-                             = V FOR VARIABLE --- LINEAR INTERPOLATION
+    FOR ACC= M08202 AND OPC= 45
+    POWER SETTING UNITS IN THE STATIC NOISE DATABASE DO NOT MATCH UNITS IN THE SETUP FILE
+    UNITS FROM STATIC NOISE DATABASE: EPR       
+    UNITS FROM THE SETUP FILE:           
+    ALL DATA FOR THIS ACC DELETED FROM THIS JOB.

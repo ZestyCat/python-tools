@@ -249,13 +249,34 @@ def main():
             
             elif self.p_type.get() == "2": # Static plot
                 self.check_static_range(self.ac.get(), self.pwr.get()) # Is pwr within range? If not, correct it  
-                try: # Try running with specified units
-                    self.fig = self.run_spec_unit(self.units.get())
-                    return(self.fig)
-                except: # Else try running with blank unit param
-                    self.fig = self.run_spec_unit("")
-                    print("trying to run with units blank...")
-                    return(self.fig)
+                def try_fig(df):
+                    try:
+                        fig = nc.plot_contour(df, aircraft = self.ac.get(), engine = self.eng.get(),
+                                        description = self.desc.get(), power = self.pwr.get() + self.units.get(), 
+                                        n_grids = self.n_grids.get(), levels = [float(l.strip()) for l in self.levels.get().split(",")],
+                                        extent_ft = self.extent_ft.get(), save_name = save_name)
+                        
+                        return(fig)
+                    except:
+                        msg = "Please enter comma-separated contour dB values"
+                        self.show_message("Entry error", msg)
+                        return(None)
+                        
+                try: # Try running with primary units
+                    df = self.run_o11_unit(self.units.get())
+                    return(try_fig(df))
+                except: # Try running through every possible power setting unit
+                    units_list = ['NF', '% RPM', 'LBS', '% NC', 'KNOTS', 'PLA', 'LBS/HR', 'RPM', 'C TIT', 'HP', 
+                    '% NF', 'EPR', '% N1', '%Q-BPA', 'POWER', 'ISHP', '% N2', '% ETR',                          
+                    '% TORQUE', 'IN HG', '% SLTT', 'ESHP', '% Torque', ""]
+                    for u in units_list:
+                        try:
+                            df = self.run_o11_unit(u)
+                            fig = try_fig(df)
+                            return(fig)
+                        except:
+                            pass
+                    print("None of these units worked, try something else")
                
         def show_plot(self): # Preview the plot on canvas
             self.fig = self.make_plot(save_name = None)
@@ -330,24 +351,42 @@ def main():
                     self.df_2.to_csv(self.file, mode = 'a', index = False, header = False)
                     
             elif self.p_type.get() == "2":
-                out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
-                            if fn.is_number(self.pwr.get()) \
-                            else None
+                # out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                            # inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), units = self.units.get()) \
+                            # if fn.is_number(self.pwr.get()) \
+                            # else None
                 
-                self.df = fn.read_o11(out)
+                # self.df = fn.read_o11(out)
+                file = fd.asksaveasfilename(defaultextension = ".csv",
+                        filetypes = [("comma separated value", ".csv")])
+                        
+                def write_file(df, file):
+                    header = pd.DataFrame(columns = [self.ac.get(), self.eng.get(), 
+                        str(self.pwr.get()) + self.units.get(), self.desc.get(), 
+                        str(self.rh_pct.get()) + "% RH", str(self.temp.get()) + "Deg. F",
+                        str(self.bar_p.get()) + "Inches Hg"])
+                    
+                    header.to_csv(file, mode = "w")
+                    df.to_csv(file, mode = "a")
                 
-                self.file = fd.asksaveasfilename(defaultextension = ".csv",
-                    filetypes = [("comma separated value", ".csv")])
+                try: # Try running with primary units
+                    df = self.run_o11_unit(self.units.get())
+                    write_file(df, file)
+                    return
+                except: # Try running through every possible power setting unit
+                    units_list = ['NF', '% RPM', 'LBS', '% NC', 'KNOTS', 'PLA', 'LBS/HR', 'RPM', 'C TIT', 'HP', 
+                    '% NF', 'EPR', '% N1', '%Q-BPA', 'POWER', 'ISHP', '% N2', '% ETR',                          
+                    '% TORQUE', 'IN HG', '% SLTT', 'ESHP', '% Torque', ""]
+                    for u in units_list:
+                        try:
+                            df = self.run_o11_unit(u)
+                            write_file(df, file)
+                            return
+                        except:
+                            pass
+                    print("None of these units worked, try something else")
                 
-                self.header = pd.DataFrame(columns = [self.ac.get(), self.eng.get(), 
-                    str(self.pwr.get()) + self.units.get(), self.desc.get(), 
-                    str(self.rh_pct.get()) + "% RH", str(self.temp.get()) + "Deg. F",
-                    str(self.bar_p.get()) + "Inches Hg"])
                 
-                self.header.to_csv(self.file, mode = "w")
-                
-                self.df.to_csv(self.file, mode = "a")
                     
         def set_info(self, event): # Get units and engine of selected aircraft
             try:
@@ -356,24 +395,14 @@ def main():
             except:
                 pass
                 
-        def run_spec_unit(self, unit, save_name = None): # Run o11 with specified units. Sometimes o11 runs but does produces an error if unit is blank
+        def run_o11_unit(self, unit, save_name = None): # Run o11 with specified units. Sometimes o11 runs but does produces an error if unit is blank
                     out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2), # Run o11
                                 inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), units = unit) \
                                 if fn.is_number(self.pwr.get()) \
                                 else None
                         
                     self.df  = fn.read_o11(out) # Read o11 output file
-                    try:
-                        fig = nc.plot_contour(self.df, aircraft = self.ac.get(), engine = self.eng.get(),
-                                        description = self.desc.get(), power = self.pwr.get() + self.units.get(), 
-                                        n_grids = self.n_grids.get(), levels = [float(l.strip()) for l in self.levels.get().split(",")],
-                                        extent_ft = self.extent_ft.get(), save_name = save_name)
-                        
-                        return(fig)
-                    except:
-                        msg = "Please enter comma-separated contour dB values"
-                        self.show_message("Entry error", msg)
-                        return(None)
+                    return(self.df)
                         
         # Get minimum and maximum values for static. Check whether user input is out of range. If so, correct the entry
         def check_static_range(self, ac, pwr, file = "./data/static_power_setting_list.csv"):
@@ -423,14 +452,18 @@ def main():
     a.mainloop()
 
 if __name__ == '__main__': # Try to work from the pyinstaller tempfile directory
+    print("about to check if meipass")
     if hasattr(sys, '_MEIPASS'):
+        print("Yes meipass")
         saved_dir = os.getcwd()
         os.chdir(sys._MEIPASS)
         try:
             main()
         finally:
-            os.chdir(saved_dir) # If it fails, just use the current directory
+            os.chdir(saved_dir) 
     else:
+        print("Not meipass, running main")
         main()
+        print("Not meipass, main just finished")
 
 

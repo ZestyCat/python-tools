@@ -1091,13 +1091,13 @@
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\imp.py',
    'PYMODULE'),
-  ('tracemalloc',
-   'C:\\Users\\AESO '
-   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
-   'PYMODULE'),
   ('stringprep',
    'C:\\Users\\AESO '
    '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\stringprep.py',
+   'PYMODULE'),
+  ('tracemalloc',
+   'C:\\Users\\AESO '
+   '1\\AppData\\Local\\Programs\\Python\\Python310\\lib\\tracemalloc.py',
    'PYMODULE'),
   ('_py_abc',
    'C:\\Users\\AESO '
