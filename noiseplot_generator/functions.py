@@ -16,6 +16,7 @@ def get_aircraft(file = "./data/acdata.csv", ignore = "./data/bad_ac_list.csv", 
     '''
     type param linked to p_type tk IntVar. 1 = Flyover, 2 = Static
     bad_ac_list.csv lists ac with missing data in Flight01.dat - These ac cause Omega10 to crash
+    bad_ac_list.csv is ignored if running Omega11 (type = 2)
     '''
     df = pd.read_csv(file)
     df_2 = pd.read_csv(ignore, header = None)
@@ -23,7 +24,7 @@ def get_aircraft(file = "./data/acdata.csv", ignore = "./data/bad_ac_list.csv", 
     if type == 1:
         return(df[df["aircraft"].str.contains(ignore) == False][df["flight"] == True])
     elif type == 2:
-        return(df[df["aircraft"].str.contains(ignore) == False][df["static"] == True])
+        return(df[df["static"] == True])
 
 # Return aircraft info for specified aircraft (engine, power units, code)
 def get_info(df, aircraft):

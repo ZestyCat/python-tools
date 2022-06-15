@@ -263,19 +263,22 @@ def main():
                         return(None)
                         
                 try: # Try running with primary units
-                    df = self.run_o11_unit(self.units.get())
+                    df = self.run_o11_unit("")
                     return(try_fig(df))
                 except: # Try running through every possible power setting unit
-                    units_list = ['NF', '% RPM', 'LBS', '% NC', 'KNOTS', 'PLA', 'LBS/HR', 'RPM', 'C TIT', 'HP', 
-                    '% NF', 'EPR', '% N1', '%Q-BPA', 'POWER', 'ISHP', '% N2', '% ETR',                          
-                    '% TORQUE', 'IN HG', '% SLTT', 'ESHP', '% Torque', ""]
-                    for u in units_list:
-                        try:
-                            df = self.run_o11_unit(u)
-                            fig = try_fig(df)
-                            return(fig)
-                        except:
-                            pass
+                    pass
+                    # units_list = ['NF', '% RPM', 'LBS', '% NC', 'KNOTS', 'PLA', 'LBS/HR', 'RPM', 'C TIT', 'HP', 
+                    # '% NF', 'EPR', '% N1', '%Q-BPA', '%QQBPA', '% NR', 'POWER', 'ISHP', '% N2', '% ETR',                          
+                    # '% TORQUE', 'IN HG', '% SLTT', 'ESHP', '% Torque', ""]
+                    # for u in units_list:
+                        # try:
+                            # df = self.run_o11_unit(u)
+                            # fig = try_fig(df)
+                            # print("made fig")
+                            # return(fig)
+                        # except:
+                            # print("failed to make fig")
+                            # pass
                     print("None of these units worked, try something else")
                
         def show_plot(self): # Preview the plot on canvas
@@ -375,7 +378,7 @@ def main():
                     return
                 except: # Try running through every possible power setting unit
                     units_list = ['NF', '% RPM', 'LBS', '% NC', 'KNOTS', 'PLA', 'LBS/HR', 'RPM', 'C TIT', 'HP', 
-                    '% NF', 'EPR', '% N1', '%Q-BPA', 'POWER', 'ISHP', '% N2', '% ETR',                          
+                    '% NF', 'EPR', '% N1', '%Q-BPA', '%QQBPA', '% NR', 'POWER', 'ISHP', '% N2', '% ETR',                          
                     '% TORQUE', 'IN HG', '% SLTT', 'ESHP', '% Torque', ""]
                     for u in units_list:
                         try:
@@ -390,7 +393,7 @@ def main():
                     
         def set_info(self, event): # Get units and engine of selected aircraft
             try:
-                self.units.set(fn.get_info(fn.get_aircraft(), self.ac.get())["units"])
+                self.units.set(fn.get_info(fn.get_aircraft(type = int(self.p_type.get())), self.ac.get())["units"])
                 self.eng.set(fn.get_info(fn.get_aircraft(), self.ac.get())["engine"])
             except:
                 pass
