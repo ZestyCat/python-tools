@@ -25,7 +25,7 @@ def get_info(df, aircraft):
 
 # Write o10 input file, call subprocess to run o10
 def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise", 
-                speed_kts = 160, temp = 59, rel_hum_pct = 70,
+                speed_kts = 160, temp = 59, rel_hum_pct = 70, units = "% NC",
                 path = "./", input = 'input.o10_input', log = "log.o10_log", 
                 output = "output.o10_noise", ac_file = "./data/operation_data.csv"):
 
@@ -33,7 +33,6 @@ def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise",
     
     # Find the corresponding code for aircraft in codes list file
     code  = pd.unique(ac_data[ac_data["aircraft"] == aircraft]["aircraft_code"]).item()
-    units = pd.unique(ac_data[ac_data["aircraft"] == aircraft]["unit_1"]).item()
     
     # Pad params with spaces so they fit the Omega10 input format
     t = " " * (4 - len(str(temp))) + str(temp)
@@ -99,7 +98,7 @@ def read_o10(file = "./omega/output.o10_noise"):
         return(df)
 
 def run_o11(aircraft = "F-18E/F", power = 90, description = "Cruise", 
-                inches_hg = 29.92, temp = 59, rel_hum_pct = 70,
+                inches_hg = 29.92, temp = 59, rel_hum_pct = 70, units = "% NC",
                 path = "./", input = 'input.o11_input', log = "log.o11_log", 
                 output = "output.o11_noise", ac_file = "./data/operation_data.csv"):
     
@@ -107,7 +106,6 @@ def run_o11(aircraft = "F-18E/F", power = 90, description = "Cruise",
    
     # Find the corresponding code for aircraft in codes list file
     code  = pd.unique(ac_data[ac_data["aircraft"] == aircraft]["aircraft_code"]).item() # read csv, get code of aircraft
-    units = pd.unique(ac_data[ac_data["aircraft"] == aircraft]["unit_1"]).item()
     
     # Pad params with spaces so they fit the Omega11 input format
     t = " " * (4 - len(str(temp))) + str(temp)

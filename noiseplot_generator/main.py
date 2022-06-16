@@ -25,7 +25,7 @@ def main():
             self.desc      = tk.StringVar()
             self.units     = tk.StringVar()
             self.eng       = tk.StringVar()
-            self.p_type    = tk.StringVar()
+            self.op_type    = tk.StringVar()
             self.levels    = tk.StringVar()
             self.speed     = tk.IntVar()
             self.temp      = tk.IntVar()
@@ -50,38 +50,36 @@ def main():
             self.temp.set(59)
             self.rh_pct.set(70)
             self.bar_p.set(29.92)
-            self.p_type.set(1)
+            self.op_type.set(1)
             self.levels.set("65, 75, 85, 95")
             self.n_grids.set(6)
             self.extent_ft.set(5000)
             
-            # Make frames
-            self.input_frame  = tk.Frame(highlightbackground = "black", highlightthickness = 1)
+            # Make frame
+            self.input_frame  = tk.Frame(highlightthickness = 1)
             self.fig_frame    = tk.Frame(highlightbackground = "black", highlightthickness = 1, bg = "darkgrey")
-            self.ac_frame     = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
-            self.param_frame  = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
+            self.param_frame     = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
             self.button_frame = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0)
             self.img_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0, bg = "darkgrey")
-            self.p_type_frame = tk.Frame(self.ac_frame)
+            self.op_type_frame = tk.Frame(self.param_frame)
 
             # Make widgets
             self.aeso_logo  = tk.Label(self.img_frame, image = self.logo)
-            self.ac_lab     = tk.Label(self.ac_frame, text = "Select aircraft:")
-            self.ac_drp     = ttk.Combobox(self.ac_frame, textvariable = self.ac)
+            self.ac_lab     = tk.Label(self.param_frame, text = "Select aircraft:")
+            self.ac_drp     = ttk.Combobox(self.param_frame, textvariable = self.ac, width = 17)
             self.ac_drp.bind('<<ComboboxSelected>>', self.set_info)
             self.ac_drp.bind('<KeyRelease>', self.set_info)
-            self.pwr_lab    = tk.Label(self.ac_frame, text = "Power setting 1:") 
-            self.pwr_ent    = tk.Entry(self.ac_frame, width = 13)
-            self.pwr_unit   = tk.Label(self.ac_frame, text = "Power units", width = 7, anchor = "w")
-            self.pwr_lab_2  = tk.Label(self.ac_frame, text = "Power setting 2:")
-            self.pwr_ent_2  = tk.Entry(self.ac_frame, width = 13)
-            self.pwr_unit_2 = tk.Label(self.ac_frame, text = "Power units", width = 7, anchor = "w")
-            self.desc_lab   = tk.Label(self.ac_frame, text = "Power description:")
-            self.desc_ent   = tk.Entry(self.ac_frame)
-            self.p_type_lab = tk.Label(self.p_type_frame, text = "Plot type:")
-            self.plt_type_1 = tk.Radiobutton(self.p_type_frame, variable = self.p_type, 
+            self.pwr_lab    = tk.Label(self.param_frame, text = "Power setting 1:") 
+            self.pwr_ent    = tk.Entry(self.param_frame)
+            self.pwr_unit   = ttk.Combobox(self.param_frame, textvariable = self.units, width = 17)
+            self.pwr_lab_2  = tk.Label(self.param_frame, text = "Power setting 2:")
+            self.pwr_ent_2  = tk.Entry(self.param_frame)
+            self.desc_lab   = tk.Label(self.param_frame, text = "Power description:")
+            self.desc_ent   = tk.Entry(self.param_frame)
+            self.op_type_lab = tk.Label(self.op_type_frame, text = "Operation type:")
+            self.plt_type_1 = tk.Radiobutton(self.op_type_frame, variable = self.op_type, 
                     value = 1, command = self.flip_state, text = "Flyover")
-            self.plt_type_2 = tk.Radiobutton(self.p_type_frame, variable = self.p_type, 
+            self.plt_type_2 = tk.Radiobutton(self.op_type_frame, variable = self.op_type, 
                     value = 2, command = self.flip_state, text = "Static")
             self.temp_lab   = tk.Label(self.param_frame, text = "Air temperature:")
             self.temp_ent   = tk.Entry(self.param_frame, width = 20)
@@ -115,9 +113,6 @@ def main():
             self.csv_btn    = tk.Button(self.button_frame, command = self.save_data,
                                         text = "Write to CSV ", image = self.tabs_img,
                                         compound = "right", width = 110)
-            self.help_btn   = tk.Button(self.button_frame, command = self.show_help,
-                                        text = "Show help ", image = self.help_img, 
-                                        compound = "right", width = 110)
 
             # Link widgets to variables
             self.speed_ent['textvariable']   = self.speed
@@ -126,7 +121,6 @@ def main():
             self.pwr_ent["textvariable"]     = self.pwr 
             self.pwr_ent_2["textvariable"]   = self.pwr_2
             self.pwr_unit["textvariable"]    = self.units
-            self.pwr_unit_2["textvariable"]  = self.units
             self.desc_ent["textvariable"]    = self.desc
             self.bar_p_ent["textvariable"]   = self.bar_p
             self.extent_ent["textvariable"]  = self.extent_ft
@@ -134,59 +128,56 @@ def main():
             self.grids_ent["textvariable"]   = self.n_grids
 
             # Geometry of widgets
-            self.ac_drp.grid(row      = 0, column = 1, sticky = "W") 
-            self.ac_lab.grid(row      = 0, column = 0, sticky = "E")
+            self.ac_drp.grid(row      = 1, column = 1, sticky = "W") 
+            self.ac_lab.grid(row      = 1, column = 0, sticky = "E")
             self.aeso_logo.grid(row   = 0, column = 4, rowspan = 5, sticky = "SW")
-            self.temp_lab.grid(row    = 0, column = 0, sticky = "E")
-            self.temp_ent.grid(row    = 0, column = 1, sticky = "W")
-            self.temp_unit.grid(row   = 0, column = 2, sticky = "W")
-            self.bar_p_lab.grid(row   = 1, column = 0, sticky = "E")
-            self.bar_p_ent.grid(row   = 1, column = 1, sticky = "W")
-            self.bar_p_unit.grid(row  = 1, column = 2, sticky = "W")
-            self.pwr_lab.grid(row     = 1, column = 0, sticky = "E")
-            self.pwr_ent.grid(row     = 1, column = 1, sticky = "W")
-            self.pwr_unit.grid(row    = 1, column = 1, sticky = "E")
-            self.rh_pct_lab.grid(row  = 2, column = 0, sticky = "E")
-            self.rh_pct_ent.grid(row  = 2, column = 1, sticky = "W")
-            self.rh_pct_unit.grid(row = 2, column = 2, sticky = "W")
-            self.pwr_lab_2.grid(row   = 2, column = 0, sticky = "E")
-            self.pwr_ent_2.grid(row   = 2, column = 1, sticky = "W")
-            self.pwr_unit_2.grid(row  = 2, column = 1, sticky = "E")
-            self.speed_lab.grid(row   = 3, column = 0, sticky = "E")
-            self.speed_ent.grid(row   = 3, column = 1, sticky = "W")
-            self.speed_unit.grid(row  = 3, column = 2, sticky = "W")
-            self.desc_lab.grid(row    = 3, column = 0, sticky = "E")
-            self.desc_ent.grid(row    = 3, column = 1, sticky = "W")
-            self.p_type_lab.grid(row  = 0, column = 0, sticky = "E")
+            self.temp_lab.grid(row    = 5, column = 0, sticky = "E")
+            self.temp_ent.grid(row    = 5, column = 1, sticky = "W")
+            self.temp_unit.grid(row   = 5, column = 2, sticky = "W")
+            self.bar_p_lab.grid(row   = 6, column = 0, sticky = "E")
+            self.bar_p_ent.grid(row   = 6, column = 1, sticky = "W")
+            self.bar_p_unit.grid(row  = 6, column = 2, sticky = "W")
+            self.pwr_lab.grid(row     = 2, column = 0, sticky = "E")
+            self.pwr_ent.grid(row     = 2, column = 1, sticky = "W")
+            self.pwr_unit.grid(row    = 2, column = 2, sticky = "E")
+            self.rh_pct_lab.grid(row  = 7, column = 0, sticky = "E")
+            self.rh_pct_ent.grid(row  = 7, column = 1, sticky = "W")
+            self.rh_pct_unit.grid(row = 7, column = 2, sticky = "W")
+            self.pwr_lab_2.grid(row   = 3, column = 0, sticky = "E")
+            self.pwr_ent_2.grid(row   = 3, column = 1, sticky = "W")
+            self.speed_lab.grid(row   = 8, column = 0, sticky = "E")
+            self.speed_ent.grid(row   = 8, column = 1, sticky = "W")
+            self.speed_unit.grid(row  = 8, column = 2, sticky = "W")
+            self.desc_lab.grid(row    = 4, column = 0, sticky = "E")
+            self.desc_ent.grid(row    = 4, column = 1, sticky = "W")
+            self.op_type_lab.grid(row  = 0, column = 0, sticky = "E")
             self.plt_type_1.grid(row  = 0, column = 1, sticky = "W")
             self.plt_type_2.grid(row  = 0, column = 2, sticky = "W")
-            self.extent_lab.grid(row  = 4, column = 0, sticky = "E") 
-            self.extent_ent.grid(row  = 4, column = 1, sticky = "W")
-            self.extent_unit.grid(row = 4, column = 2, sticky = "W")
-            self.levels_lab.grid(row  = 5, column = 0, sticky = "E")
-            self.levels_ent.grid(row  = 5, column = 1, sticky = "W")
-            self.levels_unit.grid(row = 5, column = 2, sticky = "W")
-            self.grids_lab.grid(row   = 6, column = 0, sticky = "E")
-            self.grids_ent.grid(row   = 6, column = 1, sticky = "W")
+            self.extent_lab.grid(row  = 9, column = 0, sticky = "E") 
+            self.extent_ent.grid(row  = 9, column = 1, sticky = "W")
+            self.extent_unit.grid(row = 9, column = 2, sticky = "W")
+            self.levels_lab.grid(row  = 10, column = 0, sticky = "E")
+            self.levels_ent.grid(row  = 10, column = 1, sticky = "W")
+            self.levels_unit.grid(row = 10, column = 2, sticky = "W")
+            self.grids_lab.grid(row   = 11, column = 0, sticky = "E")
+            self.grids_ent.grid(row   = 11, column = 1, sticky = "W")
             self.plt_btn.grid(row     = 0, column = 0, sticky = "WE")
             self.sv_btn.grid(row      = 0, column = 1, sticky = "WE")
             self.del_btn.grid(row     = 0, column = 2, sticky = "WE")
             self.csv_btn.grid(row     = 0, column = 3, sticky = "WE")
-            self.help_btn.grid(row    = 0, column = 4, sticky = "WE")
             
             # Geometry of frames
             self.input_frame.grid(row = 0, column = 0, sticky = "WE") 
             self.fig_frame.grid(row   = 3, column = 0)
-            self.ac_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "W")
-            self.param_frame.grid(row = 1, column = 0, pady = (3, 3), padx = (10, 3), columnspan = 1, sticky = "WE")
-            self.p_type_frame.grid(row= 4, column = 0, pady = (3, 3), padx = (10, 10), columnspan = 2, sticky = "WE")
+            self.param_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "W")
+            self.op_type_frame.grid(row= 0, column = 0, pady = (3, 3), padx = (10, 10), columnspan = 2, sticky = "WE")
             self.button_frame.grid(row= 4, column = 0, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
             self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
             
             self.flip_state() # After the app has loaded, disable static options and populate drop-down.
 
         def flip_state(self): # Disable non-flyover/static entries 
-            self.test = self.p_type.get()
+            self.test = self.op_type.get()
             if self.test == "1":
                 self.temp_ent['state']   = 'normal'
                 self.bar_p_ent['state']  = 'disabled'
@@ -218,11 +209,11 @@ def main():
                 self.show_message("Entry needed", self.m)
                 return(None)
                 
-            if self.p_type.get() == "1": # Flyover plot
+            if self.op_type.get() == "1": # Flyover plot
                 # Run omega10 and return the output filename
                 out   = fn.run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
                            speed_kts = self.speed.get(), temp = self.temp.get(),
-                           rel_hum_pct = self.rh_pct.get()) \
+                           rel_hum_pct = self.rh_pct.get(), units = self.units.get()) \
                            if fn.is_number(self.pwr.get()) \
                            else None
                            
@@ -230,7 +221,8 @@ def main():
                 out_2 = fn.run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
                            speed_kts = self.speed.get(), temp = self.temp.get(),
                            input = "input_2.o10_input", log = "log_2.o10_log",
-                           output = "output_2.o10_noise", rel_hum_pct = self.rh_pct.get()) \
+                           output = "output_2.o10_noise", rel_hum_pct = self.rh_pct.get(),
+                           units = self.units.get()) \
                            if fn.is_number(self.pwr_2.get()) \
                            else None
                 
@@ -246,11 +238,12 @@ def main():
                                     save_name = save_name, spd = self.speed.get())
                 return(self.fig)
             
-            elif self.p_type.get() == "2": # Static plot
+            elif self.op_type.get() == "2": # Static plot
                 self.check_static_range(self.ac.get(), self.pwr.get()) # Is pwr within range? If not, correct it  
                 
                 out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
+                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), 
+                            units = self.units.get()) \
                             if fn.is_number(self.pwr.get()) \
                             else None
                 
@@ -302,11 +295,11 @@ def main():
                 self.show_message("Entry needed", self.m)
                 return(None)
             
-            if self.p_type.get() == "1":
+            if self.op_type.get() == "1":
                 # Run omega10 and return the output filename
                 out = fn.run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
                            speed_kts = self.speed.get(), temp = self.temp.get(),
-                           rel_hum_pct = self.rh_pct.get()) \
+                           rel_hum_pct = self.rh_pct.get(), units = self.units.get()) \
                            if fn.is_number(self.pwr.get()) \
                            else None
                            
@@ -314,7 +307,8 @@ def main():
                 out_2 = fn.run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
                            speed_kts = self.speed.get(), temp = self.temp.get(),
                            input = "input_2.o10_input", log = "log_2.o10_log",
-                           output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get()) \
+                           output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get(), 
+                           units = self.units.get()) \
                            if fn.is_number(self.pwr_2.get()) \
                            else None
 
@@ -340,9 +334,10 @@ def main():
                     self.df_2["rh_pct"] = self.rh_pct.get()
                     self.df_2.to_csv(self.file, mode = 'a', index = False, header = False)
                     
-            elif self.p_type.get() == "2":
+            elif self.op_type.get() == "2":
                 out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
+                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), 
+                            units = self.units.get()) \
                             if fn.is_number(self.pwr.get()) \
                             else None
                 
@@ -367,8 +362,11 @@ def main():
                     
         def set_info(self, event): # Get units and engine of selected aircraft
             try:
-                self.units.set(fn.get_info(fn.get_operations(type = int(self.p_type.get())), self.ac.get())["unit_1"])
-                self.eng.set(fn.get_info(fn.get_operations(), self.ac.get())["engine"])
+                info = fn.get_info(fn.get_operations(type = int(self.op_type.get())), self.ac.get())
+                units = [u for u in [info.unit_1, info.unit_2, info.unit_3] if pd.isna(u) == False]
+                self.units.set(info["unit_1"])
+                self.eng.set(info["engine"])
+                self.pwr_unit["values"] = units
             except:
                 pass
                 
@@ -385,7 +383,12 @@ def main():
         def check_static_range(self, ac, pwr, file = "./data/operation_data.csv"):
             p = float(pwr)
             df = pd.read_csv(file)
-            ps = list(map(float, df[(df.aircraft == ac) & (df.operation_type == "STATIC") & (df.interpolation == "VARIABLE")]["power_1"].tolist())) # get a list of ps for that ac
+            a = df[(df.aircraft == ac) & (df.operation_type == "STATIC") & (df.interpolation == "VARIABLE")]
+            # Get corresponding power settings for units
+            power = "power_1" if self.units.get() in a.unit_1.tolist() else \
+                    "power_2" if self.units.get() in a.unit_2.tolist() else \
+                    "power_3" if self.units.get() in a.unit_3.tolist() else None
+            ps = list(map(float, a[power].tolist())) # get a list of static/variable ps for that ac
             rng = min(ps), max(ps)
             if p > rng[0] and p < rng[1]: # if pwr is in range
                 pass
@@ -404,22 +407,6 @@ def main():
                     .format(temp)
             self.show_message("Warning", msg)
 
-        def show_help(self):
-            msg = \
-            '''
-    Instructions:\n
-1.    Select or type aircraft in the drop-down.\n
-2.    Enter values for specified parameters.\n
-2a.   To plot a single power setting, leave "Power setting 2" blank.\n
-2b.   To plot a range between two power settings, enter a value for "Power setting 2".\n
-4.    Enter the name of the power setting in the "Power description" field.\n
-5.    Show the plot in the window using the "Preview plot" button.\n
-6.    Save the plot using the "Save plot" button.\n
-7.    Save the raw data file using the "Write to CSV" button.
-
-            '''
-            self.show_message("Help", msg)
-
     root = tk.Tk()
     root.configure(bg = "darkgrey")
     root.title("AESO Noiseplot")
@@ -429,9 +416,7 @@ def main():
     a.mainloop()
 
 if __name__ == '__main__': # Try to work from the pyinstaller tempfile directory
-    print("about to check if meipass")
     if hasattr(sys, '_MEIPASS'):
-        print("Yes meipass")
         saved_dir = os.getcwd()
         os.chdir(sys._MEIPASS)
         try:
@@ -439,8 +424,6 @@ if __name__ == '__main__': # Try to work from the pyinstaller tempfile directory
         finally:
             os.chdir(saved_dir) 
     else:
-        print("Not meipass, running main")
         main()
-        print("Not meipass, main just finished")
 
 
