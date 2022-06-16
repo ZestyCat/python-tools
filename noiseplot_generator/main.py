@@ -10,8 +10,7 @@ import subprocess
 
 def main():
     import functions as fn # After chdir to _MEIPASS
-    import noiseline as nl
-    import noisecontour as nc
+    import noiseplot as nplot
     
     # Main application window
     class App(ttk.Frame): 
@@ -134,7 +133,7 @@ def main():
             self.levels_ent["textvariable"]  = self.levels
             self.grids_ent["textvariable"]   = self.n_grids
 
-            # Manage geometry
+            # Geometry of widgets
             self.ac_drp.grid(row      = 0, column = 1, sticky = "W") 
             self.ac_lab.grid(row      = 0, column = 0, sticky = "E")
             self.aeso_logo.grid(row   = 0, column = 4, rowspan = 5, sticky = "SW")
@@ -207,7 +206,7 @@ def main():
                 self.levels_ent['state'] = 'normal'
                 self.grids_ent['state']  = 'normal'
                 self.pwr_2.set("")
-            self.ac_drp["values"] = fn.get_aircraft(type = int(self.test))["aircraft"].tolist() # Re-populate drop-down 
+            self.ac_drp["values"] = pd.unique(fn.get_operations(type = int(self.test))["aircraft"]).tolist() # Re-populate drop-down 
 
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
             if self.temp.get() > 200:
@@ -231,55 +230,43 @@ def main():
                 out_2 = fn.run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
                            speed_kts = self.speed.get(), temp = self.temp.get(),
                            input = "input_2.o10_input", log = "log_2.o10_log",
-                           output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get()) \
+                           output = "output_2.o10_noise", rel_hum_pct = self.rh_pct.get()) \
                            if fn.is_number(self.pwr_2.get()) \
                            else None
                 
                 # Make dataframes from o10 output
-                self.df   = None if out is None else fn.read_o10(out)
-                self.df_2 = None if out_2 is None else fn.read_o10(out_2)
+                self.df   = None if out is None else fn.read_o10("./omega/" + out)
+                self.df_2 = None if out_2 is None else fn.read_o10("./omega/" + out_2)
                 
                 # Plot 
-                self.fig  = nl.plot(self.df, ps_name = self.desc.get(), 
+                self.fig  = nplot.plot_line(self.df, ps_name = self.desc.get(), 
                                     save_name = save_name) \
                     if self.df_2 is None else \
-                    nl.plot(self.df, self.df_2, ps_name = self.desc.get(), 
+                    nplot.plot_line(self.df, self.df_2, ps_name = self.desc.get(), 
                                     save_name = save_name, spd = self.speed.get())
                 return(self.fig)
             
             elif self.p_type.get() == "2": # Static plot
                 self.check_static_range(self.ac.get(), self.pwr.get()) # Is pwr within range? If not, correct it  
-                def try_fig(df):
-                    try:
-                        fig = nc.plot_contour(df, aircraft = self.ac.get(), engine = self.eng.get(),
-                                        description = self.desc.get(), power = self.pwr.get() + self.units.get(), 
-                                        n_grids = self.n_grids.get(), levels = [float(l.strip()) for l in self.levels.get().split(",")],
-                                        extent_ft = self.extent_ft.get(), save_name = save_name)
-                        
-                        return(fig)
-                    except:
-                        msg = "Please enter comma-separated contour dB values"
-                        self.show_message("Entry error", msg)
-                        return(None)
-                        
-                try: # Try running with primary units
-                    df = self.run_o11_unit("")
-                    return(try_fig(df))
-                except: # Try running through every possible power setting unit
-                    pass
-                    # units_list = ['NF', '% RPM', 'LBS', '% NC', 'KNOTS', 'PLA', 'LBS/HR', 'RPM', 'C TIT', 'HP', 
-                    # '% NF', 'EPR', '% N1', '%Q-BPA', '%QQBPA', '% NR', 'POWER', 'ISHP', '% N2', '% ETR',                          
-                    # '% TORQUE', 'IN HG', '% SLTT', 'ESHP', '% Torque', ""]
-                    # for u in units_list:
-                        # try:
-                            # df = self.run_o11_unit(u)
-                            # fig = try_fig(df)
-                            # print("made fig")
-                            # return(fig)
-                        # except:
-                            # print("failed to make fig")
-                            # pass
-                    print("None of these units worked, try something else")
+                
+                out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
+                            if fn.is_number(self.pwr.get()) \
+                            else None
+                
+                df = fn.read_o11("./omega/" + out)
+                
+                try:
+                    fig = nplot.plot_contour(df, aircraft = self.ac.get(), engine = self.eng.get(),
+                                    description = self.desc.get(), power = self.pwr.get() + self.units.get(), 
+                                    n_grids = self.n_grids.get(), levels = [float(l.strip()) for l in self.levels.get().split(",")],
+                                    extent_ft = self.extent_ft.get(), save_name = save_name)
+                    
+                    return(fig)
+                except:
+                    msg = "Please enter comma-separated contour dB values"
+                    self.show_message("Entry error", msg)
+                    return(None)
                
         def show_plot(self): # Preview the plot on canvas
             self.fig = self.make_plot(save_name = None)
@@ -331,8 +318,8 @@ def main():
                            if fn.is_number(self.pwr_2.get()) \
                            else None
 
-                self.df = None if out is None else fn.read_o10(out)
-                self.df_2 = None if out_2 is None else fn.read_o10(out_2)
+                self.df = None if out is None else fn.read_o10("./omega/" + out)
+                self.df_2 = None if out_2 is None else fn.read_o10("./omega/" + out_2)
                 
                 self.file = fd.asksaveasfilename(defaultextension = ".csv", 
                                                 filetypes = [("comma separated value", ".csv")])
@@ -354,12 +341,12 @@ def main():
                     self.df_2.to_csv(self.file, mode = 'a', index = False, header = False)
                     
             elif self.p_type.get() == "2":
-                # out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                            # inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), units = self.units.get()) \
-                            # if fn.is_number(self.pwr.get()) \
-                            # else None
+                out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
+                            inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get()) \
+                            if fn.is_number(self.pwr.get()) \
+                            else None
                 
-                # self.df = fn.read_o11(out)
+                df = fn.read_o11("./omega/" + out)
                 file = fd.asksaveasfilename(defaultextension = ".csv",
                         filetypes = [("comma separated value", ".csv")])
                         
@@ -372,29 +359,16 @@ def main():
                     header.to_csv(file, mode = "w")
                     df.to_csv(file, mode = "a")
                 
-                try: # Try running with primary units
-                    df = self.run_o11_unit(self.units.get())
+                try: 
                     write_file(df, file)
                     return
-                except: # Try running through every possible power setting unit
-                    units_list = ['NF', '% RPM', 'LBS', '% NC', 'KNOTS', 'PLA', 'LBS/HR', 'RPM', 'C TIT', 'HP', 
-                    '% NF', 'EPR', '% N1', '%Q-BPA', '%QQBPA', '% NR', 'POWER', 'ISHP', '% N2', '% ETR',                          
-                    '% TORQUE', 'IN HG', '% SLTT', 'ESHP', '% Torque', ""]
-                    for u in units_list:
-                        try:
-                            df = self.run_o11_unit(u)
-                            write_file(df, file)
-                            return
-                        except:
-                            pass
-                    print("None of these units worked, try something else")
-                
-                
+                except: 
+                    print("Couldn't save that data")
                     
         def set_info(self, event): # Get units and engine of selected aircraft
             try:
-                self.units.set(fn.get_info(fn.get_aircraft(type = int(self.p_type.get())), self.ac.get())["units"])
-                self.eng.set(fn.get_info(fn.get_aircraft(), self.ac.get())["engine"])
+                self.units.set(fn.get_info(fn.get_operations(type = int(self.p_type.get())), self.ac.get())["unit_1"])
+                self.eng.set(fn.get_info(fn.get_operations(), self.ac.get())["engine"])
             except:
                 pass
                 
@@ -408,10 +382,10 @@ def main():
                     return(self.df)
                         
         # Get minimum and maximum values for static. Check whether user input is out of range. If so, correct the entry
-        def check_static_range(self, ac, pwr, file = "./data/static_power_setting_list.csv"):
+        def check_static_range(self, ac, pwr, file = "./data/operation_data.csv"):
             p = float(pwr)
             df = pd.read_csv(file)
-            ps = list(map(float, df[df["Aircraft"] == ac]["Power"].tolist())) # get a list of ps for that ac
+            ps = list(map(float, df[(df.aircraft == ac) & (df.operation_type == "STATIC") & (df.interpolation == "VARIABLE")]["power_1"].tolist())) # get a list of ps for that ac
             rng = min(ps), max(ps)
             if p > rng[0] and p < rng[1]: # if pwr is in range
                 pass
