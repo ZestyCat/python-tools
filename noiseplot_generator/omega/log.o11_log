@@ -1,7 +1,7 @@
-          SUMMARY OF I/O FOR THE  A-4C                
+          SUMMARY OF I/O FOR THE  AH-1G               
 
           PROGRAM:  OMEGA 11.5
-          AIRCRAFT CODE: M00301
+          AIRCRAFT CODE: M61101
           PROFILE VERSION CODE: W
           DATE:            
           DELTA N (OR DELN)=  0.00 DB
@@ -10,15 +10,13 @@
           ***************************** INPUT DATA *****************************
            DATADECK       INTERP    POWER           POWER DESCRIPTION
              NAME    OPC   FLAG    SETTING
-          M0030104V   04     V  8000.00 LBS/HR      MIL PWR             
-          M0030113V   13     V   800.00 LBS/HR      IDLE                
-          M0030120V   20     V  1500.00 LBS/HR      75 % RPM ENG RUNUP  
+          M6110162F   62     F     1.00 POWER       IGE LITE            
+          M6110164F   64     F     2.00 POWER       OGE LITE            
 
            DATADECK    ------------ NOISE SOURCE/SUBJECT ------------  DATE OF
              NAME      PART 1                  PART 2                 NORM. RUN
-          M0030104V    A-4C                    J52-P-8B              26 MAY 1976
-          M0030113V    A-4C                    J52-P-8B              26 MAY 1976
-          M0030120V    A-4C                    J52-P-8B              26 MAY 1976
+          M6110162F    AH-1G                   T53-L-13              23 DEC 1992
+          M6110164F    AH-1G                   T53-L-13              23 DEC 1992
 
 
           **************************** OUTPUT DATA *****************************
@@ -31,7 +29,7 @@
 
            PROFILE        POWER         NORMALIZED DATADECKS  POWER DESCRIPTION
              ID          SETTING        FIRST      SECOND
-          RM0030100   800.00 LBS/HR     M0030113V             IDLE                
+          RM6110100     2.00 POWER      M6110164F             OGE LITE            
 
 
           ************************ GENERAL INFORMATION *************************

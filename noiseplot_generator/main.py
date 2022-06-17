@@ -25,7 +25,8 @@ def main():
             self.desc      = tk.StringVar()
             self.units     = tk.StringVar()
             self.eng       = tk.StringVar()
-            self.op_type    = tk.StringVar()
+            self.op_type   = tk.StringVar()
+            self.interp    = tk.StringVar()
             self.levels    = tk.StringVar()
             self.speed     = tk.IntVar()
             self.temp      = tk.IntVar()
@@ -51,9 +52,11 @@ def main():
             self.rh_pct.set(70)
             self.bar_p.set(29.92)
             self.op_type.set(1)
+            self.interp.set(1)
             self.levels.set("65, 75, 85, 95")
             self.n_grids.set(6)
             self.extent_ft.set(5000)
+            self.units.set("Units")
             
             # Make frame
             self.input_frame  = tk.Frame(highlightthickness = 1)
@@ -61,7 +64,7 @@ def main():
             self.param_frame     = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 1)
             self.button_frame = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0)
             self.img_frame    = tk.Frame(self.input_frame, highlightbackground = "black", highlightthickness = 0, bg = "darkgrey")
-            self.op_type_frame = tk.Frame(self.param_frame)
+            self.radials_frame = tk.Frame(self.param_frame)
 
             # Make widgets
             self.aeso_logo  = tk.Label(self.img_frame, image = self.logo)
@@ -69,18 +72,26 @@ def main():
             self.ac_drp     = ttk.Combobox(self.param_frame, textvariable = self.ac, width = 17)
             self.ac_drp.bind('<<ComboboxSelected>>', self.set_info)
             self.ac_drp.bind('<KeyRelease>', self.set_info)
-            self.pwr_lab    = tk.Label(self.param_frame, text = "Power setting 1:") 
-            self.pwr_ent    = tk.Entry(self.param_frame)
-            self.pwr_unit   = ttk.Combobox(self.param_frame, textvariable = self.units, width = 17)
-            self.pwr_lab_2  = tk.Label(self.param_frame, text = "Power setting 2:")
-            self.pwr_ent_2  = tk.Entry(self.param_frame)
+            self.pwr_lab    = tk.Label(self.param_frame, text = "Power settings:") 
+            self.pwr_ent    = tk.Entry(self.param_frame, width = 8)
+            self.to_lab     = tk.Label(self.param_frame, text = "to")
+            self.pwr_ent_2  = tk.Entry(self.param_frame, width = 8)
+            self.pwr_unit   = ttk.Combobox(self.param_frame, textvariable = self.units, width = 9)
+            self.fixed_lab  = tk.Label(self.param_frame, text = "Fixed power:") 
+            self.fixed_pwr  = ttk.Combobox(self.param_frame, textvariable = self.pwr, width = 17)
+            self.fixed_pwr.bind('<<ComboboxSelected>>', self.set_info)
             self.desc_lab   = tk.Label(self.param_frame, text = "Power description:")
             self.desc_ent   = tk.Entry(self.param_frame)
-            self.op_type_lab = tk.Label(self.op_type_frame, text = "Operation type:")
-            self.plt_type_1 = tk.Radiobutton(self.op_type_frame, variable = self.op_type, 
-                    value = 1, command = self.flip_state, text = "Flyover")
-            self.plt_type_2 = tk.Radiobutton(self.op_type_frame, variable = self.op_type, 
-                    value = 2, command = self.flip_state, text = "Static")
+            self.op_type_lab = tk.Label(self.radials_frame, text = "Operation type:")
+            self.op_type_1 = tk.Radiobutton(self.radials_frame, variable = self.op_type, 
+                    value = 1, command = self.set_type, text = "Flyover")
+            self.op_type_2 = tk.Radiobutton(self.radials_frame, variable = self.op_type, 
+                    value = 2, command = self.set_type, text = "Static")
+            self.interp_lab = tk.Label(self.radials_frame, text = "Interpolation:")
+            self.interp_1 = tk.Radiobutton(self.radials_frame, variable = self.interp, 
+                    value = 1, command = self.set_fixed, text = "Variable")
+            self.interp_2 = tk.Radiobutton(self.radials_frame, variable = self.interp, 
+                    value = 2, command = self.set_fixed, text = "Fixed")
             self.temp_lab   = tk.Label(self.param_frame, text = "Air temperature:")
             self.temp_ent   = tk.Entry(self.param_frame, width = 20)
             self.temp_unit  = tk.Label(self.param_frame, text = "degrees F")
@@ -128,39 +139,44 @@ def main():
             self.grids_ent["textvariable"]   = self.n_grids
 
             # Geometry of widgets
-            self.ac_drp.grid(row      = 1, column = 1, sticky = "W") 
+            self.ac_drp.grid(row      = 1, column = 1, sticky = "W", columnspan = 3) 
             self.ac_lab.grid(row      = 1, column = 0, sticky = "E")
             self.aeso_logo.grid(row   = 0, column = 4, rowspan = 5, sticky = "SW")
             self.temp_lab.grid(row    = 5, column = 0, sticky = "E")
-            self.temp_ent.grid(row    = 5, column = 1, sticky = "W")
-            self.temp_unit.grid(row   = 5, column = 2, sticky = "W")
+            self.temp_ent.grid(row    = 5, column = 1, sticky = "W", columnspan = 3)
+            self.temp_unit.grid(row   = 5, column = 4, sticky = "W")
             self.bar_p_lab.grid(row   = 6, column = 0, sticky = "E")
-            self.bar_p_ent.grid(row   = 6, column = 1, sticky = "W")
-            self.bar_p_unit.grid(row  = 6, column = 2, sticky = "W")
+            self.bar_p_ent.grid(row   = 6, column = 1, sticky = "W", columnspan = 3)
+            self.bar_p_unit.grid(row  = 6, column = 4, sticky = "W")
             self.pwr_lab.grid(row     = 2, column = 0, sticky = "E")
             self.pwr_ent.grid(row     = 2, column = 1, sticky = "W")
-            self.pwr_unit.grid(row    = 2, column = 2, sticky = "E")
+            self.to_lab.grid(row      = 2, column = 2)
+            self.pwr_ent_2.grid(row   = 2, column = 3, sticky = "E")
+            self.pwr_unit.grid(row    = 2, column = 4, sticky = "E")
             self.rh_pct_lab.grid(row  = 7, column = 0, sticky = "E")
-            self.rh_pct_ent.grid(row  = 7, column = 1, sticky = "W")
-            self.rh_pct_unit.grid(row = 7, column = 2, sticky = "W")
-            self.pwr_lab_2.grid(row   = 3, column = 0, sticky = "E")
-            self.pwr_ent_2.grid(row   = 3, column = 1, sticky = "W")
+            self.rh_pct_ent.grid(row  = 7, column = 1, sticky = "W", columnspan = 3)
+            self.rh_pct_unit.grid(row = 7, column = 4, sticky = "W")
             self.speed_lab.grid(row   = 8, column = 0, sticky = "E")
-            self.speed_ent.grid(row   = 8, column = 1, sticky = "W")
-            self.speed_unit.grid(row  = 8, column = 2, sticky = "W")
+            self.speed_ent.grid(row   = 8, column = 1, sticky = "W", columnspan = 3)
+            self.speed_unit.grid(row  = 8, column = 4, sticky = "W")
+            self.fixed_lab.grid(row   = 3, column = 0, sticky = "E")
+            self.fixed_pwr.grid(row   = 3, column = 1, sticky = "W", columnspan = 3)
             self.desc_lab.grid(row    = 4, column = 0, sticky = "E")
-            self.desc_ent.grid(row    = 4, column = 1, sticky = "W")
-            self.op_type_lab.grid(row  = 0, column = 0, sticky = "E")
-            self.plt_type_1.grid(row  = 0, column = 1, sticky = "W")
-            self.plt_type_2.grid(row  = 0, column = 2, sticky = "W")
+            self.desc_ent.grid(row    = 4, column = 1, sticky = "W", columnspan = 3)
+            self.op_type_lab.grid(row = 0, column = 0, sticky = "E")
+            self.op_type_1.grid(row   = 0, column = 1, sticky = "W")
+            self.op_type_2.grid(row   = 0, column = 2, sticky = "W")
+            self.interp_lab.grid(row  = 1, column = 0, sticky = "E")
+            self.interp_1.grid(row    = 1, column = 1, sticky = "W")
+            self.interp_2.grid(row    = 1, column = 2, sticky = "W")
             self.extent_lab.grid(row  = 9, column = 0, sticky = "E") 
-            self.extent_ent.grid(row  = 9, column = 1, sticky = "W")
-            self.extent_unit.grid(row = 9, column = 2, sticky = "W")
+            self.extent_ent.grid(row  = 9, column = 1, sticky = "W", columnspan = 3)
+            self.extent_unit.grid(row = 9, column = 4, sticky = "W")
             self.levels_lab.grid(row  = 10, column = 0, sticky = "E")
-            self.levels_ent.grid(row  = 10, column = 1, sticky = "W")
-            self.levels_unit.grid(row = 10, column = 2, sticky = "W")
+            self.levels_ent.grid(row  = 10, column = 1, sticky = "W", columnspan = 3)
+            self.levels_unit.grid(row = 10, column = 4, sticky = "W")
             self.grids_lab.grid(row   = 11, column = 0, sticky = "E")
-            self.grids_ent.grid(row   = 11, column = 1, sticky = "W")
+            self.grids_ent.grid(row   = 11, column = 1, sticky = "W", columnspan = 3)
             self.plt_btn.grid(row     = 0, column = 0, sticky = "WE")
             self.sv_btn.grid(row      = 0, column = 1, sticky = "WE")
             self.del_btn.grid(row     = 0, column = 2, sticky = "WE")
@@ -170,15 +186,26 @@ def main():
             self.input_frame.grid(row = 0, column = 0, sticky = "WE") 
             self.fig_frame.grid(row   = 3, column = 0)
             self.param_frame.grid(row    = 0, column = 0, pady = (10, 3), padx = (10, 3), columnspan = 1, sticky = "W")
-            self.op_type_frame.grid(row= 0, column = 0, pady = (3, 3), padx = (10, 10), columnspan = 2, sticky = "WE")
+            self.radials_frame.grid(row= 0, column = 0, pady = (3, 3), padx = (10, 10), columnspan = 4, sticky = "WE")
             self.button_frame.grid(row= 4, column = 0, pady = (3, 10), padx = (3, 10), columnspan = 2, sticky = "WE")
             self.img_frame.grid(row   = 0, column = 1, padx = (0, 10), rowspan = 2, sticky = "NE")
             
-            self.flip_state() # After the app has loaded, disable static options and populate drop-down.
+            self.set_type() # After the app has loaded, disable static options and populate drop-down.
+            self.set_fixed()
 
-        def flip_state(self): # Disable non-flyover/static entries 
-            self.test = self.op_type.get()
-            if self.test == "1":
+        def populate_list(self, op_type):
+            df = fn.get_operations(type = int(op_type))
+            print(df)
+            if self.interp.get() == "1": # Variable
+                self.ac_drp["values"] = pd.unique(df[df.interpolation == "VARIABLE"]["aircraft"]).tolist()
+            elif self.interp.get() == "2": # Fixed
+                self.ac_drp["values"] = pd.unique(df[df.interpolation == "FIXED"]["aircraft"]).tolist() 
+            else:
+                pass
+                
+        def set_type(self): # Disable non-flyover/static entries 
+            test_op  = self.op_type.get()
+            if test_op == "1":
                 self.temp_ent['state']   = 'normal'
                 self.bar_p_ent['state']  = 'disabled'
                 self.rh_pct_ent['state'] = 'normal'
@@ -187,7 +214,8 @@ def main():
                 self.levels_ent['state'] = 'disabled'
                 self.grids_ent['state']  = 'disabled'
                 self.pwr_ent_2['state']  = 'normal'
-            if self.test == "2":
+                self.to_lab['text']      = 'to'
+            if test_op == "2":
                 self.pwr_ent_2['state']  = 'disabled'
                 self.temp_ent['state']   = 'normal'
                 self.bar_p_ent['state']  = 'normal'
@@ -196,12 +224,51 @@ def main():
                 self.extent_ent['state'] = 'normal'
                 self.levels_ent['state'] = 'normal'
                 self.grids_ent['state']  = 'normal'
+                self.to_lab['text']      = ''
                 self.pwr_2.set("")
-            self.ac_drp["values"] = pd.unique(fn.get_operations(type = int(self.test))["aircraft"]).tolist() # Re-populate drop-down 
+            self.populate_list(test_op)
+            self.set_info(None)
 
+        def set_fixed(self):
+            test_int = self.interp.get() 
+            if test_int == "1":
+                self.pwr_ent['state']    = 'normal'
+                self.pwr_ent_2['state']  = 'normal'
+                self.fixed_pwr['state']  = 'disabled'
+                self.to_lab['text']      = 'to'
+            if test_int == "2":
+                self.pwr_ent['state']    = 'disabled'
+                self.pwr_ent_2['state']  = 'disabled'
+                self.fixed_pwr['state']  = 'normal'
+                self.to_lab['text']      = ''
+            self.set_info(None)
+            self.populate_list(self.op_type.get())
+                
+        def set_info(self, event): # Get units and engine of selected aircraft
+            try:
+                ops = fn.get_operations(type = int(self.op_type.get()))
+                info = fn.get_info(ops, self.ac.get())
+                units = [u for u in [info.unit_1, info.unit_2, info.unit_3] if pd.isna(u) == False]
+                self.units.set(info["unit_1"])
+                self.eng.set(info["engine"])
+                self.pwr_unit["values"] = units
+                op = "FLIGHT" if self.op_type.get() == "1" else "STATIC" 
+                fixed_ops = ops[(ops.aircraft == self.ac.get()) & (ops.operation_type == op) & (ops.interpolation == "FIXED")]
+                fixed = fixed_ops.power_1.tolist()
+                self.fixed_pwr["values"] = fixed
+            except:
+                pass
+                
         def make_plot(self, save_name = None): # make a dataframe, call plotting function 
             if self.temp.get() > 200:
                 self.warn_high_temp(self.temp.get())
+            
+            i = "VARIABLE" if self.interp.get() == "1" else "FIXED" # Fixed or variable interpolation?
+            
+            if i == "VARIABLE":
+                self.correct_range(self.ac.get(), self.pwr.get()) # Correct to power setting within variable range if variable interpolation
+            else:
+                pass
                 
             # Show a popup if no entry 
             if fn.is_number(self.pwr.get()) == False & fn.is_number(self.pwr_2.get()) == False:
@@ -212,14 +279,14 @@ def main():
             if self.op_type.get() == "1": # Flyover plot
                 # Run omega10 and return the output filename
                 out   = fn.run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                           speed_kts = self.speed.get(), temp = self.temp.get(),
+                           speed_kts = self.speed.get(), temp = self.temp.get(), interpolation = i,
                            rel_hum_pct = self.rh_pct.get(), units = self.units.get()) \
                            if fn.is_number(self.pwr.get()) \
                            else None
                            
                 # Run omega10 and return the output filename
                 out_2 = fn.run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
-                           speed_kts = self.speed.get(), temp = self.temp.get(),
+                           speed_kts = self.speed.get(), temp = self.temp.get(), interpolation = i,
                            input = "input_2.o10_input", log = "log_2.o10_log",
                            output = "output_2.o10_noise", rel_hum_pct = self.rh_pct.get(),
                            units = self.units.get()) \
@@ -239,11 +306,9 @@ def main():
                 return(self.fig)
             
             elif self.op_type.get() == "2": # Static plot
-                self.check_static_range(self.ac.get(), self.pwr.get()) # Is pwr within range? If not, correct it  
-                
                 out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
                             inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), 
-                            units = self.units.get()) \
+                            units = self.units.get(), interpolation = i) \
                             if fn.is_number(self.pwr.get()) \
                             else None
                 
@@ -288,6 +353,13 @@ def main():
         def save_data(self): # make a dataframe, save as csv 
             if self.temp.get() > 200:
                 self.warn_high_temp(self.temp.get())
+                
+            i = "VARIABLE" if self.interp.get() == "1" else "FIXED" # Fixed or variable interpolation?
+            
+            if i == "VARIABLE":
+                self.correct_range(self.ac.get(), self.pwr.get()) # Correct to power setting within variable range if variable interpolation
+            else:
+                pass
             
             # Show a popup if no entry 
             if fn.is_number(self.pwr.get()) == False & fn.is_number(self.pwr_2.get()) == False:
@@ -298,14 +370,14 @@ def main():
             if self.op_type.get() == "1":
                 # Run omega10 and return the output filename
                 out = fn.run_o10(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
-                           speed_kts = self.speed.get(), temp = self.temp.get(),
+                           speed_kts = self.speed.get(), temp = self.temp.get(), interpolation = i,
                            rel_hum_pct = self.rh_pct.get(), units = self.units.get()) \
                            if fn.is_number(self.pwr.get()) \
                            else None
                            
                 # Run omega10 and return the output filename  
                 out_2 = fn.run_o10(aircraft = self.ac.get(), power = round(float(self.pwr_2.get()), 2),
-                           speed_kts = self.speed.get(), temp = self.temp.get(),
+                           speed_kts = self.speed.get(), temp = self.temp.get(), interpolation = i,
                            input = "input_2.o10_input", log = "log_2.o10_log",
                            output = "output_2.o10_output", rel_hum_pct = self.rh_pct.get(), 
                            units = self.units.get()) \
@@ -337,7 +409,7 @@ def main():
             elif self.op_type.get() == "2":
                 out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2),
                             inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), 
-                            units = self.units.get()) \
+                            units = self.units.get(), interpolation = i) \
                             if fn.is_number(self.pwr.get()) \
                             else None
                 
@@ -359,36 +431,19 @@ def main():
                     return
                 except: 
                     print("Couldn't save that data")
-                    
-        def set_info(self, event): # Get units and engine of selected aircraft
-            try:
-                info = fn.get_info(fn.get_operations(type = int(self.op_type.get())), self.ac.get())
-                units = [u for u in [info.unit_1, info.unit_2, info.unit_3] if pd.isna(u) == False]
-                self.units.set(info["unit_1"])
-                self.eng.set(info["engine"])
-                self.pwr_unit["values"] = units
-            except:
-                pass
-                
-        def run_o11_unit(self, unit, save_name = None): # Run o11 with specified units. Sometimes o11 runs but does produces an error if unit is blank
-                    out = fn.run_o11(aircraft = self.ac.get(), power = round(float(self.pwr.get()), 2), # Run o11
-                                inches_hg = round(self.bar_p.get(), 2), temp = self.temp.get(), units = unit) \
-                                if fn.is_number(self.pwr.get()) \
-                                else None
-                        
-                    self.df  = fn.read_o11(out) # Read o11 output file
-                    return(self.df)
                         
         # Get minimum and maximum values for static. Check whether user input is out of range. If so, correct the entry
-        def check_static_range(self, ac, pwr, file = "./data/operation_data.csv"):
+        def correct_range(self, ac, pwr, file = "./data/operation_data.csv"):
             p = float(pwr)
             df = pd.read_csv(file)
-            a = df[(df.aircraft == ac) & (df.operation_type == "STATIC") & (df.interpolation == "VARIABLE")]
-            # Get corresponding power settings for units
-            power = "power_1" if self.units.get() in a.unit_1.tolist() else \
-                    "power_2" if self.units.get() in a.unit_2.tolist() else \
-                    "power_3" if self.units.get() in a.unit_3.tolist() else None
-            ps = list(map(float, a[power].tolist())) # get a list of static/variable ps for that ac
+            s = df[(df.aircraft == ac) & (df.operation_type == "STATIC") & (df.interpolation == "VARIABLE")] \
+                if self.op_type.get() == "2" else \
+                df[(df.aircraft == ac) & (df.operation_type == "FLIGHT") & (df.interpolation == "VARIABLE")]
+            # Get corresponding power settings for selected units
+            power = "power_1" if self.units.get() in s.unit_1.tolist() else \
+                    "power_2" if self.units.get() in s.unit_2.tolist() else \
+                    "power_3" if self.units.get() in s.unit_3.tolist() else None
+            ps = list(map(float, s[power].tolist())) # get a list of static/variable ps for that ac
             rng = min(ps), max(ps)
             if p > rng[0] and p < rng[1]: # if pwr is in range
                 pass

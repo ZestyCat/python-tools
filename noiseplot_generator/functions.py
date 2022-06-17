@@ -24,7 +24,7 @@ def get_info(df, aircraft):
     return(df[df["aircraft"] == aircraft].iloc[0])
 
 # Write o10 input file, call subprocess to run o10
-def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise", 
+def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise", interpolation = "VARIABLE",
                 speed_kts = 160, temp = 59, rel_hum_pct = 70, units = "% NC",
                 path = "./", input = 'input.o10_input', log = "log.o10_log", 
                 output = "output.o10_noise", ac_file = "./data/operation_data.csv"):
@@ -39,11 +39,12 @@ def run_o10(aircraft = "F-18E/F", power = 90, description = "Cruise",
     r = " " * (4 - len(str(rel_hum_pct))) + str(rel_hum_pct)
     p = " " * (10 - len(format(power, '.2f'))) + format(power, '.2f')
     u = units + " " * (10 - len(units))
+    n = interpolation + " " * (8 - len(interpolation)) 
     s = " " * (3 - len(str(speed_kts))) + str(speed_kts)
     
     # Concatenate params into string
-    cmd = "\n{}{}{} W  1  0.0\nF{}00{} {} VARIABLE   {}\n" \
-        .format(code, t, r, code, p, u, s)
+    cmd = "\n{}{}{} W  1  0.0\nF{}00{} {} {}   {}\n" \
+        .format(code, t, r, code, p, u, n, s)
    
     os.chdir("./omega/")
    
@@ -97,7 +98,7 @@ def read_o10(file = "./omega/output.o10_noise"):
                "sel"  : sel})
         return(df)
 
-def run_o11(aircraft = "F-18E/F", power = 90, description = "Cruise", 
+def run_o11(aircraft = "F-18E/F", power = 90, description = "Cruise", interpolation = "VARIABLE",
                 inches_hg = 29.92, temp = 59, rel_hum_pct = 70, units = "% NC",
                 path = "./", input = 'input.o11_input', log = "log.o11_log", 
                 output = "output.o11_noise", ac_file = "./data/operation_data.csv"):
@@ -113,10 +114,11 @@ def run_o11(aircraft = "F-18E/F", power = 90, description = "Cruise",
     i = " " * (6 - len(str(inches_hg))) + str(inches_hg)
     p = " " * (10 - len(format(power, '.2f'))) + format(power, '.2f')
     u = units + " " * (10 - len(units))
+    n = interpolation + " " * (8 - len(interpolation)) 
     
     # Concatenate params into string
-    command = "\n{}{}{}{}   W    1 0.0\nR{}00{} {} VARIABLE\n" \
-        .format(code, t, r, i, code, p, u)
+    command = "\n{}{}{}{}   W    1 0.0\nR{}00{} {} {}\n" \
+        .format(code, t, r, i, code, p, u, n)
    
     os.chdir("./omega/")
     
